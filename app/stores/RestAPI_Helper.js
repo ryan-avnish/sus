@@ -28,8 +28,7 @@ module.exports = {
 				url,
 				type:'POST',
 				data,
-				processData: false,
-            	dataType: "JSON",
+				dataType: "text",
 				success,
 				error
 			})

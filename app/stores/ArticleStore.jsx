@@ -42,8 +42,7 @@ function ArticleStore() {
 
   function uploadcsv(data, router) {
     restApi.post("/upload/csv", data).then((upload) => {
-      console.log('upload', upload);
-      //router.push('/excellence');
+      router.push('/excellence');
     }).catch((err) => {
       if(err.status == 401) {
         error = err.message;

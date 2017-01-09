@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var Article = require('./../models/Article.js');
+var Upload = require('./../models/Upload.js');
 var errorHandler = require('./errors.server.controller');
-var fs = require('fs');
-var path = require('path');
 var _ = require('lodash');
+//var async = require('async');
 
 module.exports.list = function(req, res) {
   Article.find(function(err, data) {
@@ -36,47 +36,58 @@ module.exports.create = function(req, res) {
 };
 
 module.exports.upload = function(req, res) {
-  //var string = req.body.toString();
-  //console.log('req.body', req.body);
-  var string = JSON.stringify(req.body);
-  var baseString = (new Buffer(string));
-  var uploadedpath = path.join(__dirname, '../../app') + "/file/";
-  var returnpath = "/file/";
-  var passcode = Math.floor(100000 + Math.random() * 900000)
-      passcode = passcode.toString().substring(0, 4);
-      passcode = parseInt(passcode);
-  var filename = passcode+".csv";
+ 
+  var lines=req.body.csvFile.split("\n");
 
-  if (!fs.existsSync(uploadedpath)) {
-    fs.mkdirSync(uploadedpath);
-  }
-  var response = decodeBase64CSV(baseString, function (callback, uploadFile) {
-      fs.writeFile(uploadedpath + filename, uploadFile, "base64", function (err) {
-          if (err)
-            return console.log(err);
-            var Image_Path = req.protocol + '://' + req.host + returnpath + filename;
+  var result = [];
 
-          // if (err) {
-          //     callback1(true, err);
-          // } else {
-          //     callback1(false, Image_Path);
-          // }
-      });
-  })
-  function decodeBase64CSV(data, callback) {
-    console.log('data', data);
-    var dataString = 'data:application/csv;base64,' + data;
-    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-       response = {};
-    if (matches.length !== 3) {
-        return new Error('Invalid input string');
+  var headers=lines[0].split(",");
+
+  for(var i=1;i<lines.length;i++){
+
+    var obj = {};
+    var currentline=lines[i].split(",");
+    //console.log('currentline---->',currentline);
+    console.log('currentline[12]', currentline[12]);
+
+    
+    console.log('colorScheme', colorScheme);
+    for(var j=0;j<headers.length;j++){
+      obj[headers[j]] = currentline[j];
+      if(j>11 && j<=21){
+        console.log('in');
+        
+        var colorScheme = assignColor(currentline[j], j);
+        obj= colorScheme;
+      }
     }
-    response.type = matches[1];
-    response.data = new Buffer(matches[2], 'base64');
-      callback(null, response);
+
+console.log(obj);
+    result.push(obj);
+
   }
+  //return result; //JavaScript object
+ // console.log('result', result)
+  var jsonArr = JSON.stringify(result); //JSON
+  
   res.status(200).json(req.body);
+};
+
+function assignColor(color, key) {
+  var colorVal = parseInt(color);
+  var c = {};
+  if(colorVal <= 10 && colorVal >= 8) {
+     c[key+ "_color"]= '#B8E986'
+  }else if(colorVal <= 7 && colorVal >= 4) {
+      c[key+ "_color"]=  '#FFC926'
+  }else if(colorVal <= 3 && colorVal >= 0) {
+     c[key+ "_color"] = '#F7764A'
+  }else {
+    c="no color";
+  }
+return c;
 }
+
 
 module.exports.read = function(req, res) {
   res.json(req.article);

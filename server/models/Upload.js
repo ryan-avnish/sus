@@ -21,93 +21,97 @@ var UploadSchema = {
   },
 
   employment_rate: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   bachelor_grade: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   bachelor_degree: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   graduation_rate: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   academic_progress: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   bachelor_stem: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   undergraduate: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   graduate_stem: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   without_access_hours: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   employment_rate_points: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   bachelor_grade_points: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   bachelor_degree_points: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   graduation_rate_points: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   academic_progress_points: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   bachelor_stem_points: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   undergraduate_points: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   graduate_stem_points: {
-    type: String,
+    type: Number,
     default: '',
   },
 
   without_access_hours_points: {
-    type: String,
+    type: Number,
     default: '',
+  },
+
+  color: {
+    type: String
   },
 
   createdAt: {

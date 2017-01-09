@@ -13,20 +13,15 @@ class UploadCSV extends React.Component {
 
   handleFiles(e) {
     e.preventDefault();
-   
-    //var file    = e.target.files[0];
-    // var reader  = new FileReader();
-    // reader.addEventListener("load", function () {
-    //   ArticleStore.uploadcsv({"csvFile":reader.result}, this.router);
-    // }, false);
+    var file    = this.refs.file.files[0];
+    var reader  = new FileReader();
+    reader.addEventListener("load", function () {
+      ArticleStore.uploadcsv({"csvFile":reader.result}, this.router);
+    }, false);
 
-    // if (file) {
-    //   reader.readAsDataURL(file);
-    // }
-    //console.log('e.target.files[0]', e.target.files[0]);
-    var fd = new FormData();    
-        fd.append('file', this.refs.file.files[0]);
-        ArticleStore.uploadcsv(fd, this.router);
+    if (file) {
+      reader.readAsText(file);
+    }
   }
 
   render() {

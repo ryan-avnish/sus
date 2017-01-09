@@ -56,7 +56,7 @@ module.exports.upload = function(req, res) {
       obj[headers[j]] = currentline[j];
       if(j>11 && j<=21){
         console.log('in');
-        
+
         var colorScheme = assignColor(currentline[j], j);
         obj= colorScheme;
       }
@@ -83,7 +83,7 @@ function assignColor(color, key) {
   }else if(colorVal <= 3 && colorVal >= 0) {
      c[key+ "_color"] = '#F7764A'
   }else {
-    c="no color";
+     c[key+ "_color"] = '*'
   }
 return c;
 }

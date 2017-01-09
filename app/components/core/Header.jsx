@@ -1,0 +1,77 @@
+import React from 'react';
+import { Link } from 'react-router';
+import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap';
+import auth from './../../services/Authentication';
+import UserStore from './../../stores/UserStore.jsx';
+//import $ from 'jquery';
+//import jQuery from 'jquery';
+
+class Header extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {};
+    this.state.loggedIn = auth.loggedIn();
+    this.state.userID = '';
+    this.state.username = '';
+    this.state.userID = auth.getUserId();
+    this.state.username = auth.getUserName();
+    this.navClick = this.navClick.bind(this);
+    this.collapse = this.collapse.bind(this);
+    this.updateAuth = this.updateAuth.bind(this);
+    this.router = context.router;
+  }
+
+  navClick() {
+    this.setState({ expand:false });
+  }
+
+  collapse(expanded) {
+    this.setState({ expand: expanded });
+  }
+
+  updateAuth(loggedIn, path) {
+    this.setState({ loggedIn: loggedIn });
+    this.setState({userID: auth.getUserId()});
+    this.setState({username: auth.getUserName()});
+    console.log(loggedIn);
+    console.log(path);
+    if (loggedIn && path == 'signin') {
+      this.router.push('/');
+    }
+  }
+
+  componentWillMount() {
+    //$('body').removeClass('newClass');
+    auth.onChange = this.updateAuth;
+  }
+
+  render() {
+    return (
+      <nav id="topNav" className="navbar navbar-default navbar-fixed-top">
+        <div className="container-fluid padding">
+            <div className="navbar-header">
+                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                    <img src="static/images/menu_icon.png"/>
+                </button>
+            </div>
+           
+            <div className="padding_rw">
+                <div className="name"><h2>SUS Metrics Performance Dashboard</h2></div>
+                <div className="rightnav_img">
+                    Welcome: <Link to="/">John Dalaney<span><img src="static/images/nav-pic.png" className="img-responsive nav-pic"/></span></Link>
+                 </div>
+            </div>
+
+        </div>
+    </nav>
+      
+    );
+  }
+}
+
+Header.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+export default Header;

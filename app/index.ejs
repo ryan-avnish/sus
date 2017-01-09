@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>SUS Metrics Performance Dashboard</title>
+  <!-- Semantic META -->
+  <meta name="keywords" content="Reactjs, Nodejs, mongoDB, express, mern, mean">
+  <meta name="description" content="MERN is a React framework for fullstack javascript web applications.">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/animate.min.css">
+  <link rel="stylesheet" href="/static/css/ionicons.min.css">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <!-- <link href='/static/style.css' rel="stylesheet"> -->
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/static/images/fav/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/static/images/fav/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/static/images/fav/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/images/fav/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/static/images/fav/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/images/fav/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/static/images/fav/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/images/fav/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/images/fav/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/static/images/fav/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/images/fav/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/static/images/fav/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/images/fav/favicon-16x16.png">
+  <link rel="manifest" href="/static/images/fav/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/static/images/fav/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <div id="mount">
+    <%- reactOutput %>
+  </div>
+
+  <script src="static/app.js"></script>
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/jquery.easing.min.js"></script>
+  <script src="/static/js/wow.js"></script>
+  <script src="/static/js/scripts.js"></script>
+  <script type="text/javascript">
+      (function () {
+    var demo, fixedTable;
+    fixedTable = function (el) {
+        var $body, $header, $sidebar;
+        $body = $(el).find('.fixedTable-body');
+        $sidebar = $(el).find('.fixedTable-sidebar table');
+        $header = $(el).find('.fixedTable-header table');
+        return $($body).scroll(function () {
+            $($sidebar).css('margin-top', -$($body).scrollTop());
+            return $($header).css('margin-left', -$($body).scrollLeft());
+        });
+    };
+    demo = new fixedTable($('#demo'));
+  }.call(this));
+
+
+  $(document).ready(function(){
+     $('#myModal').hide();
+      $('#popup').click(function(){
+           $('#myModal').show();
+      });
+      $('#canc_modal').click(function(){
+           $('#myModal').hide();
+      });
+
+    $('#mobile-nav').click(function(event) {
+         $('#navbx').toggleClass('active');
+    });
+
+   });
+
+
+      $('#navbx > ul > li ul').each(function(index, e){
+        var count = $(e).find('li').length;
+      // var content = '<span class=\"cnt\">' + count + '</span>';
+      //  $(e).closest('li').children('a').append(content);
+      });
+      $('#navbx ul ul li:odd').addClass('odd');
+      $('#navbx ul ul li:even').addClass('even');
+      $('#navbx > ul > li > a').click(function() {
+        $('#navbx li').removeClass('active');
+        $(this).closest('li').addClass('active'); 
+        var checkElement = $(this).next();
+        if((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+          $(this).closest('li').removeClass('active');
+          checkElement.slideUp('normal');
+        }
+        if((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+          $('#navbx ul ul:visible').slideUp('normal');
+          checkElement.slideDown('normal');
+        }
+        if($(this).closest('li').find('ul').children().length == 0) {
+          return true;
+        } else {
+          return false; 
+        }   
+      });
+
+      // var location = window.location.pathname;
+      // if(location == '/excellence') {
+      //   $(body).css({"overflow":"hidden"});
+      // }else{
+      //   console.log("gkkjgukjguik");
+      // }
+      // $('.menu-open:checkbox').change(function(){
+      //     if($(this).is(":checked")) {
+      //         $('.rank_head_list').addClass("menuitemshow");
+      //     } else {
+      //         $('.rank_head_list').removeClass("menuitemshow");
+      //     }
+      // });
+
+    </script>
+</body>
+
+</html>

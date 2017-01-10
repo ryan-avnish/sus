@@ -3,7 +3,7 @@ var Article = require('./../models/Article.js');
 var Upload = require('./../models/Upload.js');
 var errorHandler = require('./errors.server.controller');
 var _ = require('lodash');
-//var async = require('async');
+var async = require('async');
 
 module.exports.list = function(req, res) {
   Article.find(function(err, data) {
@@ -40,6 +40,7 @@ module.exports.upload = function(req, res) {
   var lines=req.body.csvFile.split("\n");
 
   var result = [];
+  var color;
 
   var headers=lines[0].split(",");
 
@@ -47,47 +48,78 @@ module.exports.upload = function(req, res) {
 
     var obj = {};
     var currentline=lines[i].split(",");
-    //console.log('currentline---->',currentline);
-    console.log('currentline[12]', currentline[12]);
-
-    
-    console.log('colorScheme', colorScheme);
     for(var j=0;j<headers.length;j++){
-      obj[headers[j]] = currentline[j];
-      if(j>11 && j<=21){
-        console.log('in');
-
-        var colorScheme = assignColor(currentline[j], j);
-        obj= colorScheme;
+      if(currentline[j] !== undefined && currentline[j] !== '') {
+        var headerStr = headers[j].replace(/\s/g, '').replace(/\’/g, '').replace('\u0003','').replace('-', '');
+        currentline[j] = currentline[j].replace('%', '').replace('$', '');
+        
+          if(currentline[j] == '*') {
+            obj[headerStr] = 11;
+          }else {
+            obj[headerStr] = currentline[j];    
+          }
+        if(j>11 && j<=21){
+          var colorScheme = assignColor(currentline[j]);
+          obj[headerStr+'color']= colorScheme;
+        }
       }
     }
-
-console.log(obj);
     result.push(obj);
-
   }
   //return result; //JavaScript object
- // console.log('result', result)
   var jsonArr = JSON.stringify(result); //JSON
   
-  res.status(200).json(req.body);
+  async.mapSeries(result, function(data, callback) {
+    if(Object.keys(data).length > 0) {
+      var csvUpload = new Upload(data);
+      csvUpload.save(function(err, myResult) {
+        if (err) {
+          return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+        } 
+      });
+    }
+    
+    callback(null);
+  }, function(err, result) {
+    //console.log('jsonArr', myjsonArr);
+    res.status(200).json({
+      message: 'CSV file uploaded successfully.'
+    });
+  });
+  
 };
 
-function assignColor(color, key) {
+function assignColor(color) {
   var colorVal = parseInt(color);
-  var c = {};
+  var c;
   if(colorVal <= 10 && colorVal >= 8) {
-     c[key+ "_color"]= '#B8E986'
+     c = '#B8E986'
   }else if(colorVal <= 7 && colorVal >= 4) {
-      c[key+ "_color"]=  '#FFC926'
+    c =  '#FFC926'
   }else if(colorVal <= 3 && colorVal >= 0) {
-     c[key+ "_color"] = '#F7764A'
+     c = '#F7764A'
   }else {
-     c[key+ "_color"] = '*'
+     c = '*'
   }
-return c;
+  return c;
 }
 
+module.exports.getCSV = function(req, res) {
+  Upload.find(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+          message: errorHandler.getErrorMessage(err)
+        });
+    } else {
+      console.log("api called");
+
+      res.status(200).send(data);
+    }
+  });
+};
 
 module.exports.read = function(req, res) {
   res.json(req.article);

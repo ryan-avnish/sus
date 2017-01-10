@@ -5,6 +5,7 @@ import auth from './../services/Authentication';
 function ArticleStore() {
 
   let articleList = {},
+    listData = {},
     changeListeners = [],
     article = {},
     error = '',
@@ -51,6 +52,13 @@ function ArticleStore() {
     });
   };
 
+  function getCSVdata() {
+    restApi.get("/getcsv").then((data) => {
+      listData = data;
+      triggerListeners();
+    });
+  }
+
   function editArticle(article, id, router) {
     restApi.put(`api/articles/${id}`, article).then((data) => {
       article = data;
@@ -80,6 +88,10 @@ function ArticleStore() {
 
   function getArticleList() {
     return articleList;
+  };
+
+  function getCSVList() {
+    return listData;
   };
 
   function getArticle() {
@@ -115,6 +127,8 @@ function ArticleStore() {
     getError: getError,
     addArticle: addArticle,
     uploadcsv: uploadcsv,
+    getCSVdata: getCSVdata,
+    getCSVList: getCSVList,
     editArticle: editArticle,
     getArticleList: getArticleList,
     getArticle: getArticle,

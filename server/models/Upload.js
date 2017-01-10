@@ -3,115 +3,152 @@ var Schema = mongoose.Schema;
 
 var UploadSchema = {
 
-  uni_name: {
+  Full_Name: {
     type: String,
     default: '',
     trim: true,
   },
 
-  uni_short_name: {
+  S_Name: {
     type: String,
     default: '',
     trim: true,
   },
 
-  logo_url: {
+  Logo_Url: {
     type: String,
     default: '',
   },
 
-  employment_rate: {
+  Continuingeducationandemploymentrate: {
     type: Number,
     default: '',
   },
 
-  bachelor_grade: {
+  Medianwagesofbachelorsgrads: {
     type: Number,
     default: '',
   },
 
-  bachelor_degree: {
+  Averagecostperbachelorsdegree: {
     type: Number,
     default: '',
   },
 
-  graduation_rate: {
+  Sixyeargraduationrate: {
     type: Number,
     default: '',
   },
 
-  academic_progress: {
+  Academicprogress2ndyearretention: {
     type: Number,
     default: '',
   },
 
-  bachelor_stem: {
+  BachelorsSTEMandstrategicemphasis: {
     type: Number,
     default: '',
   },
 
-  undergraduate: {
+  UndergraduateswithPellgrantpercent: {
     type: Number,
     default: '',
   },
 
-  graduate_stem: {
+  GraduateSTEMandstrategicemphasis: {
     type: Number,
     default: '',
   },
 
-  without_access_hours: {
+  Bachelorsdegreeswithoutaccesshours: {
     type: Number,
     default: '',
   },
 
-  employment_rate_points: {
+  Continuingeducationandemploymentratepoint: {
     type: Number,
     default: '',
   },
 
-  bachelor_grade_points: {
+  Medianwagesofbachelorsgradspoint: {
     type: Number,
     default: '',
   },
 
-  bachelor_degree_points: {
+  Averagecostperbachelorsdegreepoint: {
     type: Number,
     default: '',
   },
 
-  graduation_rate_points: {
+  Sixyeargraduationratepoint: {
     type: Number,
     default: '',
   },
 
-  academic_progress_points: {
+  Academicprogress2ndyearretentionpoint: {
     type: Number,
     default: '',
   },
 
-  bachelor_stem_points: {
+  BachelorsSTEMandstrategicemphasispoint: {
     type: Number,
     default: '',
   },
 
-  undergraduate_points: {
+  UndergraduateswithPellgrantpercentpoint: {
     type: Number,
     default: '',
   },
 
-  graduate_stem_points: {
+  GraduateSTEMandstrategicemphasispoint: {
     type: Number,
     default: '',
   },
 
-  without_access_hours_points: {
+  Bachelorsdegreeswithoutaccesshourspoint: {
     type: Number,
     default: '',
   },
 
-  color: {
+  Continuingeducationandemploymentratepointcolor: {
     type: String
+  },
+  
+  Medianwagesofbachelorsgradspointcolor: {
+    type: String
+  },
+
+  Averagecostperbachelorsdegreepointcolor: {
+    type: String
+  },
+
+  Sixyeargraduationratepointcolor: {
+    type: String
+  },
+
+  Academicprogress2ndyearretentionpointcolor: {
+    type: String
+  },
+
+  BachelorsSTEMandstrategicemphasispointcolor: {
+    type: String
+  },
+
+  UndergraduateswithPellgrantpercentpointcolor: {
+    type: String
+  },
+
+  GraduateSTEMandstrategicemphasispointcolor: {
+    type: String
+  },
+
+  Bachelorsdegreeswithoutaccesshourspointcolor: {
+    type: String
+  },
+
+  year: {
+    type:String,
+    default: '2016'
   },
 
   createdAt: {

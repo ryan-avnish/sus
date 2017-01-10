@@ -1625,6 +1625,7 @@ ul.nav.nav-tabs {
     margin-bottom: -1px;
     position: relative;
     top: 1px;
+    margin-right: 5px;
 }
 
 .percentage_number h2
@@ -2787,11 +2788,11 @@ body{overflow: scroll;}
 
 
 .fixedTable .table tr td {
-    border: medium none;
-    min-height: 20px;
-    min-width: 174px;
-    padding: 5px;
-    width: 174px;
+  border: medium none;
+  min-height: 20px;
+  min-width: 178px;
+  padding: 5px;
+  width: 174px;
 }
 .fixedTable-header {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;

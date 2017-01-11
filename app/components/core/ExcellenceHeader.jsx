@@ -4,7 +4,6 @@ import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap';
 import auth from './../../services/Authentication';
 import UserStore from './../../stores/UserStore.jsx';
-//import $ from 'jquery';
 
 class ExcellenceHeader extends React.Component {
   constructor(props, context) {
@@ -22,17 +21,14 @@ class ExcellenceHeader extends React.Component {
   }
 
   navClick() {
-    console.log('in nav click');
     this.setState({ expand:false });
   }
 
   collapse(expanded) {
-    console.log('in collapse');
     this.setState({ expand: expanded });
   }
 
   updateAuth(loggedIn, path) {
-    console.log(' in update auth');
     this.setState({ loggedIn: loggedIn });
     this.setState({userID: auth.getUserId()});
     this.setState({username: auth.getUserName()});
@@ -44,8 +40,11 @@ class ExcellenceHeader extends React.Component {
   }
 
   componentWillMount() {
-    //$('body').addClass('newClass');
-    auth.onChange = this.updateAuth;
+    if(typeof window !== 'undefined') {
+      var x = document.getElementsByTagName("BODY")[0];
+      x.setAttribute("class", "newClass");
+    }
+    //auth.onChange = this.updateAuth;
   }
 
   render() {

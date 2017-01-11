@@ -8,7 +8,6 @@ class UploadCSV extends React.Component {
     this.state = {};
     this.router = context.router;
     this.handleFiles = this.handleFiles.bind(this);
-    //this.importFile = this.importFile.bind(this);
   }
 
   handleFiles(e) {
@@ -53,4 +52,3 @@ UploadCSV.contextTypes = {
 };
 
 export default UploadCSV;
-// <button onClick={this.importFile}>Import</button>

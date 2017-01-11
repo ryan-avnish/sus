@@ -16,7 +16,7 @@ module.exports = function(app){
 	.put(users.requiresLogin, articles.update);
 
 	app.route('/upload/csv').post(articles.upload);
-	app.route('/getcsv').get(articles.getCSV);
+	app.route('/getcsv/:idx/:key').get(articles.getCSV);
 
 app.param('articleId', articles.articleByID);
 

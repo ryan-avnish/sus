@@ -14,42 +14,10 @@ class Excellence extends React.Component {
     super(props);
     this.props = props;
     this.state = {};
-    ArticleStore.getCSVdata();
+    ArticleStore.getCSVdata(4, 'Academicprogress2ndyearretention');
     this.state = {};
     this.state.csvData = [];
-    // this.state.id=[];
-    // this.state.Continuingeducationandemploymentratepointcolor=[];
-    // this.state.Medianwagesofbachelorsgradspointcolor=[];
-    // this.state.Averagecostperbachelorsdegreepointcolor=[];
-    // this.state.Sixyeargraduationratepointcolor=[];
-    // this.state.Academicprogress2ndyearretentionpointcolor=[];
-    // this.state.BachelorsSTEMandstrategicemphasispointcolor=[];
-    // this.state.UndergraduateswithPellgrantpercentpointcolor=[];
-    // this.state.GraduateSTEMandstrategicemphasispointcolor=[];
-    // this.state.Bachelorsdegreeswithoutaccesshourspointcolor=[];
-    // this.state.createdAt=[];
-    // this.state.year=[];
-    // this.state.Bachelorsdegreeswithoutaccesshourspoint=[];
-    // this.state.GraduateSTEMandstrategicemphasispoint=[];
-    // this.state.UndergraduateswithPellgrantpercentpoint=[];
-    // this.state.BachelorsSTEMandstrategicemphasispoint=[];
-    // this.state.Academicprogress2ndyearretentionpoint=[];
-    // this.state.Sixyeargraduationratepoint=[];
-    // this.state.Averagecostperbachelorsdegreepoint=[];
-    // this.state.Medianwagesofbachelorsgradspoint=[];
-    // this.state.Continuingeducationandemploymentratepoint=[];
-    // this.state.Bachelorsdegreeswithoutaccesshours=[];
-    // this.state.GraduateSTEMandstrategicemphasis=[];
-    // this.state.UndergraduateswithPellgrantpercent=[];
-    // this.state.BachelorsSTEMandstrategicemphasis=[];
-    // this.state.Academicprogress2ndyearretention=[];
-    // this.state.Sixyeargraduationrate=[];
-    // this.state.Averagecostperbachelorsdegree=[];
-    // this.state.Medianwagesofbachelorsgrads=[];
-    // this.state.Continuingeducationandemploymentrate=[];
-    // this.state.Logo_Url=[];
-    // this.state.S_Name=[];
-    // this.state.Full_Name=[];
+    this.handleClick = this.handleClick.bind(this);
     this._onChange = this._onChange.bind(this);
   }
 
@@ -63,6 +31,10 @@ class Excellence extends React.Component {
 
   _onChange() {
     this.setState(getCSVList());
+  }
+
+  handleClick(idx, title, e) {
+    ArticleStore.getCSVdata(idx, title);
   }
 
   render() {
@@ -81,130 +53,46 @@ class Excellence extends React.Component {
         <table className="table table-bordered">
           <thead>
             <tr>
-              <th>
-                <div className="rank_head_list">
-                    <ul>
-                      <li><span>1</span></li>
-                      <li><p>Continuing education and employment rate</p></li>
-                      <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open1"/> <label className="menu-open-button" htmlFor="menu-open1"><i className="fa fa-plus" aria-hidden="true"></i></label>
-                            <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
-                            <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                       </li>
+            {
+              this.state.csvData.headers !== undefined ? this.state.csvData.headers.map((head, i)=>{
+                if(head !== null){
+                
+                return(
+                  <th key={'xyz'+i}>
+                    <div className="rank_head_list">
+                        <ul>
+                          <li><span>{head.idx}</span></li>
+                          <li onClick={this.handleClick.bind(this, i, Object.keys(head)[0])}><p>{head[Object.keys(head)[0]]}</p></li>
+                          <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open1"/> <label className="menu-open-button" htmlFor="menu-open1"><i className="fa fa-plus" aria-hidden="true"></i></label>
+                                <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
+                                <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
+                                <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
+                                <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
+                           </li>
 
-                    </ul>
-                </div>
-              </th>
-               <th>
-                <div className="rank_head_list">
-                    <ul>
-                      <li><span>2</span></li>
-                      <li><p>Median wages of bachelor’s grads </p></li>
-                      <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open2"/> <label className="menu-open-button" htmlFor="menu-open2"><i className="fa fa-plus" aria-hidden="true"></i></label>
-                            <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
-                            <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                       </li>
-                    </ul>
-                </div>
-              </th>
-               <th>
-                <div className="rank_head_list">
-                    <ul>
-                      <li><span>3</span></li>
-                      <li><p>Average cost per bachelor’s degree</p></li>
-                     <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open3"/> <label className="menu-open-button" htmlFor="menu-open3"><i className="fa fa-plus" aria-hidden="true"></i></label>
-                            <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
-                            <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                       </li>
-                    </ul>
-                </div>
-              </th>
-               <th>
-                <div className="rank_head_list">
-                    <ul>
-                      <li><span>4</span></li>
-                      <li><p className="height">Six year graduation rate</p></li>
-                     <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open4"/> <label className="menu-open-button" htmlFor="menu-open4"><i className="fa fa-plus" aria-hidden="true"></i></label>
-                            <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
-                            <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                       </li>
-                    </ul>
-                </div>
-              </th>
-               <th>
-                <div className="rank_head_list">
-                    <ul>
-                      <li><span>6</span></li>
-                      <li><p>Bachelor’s STEM and strategic emphasis </p></li>
-                      <li> <input type="checkbox" href="#" className="menu-open" name="menu-open5" id="menu-open5"/> <label className="menu-open-button" htmlFor="menu-open5"><i className="fa fa-plus" aria-hidden="true"></i></label>
-                            <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
-                            <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                       </li>
-                    </ul>
-                </div>
-              </th>
-               <th>
-                <div className="rank_head_list">
-                    <ul>
-                      <li><span>7</span></li>
-                      <li><p>Undergraduates with Pell-grant percent</p></li>
-                      <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open6"/> <label className="menu-open-button" htmlFor="menu-open6"><i className="fa fa-plus" aria-hidden="true"></i></label>
-                            <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
-                            <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                       </li>
-                    </ul>
-                </div>
-              </th>
-              <th>
-                <div className="rank_head_list">
-                    <ul>
-                      <li><span>8</span></li>
-                      <li><p>Graduate STEM and strategic emphasis</p></li>
-                      <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open7"/> <label className="menu-open-button" htmlFor="menu-open7"><i className="fa fa-plus" aria-hidden="true"></i></label>
-                            <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
-                            <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                       </li>
-                    </ul>
-                </div>
-              </th>
-               <th>
-                <div className="rank_head_list">
-                    <ul>
-                      <li><span>9</span></li>
-                      <li><p>Bachelor’s degrees without access hours</p></li>
-                      <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open8"/> <label className="menu-open-button" htmlFor="menu-open8"><i className="fa fa-plus" aria-hidden="true"></i></label>
-                            <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                            <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
-                            <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                       </li>
-                    </ul>
-                </div>
-              </th>
+                        </ul>
+                    </div>
+                  </th>
+                )
+              } else {
+
+              }
+              }) : ''
+            }
             </tr>
           </thead>
         </table>
       </header>
       <aside className="fixedTable-sidebar">
          <div className="rank">
-            <ul>
+         {
+          this.state.csvData.paramkey !== undefined ? <ul>
               <li className="rank-li1"><h4>Rank</h4></li>
-              <li className="rank-li2"><span className="rank-number"> 5 </span><a href="#" className="btn rank-btn">Academic progress 2nd year <br/> retention</a></li>
+              <li className="rank-li2"><span className="rank-number"> {this.state.csvData.paramkey.idx} </span><a href="#" className="btn rank-btn">{this.state.csvData.paramkey[Object.keys(this.state.csvData.paramkey)[0]]}</a></li>
               <li className="rank-li3"><a id="popup" href="#"><img src="static/images/filter_icon.png" alt="filter"/> </a></li>
-            </ul>
+            </ul> : ''
+         }
+            
 
                    
           <div className=" dialog_box" id="myModal" >
@@ -260,21 +148,21 @@ class Excellence extends React.Component {
         <table className="table table-bordered">
           <tbody>
           {
-            this.state.csvData.length > 0 ? this.state.csvData.map((single, i)=>{
-              console.log('single', single);
+            this.state.csvData.single !== undefined ? this.state.csvData.single.map((clicked, i)=>{
+              var idxVal = i+1;
                return(
-                <tr>
+                <tr key={'abc'+i}>
                   <td>
                      <div className="rank_list">
-                        <div className="number"><span>1</span></div>
-                        <div className="rank_img"><img src={single.Logo_Url}/></div>
+                        <div className="number"><span>{idxVal}</span></div>
+                        <div className="rank_img"><img src={clicked.Logo_Url}/></div>
                         <div className="rank_desc">
                             <ul>
-                                <li><h2>{single.S_Name}</h2> <h6>Points</h6></li>
-                                <li><h5>{single.Full_Name}</h5> <span className="nummber_points">{single.Academicprogress2ndyearretentionpoint}</span></li>
+                                <li><h2>{clicked.S_Name}</h2> <h6>Points</h6></li>
+                                <li><h5>{clicked.Full_Name}</h5> <span className="nummber_points">{clicked[Object.keys(clicked)[2]]}</span></li>
                             </ul>
                         </div>
-                        <div className="rank_percentage" style={{'color': single.Academicprogress2ndyearretentionpointcolor}}><h3>{single.Academicprogress2ndyearretention+'%'}</h3></div>
+                        <div className="rank_percentage" style={{'color': clicked[Object.keys(clicked)[1]]}}><h3>{clicked[Object.keys(clicked)[3]]}</h3></div>
                     </div>
                   </td>
                 </tr>
@@ -288,56 +176,68 @@ class Excellence extends React.Component {
         <table className="table table-bordered">
           <tbody>
           {
-            this.state.csvData.length > 0 ? this.state.csvData.map((list, i)=>{
-              return (<tr>
+
+            this.state.csvData.griddata !== undefined ? this.state.csvData.griddata.map((list, i)=>{
+
+              var c0=Object.keys(this.state.csvData.headers[0])[0];
+              var c1=Object.keys(this.state.csvData.headers[1])[0];
+              var c2=Object.keys(this.state.csvData.headers[2])[0];
+              var c3=Object.keys(this.state.csvData.headers[3])[0];
+              var c4=Object.keys(this.state.csvData.headers[4])[0];
+              var c5=Object.keys(this.state.csvData.headers[5])[0];
+              var c6=Object.keys(this.state.csvData.headers[6])[0];
+              var c7=Object.keys(this.state.csvData.headers[7])[0];
+
+              return (<tr key={'def'+i}>
                <td>
                  <table className="table table-bordered">
                     <tbody><tr> 
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list.Continuingeducationandemploymentratepointcolor}}>{list.Continuingeducationandemploymentrate == 11 ? '*' : list.Continuingeducationandemploymentrate+'%'}</h2>
+
+                             <h2 style={{'color':list[c0+'pointcolor']}}>{list[c0] == 11 ? '*' : list[c0]+'%'}</h2>
                          </div>
                       </td>
                     
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list.Medianwagesofbachelorsgradspointcolor}}>{list.Medianwagesofbachelorsgrads == 11 ? '*' : '$'+list.Medianwagesofbachelorsgrads}</h2>
+                             <h2 style={{'color':list[c1+'pointcolor']}}>{list[c1] == 11 ? '*' : '$'+list[c1]}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                              <h2 style={{'color':list.Averagecostperbachelorsdegreepointcolor}}>{list.Averagecostperbachelorsdegree == 11 ? '*' : '$'+list.Averagecostperbachelorsdegree}</h2>
+                              <h2 style={{'color':list[c2+'pointcolor']}}>{list[c2] == 11 ? '*' : '$'+list[c2]}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                              <h2 style={{'color':list.Sixyeargraduationratepointcolor}}>{list.Sixyeargraduationrate == 11 ? '*' : list.Sixyeargraduationrate+'%'}</h2>
+                              <h2 style={{'color':list[c3+'pointcolor']}}>{list[c3] == 11 ? '*' : '$'+list[c3]}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list.BachelorsSTEMandstrategicemphasispointcolor}}>{list.BachelorsSTEMandstrategicemphasis == 11 ? '*' : list.BachelorsSTEMandstrategicemphasis+'%'}</h2>
+                             <h2 style={{'color':list[c4+'pointcolor']}}>{list[c4] == 11 ? '*' : '$'+list[c4]}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list.UndergraduateswithPellgrantpercentpointcolor}}>{list.UndergraduateswithPellgrantpercent == 11 ? '*' : list.UndergraduateswithPellgrantpercent+'%'}</h2>
+                             <h2 style={{'color':list[c5+'pointcolor']}}>{list[c5] == 11 ? '*' : '$'+list[c5]}</h2>
                          </div>
                       </td>
                   
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list.GraduateSTEMandstrategicemphasispointcolor}}>{list.GraduateSTEMandstrategicemphasis == 11 ? '*' : list.GraduateSTEMandstrategicemphasis+'%'}</h2>
+                             <h2 style={{'color':list[c6+'pointcolor']}}>{list[c6] == 11 ? '*' : '$'+list[c6]}</h2>
                          </div>
                       </td>
                     
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list.Bachelorsdegreeswithoutaccesshourspointcolor}}>{list.Bachelorsdegreeswithoutaccesshours == 11 ? '*' : list.Bachelorsdegreeswithoutaccesshours+'%'}</h2>
+                             <h2 style={{'color':list[c7+'pointcolor']}}>{list[c7] == 11 ? '*' : '$'+list[c7]}</h2>
                          </div>
                       </td>
                   

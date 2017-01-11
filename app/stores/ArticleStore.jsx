@@ -52,8 +52,8 @@ function ArticleStore() {
     });
   };
 
-  function getCSVdata() {
-    restApi.get("/getcsv").then((data) => {
+  function getCSVdata(idx, title) {
+    restApi.get("/getcsv/"+idx+"/"+title).then((data) => {
       listData = data;
       triggerListeners();
     });

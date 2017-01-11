@@ -107,16 +107,98 @@ function assignColor(color) {
 }
 
 module.exports.getCSV = function(req, res) {
-  Upload.find(function(err, data) {
+  var sortKey={}, selectKey={}, mainSort={};
+  sortKey[req.params.key+'point']=-1;
+
+    var customHeader = [
+    {
+      "Continuingeducationandemploymentrate": "Continuing education and employment rate",
+      "idx": 1
+    },{
+      "Medianwagesofbachelorsgrads": "Median wages of bachelor’s grads ",
+      "idx": 2
+    },{
+      "Averagecostperbachelorsdegree": "Average cost per bachelor’s degree",
+      "idx": 3
+    },{
+      "Sixyeargraduationrate": "Six year graduation rate",
+      "idx": 4
+    },{
+      "Academicprogress2ndyearretention": "Academic progress 2nd year retention",
+      "idx": 5
+    },{
+      "BachelorsSTEMandstrategicemphasis": "Bachelor’s STEM and strategic emphasis",
+      "idx": 6
+    },{
+      "UndergraduateswithPellgrantpercent": "Undergraduates with Pell-grant percent",
+      "idx": 7
+    },{
+      "GraduateSTEMandstrategicemphasis": "Graduate STEM and strategic emphasis",
+      "idx": 8
+    },{
+      "Bachelorsdegreeswithoutaccesshours": "Bachelor’s degrees without access hours",
+      "idx": 9
+    },
+    ];
+   var index=getObjectKeyIndex(customHeader,req.params.key);
+   console.log('index',index)
+    var sortedHeader = customHeader[req.params.idx];
+    var deletedHeader = [];
+    if(req.params.idx) {
+      delete customHeader[index];
+      for(var j=0;j<customHeader.length;j++){
+        console.log('cus', customHeader[j], req.params.idx);
+
+      if(customHeader[j] !== undefined && customHeader[j] !== null){
+        deletedHeader.push(customHeader[j]);
+      }
+    }
+    }
+    //customHeader = _.without(customHeader, null);
+    //customHeader = _.without(customHeader, undefined);
+    for(var i=0;i<customHeader.length;i++){
+      if(customHeader[i] !== undefined && customHeader[i] !== null) {
+        
+       mainSort[Object.keys(customHeader[i])[0]]=1;
+       mainSort[Object.keys(customHeader[i])[0]+'pointcolor']=1;
+       mainSort[Object.keys(customHeader[i])[0]+'point']=1;
+      }
+    }
+    function getObjectKeyIndex(obj, keyToFind) {
+    var i = 0, key;
+
+    for (key in obj) {
+      console.log('key',obj[key],keyToFind)
+        if (Object.keys(obj[key])[0] == keyToFind) {
+            return i;
+        }
+
+        i++;
+    }
+
+    return null;
+}
+  Upload.find().select(mainSort).sort(sortKey).exec(function(err, data) {
     if (err) {
       return res.status(400).send({
-
           message: errorHandler.getErrorMessage(err)
         });
     } else {
-      console.log("api called");
+      selectKey[req.params.key]=1;
+      selectKey[req.params.key+'point']=1;
+      selectKey[req.params.key+'pointcolor']=1;
+      selectKey['Full_Name']=1;
+      selectKey['S_Name']=1;
+      selectKey['Logo_Url']=1;
+      Upload.find().select(selectKey).sort(sortKey).exec(function(err, singleData) {
+        var mainData={};
 
-      res.status(200).send(data);
+        mainData.headers = deletedHeader;
+        mainData.paramkey = sortedHeader;
+        mainData.griddata = data
+        mainData.single = singleData
+        res.status(200).send(mainData);
+      });
     }
   });
 };
@@ -159,4 +241,5 @@ exports.articleByID = function(req, res, next, id) {
 		req.article = article;
 		next();
 	});
+  
 };

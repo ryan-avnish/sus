@@ -42,8 +42,10 @@ class Header extends React.Component {
   }
 
   componentWillMount() {
-    //$('body').removeClass('newClass');
-    auth.onChange = this.updateAuth;
+    if(typeof window !== 'undefined') {
+      var x = document.getElementsByTagName("BODY")[0];
+       x.setAttribute("class", "");
+    }
   }
 
   render() {

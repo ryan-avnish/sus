@@ -144,16 +144,16 @@ http://www.bootstrapzero.com
 }
 
 .menu-item, .menu-open-button {
- background: #80aceb;
+    background: #80aceb none repeat scroll 0 0;
     border-radius: 100%;
     color: white;
     height: 26px;
     line-height: 20px;
-    margin-left: -14px;
+    margin-left: -16px;
     position: absolute;
     text-align: center;
-    top: 16px;
-    width: 23px;
+    top: 18px;
+    width: 24px;
     z-index: 1;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
@@ -162,6 +162,19 @@ http://www.bootstrapzero.com
   transition: transform ease-out 200ms;
   transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
 }
+a.menu-item {
+     display: inline-table;
+    margin-left: -5px;
+    width: 19px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0){
+  a.menu-item {
+      display: inline-table;
+      margin-left: -16px;
+      width: 19px;
+  }
+}
+
 .menu-item:hover{
   background: #0094ff;
   color: #fff;
@@ -356,6 +369,12 @@ label.menu-open-button {
     font-size: 25px;
     padding-top: 19px;
 }
+
+.newClass {
+  overflow: hidden;
+}
+
+
 html,
 body {
     width: 100%;
@@ -1546,29 +1565,34 @@ ul.nav.nav-tabs {
    position: relative;
 }
 .rank_desc h2 {
-  background: #f1fbe7 none repeat scroll 0 0;
   color: #949aab;
   float: left;
   font-family: "robotomedium";
-  position: relative;
-  width: 100%;
   font-size: 22px;
+  left: 0;
   margin-bottom: 0;
+  position: absolute;
+  top: -21px;
+  padding: 3px;
 }
 .rank_desc ul li h6 {
-    color: #777;
-    float: right;
-    margin-top: 25px;
-    position: absolute;
-    right: 18px;
-    text-align: right;
+  color: #777;
+  float: right;
+  margin-top: 25px;
+  position: absolute;
+  right: 7%;
+  text-align: right;
+  top: -21px;
+  padding: 3px;
 }
 .rank_desc h5 {
    color: #9f9f9f;
     float: left;
     font-family: robotomedium;
-    font-size: 12px;
+    font-size: 10px;
     margin: 0;
+    width: 78%;
+    line-height: 11px;
 }
 .nummber_points {
     color: #777;
@@ -1606,7 +1630,10 @@ ul.nav.nav-tabs {
   padding-left: 5px;
 }
 .page-header{ margin: 20px 0 5px; }
-
+.progress{ margin-bottom: 0 !important; height: 27px !important; }
+.rank_desc li:nth-child(1) {
+  margin-top: 20px;
+}
 /*---------rightsidebar--------*/
 .full_wrapper {
   display: inline-block;
@@ -1762,9 +1789,10 @@ header .header-content .social_icon p {
     margin-top: 15px;
 }
 .rank-btn {
-   background: #9f9f9f none repeat scroll 0 0;
+    background: #9f9f9f none repeat scroll 0 0;
     border-radius: 50px;
     color: #ffffff;
+    display: block;
     font-family: "Roboto-Condensed0";
     font-size: 18px;
     line-height: 18px;
@@ -1772,7 +1800,11 @@ header .header-content .social_icon p {
     max-width: 100%;
     padding: 9px 2px 9px 30px;
     text-align: left;
-    width: 370px; 
+    white-space: pre-line;
+    width: 370px;
+    height: 54px;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 .fa.fa-microphone.custom-microphone {
   color: #0080ff;
@@ -1873,6 +1905,7 @@ header .header-content .social_icon p {
     margin-top: 12px;
     height: 30px;
     overflow: hidden;
+    cursor: pointer;
 }
 .rank_head_list li:nth-child(1) {
      background: #f4b400 none repeat scroll 0 0;
@@ -1900,6 +1933,12 @@ header .header-content .social_icon p {
     left: -1px;
     position: relative;
     top: -1px;
+}
+.rank_head_list li.check_div span {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
 }
 .grid_1:nth-child(2) {
   bottom: -31px;
@@ -2410,12 +2449,12 @@ img.nav-pic{ height: 40px; width: 40px; }
 }
 
 @media (max-width: 480px){
-
+.newClass{overflow: scroll;}
  #mobile-nav {
     cursor: pointer;
     display: inline-block;
     padding: 12px 5px;
-} 
+}
 .dialog_box .modal-dialog {
     margin: 30px auto;
     max-width: 515px;
@@ -3005,10 +3044,6 @@ body{overflow: scroll;}
     width: 100%;
 }
 
-}
-
-.newClass {
-  overflow: hidden;
 }
 
 

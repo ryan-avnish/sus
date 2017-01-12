@@ -22,7 +22,6 @@ module.exports = {
 		})
 	},
 	post(url,data){
-		console.log('data in rst api', data);
 		return new Promise(function(success,error){
 			$.ajax({
 				url,

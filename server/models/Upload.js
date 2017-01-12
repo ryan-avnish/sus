@@ -146,6 +146,42 @@ var UploadSchema = {
     type: String
   },
 
+  Continuingeducationandemploymentratetype: {
+    type: String
+  },
+  
+  Medianwagesofbachelorsgradstype: {
+    type: String
+  },
+
+  Averagecostperbachelorsdegreetype: {
+    type: String
+  },
+
+  Sixyeargraduationratetype: {
+    type: String
+  },
+
+  Academicprogress2ndyearretentiontype: {
+    type: String
+  },
+
+  BachelorsSTEMandstrategicemphasistype: {
+    type: String
+  },
+
+  UndergraduateswithPellgrantpercenttype: {
+    type: String
+  },
+
+  GraduateSTEMandstrategicemphasistype: {
+    type: String
+  },
+
+  Bachelorsdegreeswithoutaccesshourstype: {
+    type: String
+  },
+
   year: {
     type:String,
     default: '2016'

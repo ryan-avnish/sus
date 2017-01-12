@@ -4,6 +4,7 @@ import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap';
 import auth from './../../services/Authentication';
 import UserStore from './../../stores/UserStore.jsx';
+import loadJS from 'load-js';
 
 class ExcellenceHeader extends React.Component {
   constructor(props, context) {
@@ -44,6 +45,25 @@ class ExcellenceHeader extends React.Component {
       var x = document.getElementsByTagName("BODY")[0];
       x.setAttribute("class", "newClass");
     }
+    // loadJS([{
+    //   async: true,
+    //   url: "/static/js/jquery.min.js"
+    // }, {
+    //   async: true,
+    //   url: "/static/js/scripts.js"
+    // }, {
+    //   async: true,
+    //   url: "/static/js/bootstrap.min.js"
+    // }, {
+    //   async: true,
+    //   url: "/static/js/jquery.easing.min.js"
+    // }, {
+    //   async: true,
+    //   url: "/static/js/wow.js"
+    // }])
+    // .then(() => {
+    //   console.log("all done!");
+    // });
     //auth.onChange = this.updateAuth;
   }
 

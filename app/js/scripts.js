@@ -31,4 +31,16 @@
        $('#galleryImage').attr("src",$(e.relatedTarget).data("src"));
     });
 
+    $('#myModal').hide();
+      $('#popup').click(function(){
+           $('#myModal').show();
+      });
+      $('#canc_modal').click(function(){
+           $('#myModal').hide();
+      });
+
+    $('#mobile-nav').click(function(event) {
+         $('#navbx').toggleClass('active');
+    });
+
 })(jQuery);

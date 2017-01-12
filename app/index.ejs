@@ -46,7 +46,8 @@
   <script src="/static/js/wow.js"></script>
   <script src="/static/js/scripts.js"></script>
   <script type="text/javascript">
-      (function () {
+  console.log('here in jquery code');
+  (function () {
     var demo, fixedTable;
     fixedTable = function (el) {
         var $body, $header, $sidebar;
@@ -62,7 +63,7 @@
   }.call(this));
 
 
-  $(document).ready(function(){
+  //$(document).ready(function(){
      $('#myModal').hide();
       $('#popup').click(function(){
            $('#myModal').show();
@@ -75,7 +76,7 @@
          $('#navbx').toggleClass('active');
     });
 
-   });
+   //});
 
 
       $('#navbx > ul > li ul').each(function(index, e){
@@ -103,20 +104,6 @@
           return false; 
         }   
       });
-
-      // var location = window.location.pathname;
-      // if(location == '/excellence') {
-      //   $(body).css({"overflow":"hidden"});
-      // }else{
-      //   console.log("gkkjgukjguik");
-      // }
-      // $('.menu-open:checkbox').change(function(){
-      //     if($(this).is(":checked")) {
-      //         $('.rank_head_list').addClass("menuitemshow");
-      //     } else {
-      //         $('.rank_head_list').removeClass("menuitemshow");
-      //     }
-      // });
 
     </script>
 </body>

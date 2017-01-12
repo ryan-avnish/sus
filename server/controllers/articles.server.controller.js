@@ -36,7 +36,9 @@ module.exports.create = function(req, res) {
 };
 
 module.exports.upload = function(req, res) {
- 
+  Upload.remove({}, function(err) { 
+    console.log('collection removed') 
+  });
   var lines=req.body.csvFile.split("\n");
 
   var result = [];
@@ -48,13 +50,21 @@ module.exports.upload = function(req, res) {
 
     var obj = {};
     var currentline=lines[i].split(",");
+
     for(var j=0;j<headers.length;j++){
       if(currentline[j] !== undefined && currentline[j] !== '') {
         var headerStr = headers[j].replace(/\s/g, '').replace(/\’/g, '').replace('\u0003','').replace('-', '');
+        if(currentline[j].indexOf('%')>-1) {
+          obj[headerStr+'type'] = '%';
+        }else if(currentline[j].indexOf('$')>-1) {
+          obj[headerStr+'type'] = '$';
+        }else {
+          obj[headerStr+'type'] = '*'
+        }
         currentline[j] = currentline[j].replace('%', '').replace('$', '');
         
           if(currentline[j] == '*') {
-            obj[headerStr] = 11;
+            obj[headerStr] = 111;
           }else {
             obj[headerStr] = currentline[j];    
           }
@@ -108,7 +118,7 @@ function assignColor(color) {
 
 module.exports.getCSV = function(req, res) {
   var sortKey={}, selectKey={}, mainSort={};
-  sortKey[req.params.key+'point']=-1;
+  sortKey[req.params.key]=-1;
 
     var customHeader = [
     {
@@ -140,56 +150,43 @@ module.exports.getCSV = function(req, res) {
       "idx": 9
     },
     ];
-   var index=getObjectKeyIndex(customHeader,req.params.key);
-   console.log('index',index)
-    var sortedHeader = customHeader[req.params.idx];
+
+    var sortedHeader;// = customHeader[req.params.idx];
     var deletedHeader = [];
     if(req.params.idx) {
-      delete customHeader[index];
+    
       for(var j=0;j<customHeader.length;j++){
-        console.log('cus', customHeader[j], req.params.idx);
-
-      if(customHeader[j] !== undefined && customHeader[j] !== null){
-        deletedHeader.push(customHeader[j]);
-      }
-    }
-    }
-    //customHeader = _.without(customHeader, null);
-    //customHeader = _.without(customHeader, undefined);
-    for(var i=0;i<customHeader.length;i++){
-      if(customHeader[i] !== undefined && customHeader[i] !== null) {
-        
-       mainSort[Object.keys(customHeader[i])[0]]=1;
-       mainSort[Object.keys(customHeader[i])[0]+'pointcolor']=1;
-       mainSort[Object.keys(customHeader[i])[0]+'point']=1;
-      }
-    }
-    function getObjectKeyIndex(obj, keyToFind) {
-    var i = 0, key;
-
-    for (key in obj) {
-      console.log('key',obj[key],keyToFind)
-        if (Object.keys(obj[key])[0] == keyToFind) {
-            return i;
+        if(customHeader[j].idx!=req.params.idx){
+          deletedHeader.push(customHeader[j]);
+        }else {
+          sortedHeader = customHeader[j];
         }
-
-        i++;
+      }
     }
-
-    return null;
-}
+    
+    for(var i=0;i<deletedHeader.length;i++){
+      if(deletedHeader[i] !== undefined && deletedHeader[i] !== null) {
+        mainSort[Object.keys(deletedHeader[i])[0]]=1;
+        mainSort[Object.keys(deletedHeader[i])[0]+'type']=1;
+        mainSort[Object.keys(deletedHeader[i])[0]+'pointcolor']=1;
+        mainSort[Object.keys(deletedHeader[i])[0]+'point']=1;
+      }
+    }
+    
   Upload.find().select(mainSort).sort(sortKey).exec(function(err, data) {
     if (err) {
       return res.status(400).send({
           message: errorHandler.getErrorMessage(err)
         });
-    } else {
+    }else {
       selectKey[req.params.key]=1;
+      selectKey[req.params.key+'type']=1;
       selectKey[req.params.key+'point']=1;
       selectKey[req.params.key+'pointcolor']=1;
       selectKey['Full_Name']=1;
       selectKey['S_Name']=1;
       selectKey['Logo_Url']=1;
+
       Upload.find().select(selectKey).sort(sortKey).exec(function(err, singleData) {
         var mainData={};
 
@@ -241,5 +238,17 @@ exports.articleByID = function(req, res, next, id) {
 		req.article = article;
 		next();
 	});
-  
+  function getObjectKeyIndex(obj, keyToFind) {
+    var i = 0, key;
+
+    for (key in obj) {
+        if (key == keyToFind) {
+            return i;
+        }
+
+        i++;
+    }
+
+    return null;
+}
 };

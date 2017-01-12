@@ -12,15 +12,16 @@ class UploadCSV extends React.Component {
 
   handleFiles(e) {
     e.preventDefault();
-    var file    = this.refs.file.files[0];
+    var file = this.refs.file.files[0];
     var reader  = new FileReader();
     reader.addEventListener("load", function () {
       ArticleStore.uploadcsv({"csvFile":reader.result}, this.router);
     }, false);
-
+    
     if (file) {
       reader.readAsText(file);
     }
+    
   }
 
   render() {
@@ -35,9 +36,9 @@ class UploadCSV extends React.Component {
                     </ul>
                 </div>
                <div>                
-               <form ref="uploadForm" id="csv" className="uploader" encType="multipart/form-data">
+               <form id="csv" className="uploader">
                    <input ref="file" type="file" name="file" className="upload-file"/>
-                   <input type="button" ref="button" value="Upload" onClick={this.handleFiles}/>
+                   <input type="button" value="Upload" onClick={this.handleFiles}/>
                </form>                
             </div>
                

@@ -3,7 +3,7 @@ import {Jumbotron, Grid, Row, Col, Button, Well} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import { Link } from 'react-router';
 import ArticleStore from './../../stores/ArticleStore.jsx';
-
+import loadJS from 'load-js';
 
 function getCSVList() {
   return { csvData: ArticleStore.getCSVList() };
@@ -14,7 +14,7 @@ class Excellence extends React.Component {
     super(props);
     this.props = props;
     this.state = {};
-    ArticleStore.getCSVdata(4, 'Academicprogress2ndyearretention');
+    ArticleStore.getCSVdata(5, 'Academicprogress2ndyearretention');
     this.state = {};
     this.state.csvData = [];
     this.handleClick = this.handleClick.bind(this);
@@ -22,6 +22,25 @@ class Excellence extends React.Component {
   }
 
   componentWillMount() {
+    // loadJS([{
+    //   async: true,
+    //   url: "/static/js/jquery.min.js"
+    // }, {
+    //   async: true,
+    //   url: "/static/js/scripts.js"
+    // }, {
+    //   async: true,
+    //   url: "/static/js/bootstrap.min.js"
+    // }, {
+    //   async: true,
+    //   url: "/static/js/jquery.easing.min.js"
+    // }, {
+    //   async: true,
+    //   url: "/static/js/wow.js"
+    // }])
+    // .then(() => {
+    //   console.log("all done!");
+    // });
     ArticleStore.onChange(this._onChange);
   }
 
@@ -62,16 +81,20 @@ class Excellence extends React.Component {
                     <div className="rank_head_list">
                         <ul>
                           <li><span>{head.idx}</span></li>
-                          <li onClick={this.handleClick.bind(this, i, Object.keys(head)[0])}><p>{head[Object.keys(head)[0]]}</p></li>
-                          <li> <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open1"/> <label className="menu-open-button" htmlFor="menu-open1"><i className="fa fa-plus" aria-hidden="true"></i></label>
+                          <li onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}><p>{head[Object.keys(head)[0]]}</p></li>
+                          <li className="check_div"> 
+                      <div className="last">
+                          <input type="checkbox" href="#" className="menu-open" name="menu-open" id={"menu-open"+i}/> 
+                          <label className="menu-open-button" htmlFor={"menu-open"+i}><i className="fa fa-plus" aria-hidden="true"></i></label>
                                 <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
                                 <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
-                           </li>
+                        </div>
+                        </li>
 
                         </ul>
-                    </div>
+                       </div>
                   </th>
                 )
               } else {
@@ -150,6 +173,16 @@ class Excellence extends React.Component {
           {
             this.state.csvData.single !== undefined ? this.state.csvData.single.map((clicked, i)=>{
               var idxVal = i+1;
+              var showData;
+              if(clicked[Object.keys(clicked)[4]] == 111) {
+                showData = '*';
+              }else if(clicked[Object.keys(clicked)[1]] == '%') {
+                showData = clicked[Object.keys(clicked)[4]]+clicked[Object.keys(clicked)[1]];
+              }else if(clicked[Object.keys(clicked)[1]] == '$') {
+                showData = clicked[Object.keys(clicked)[1]]+clicked[Object.keys(clicked)[4]]
+              } 
+              var percent = (clicked[Object.keys(clicked)[3]]/10) *100;
+
                return(
                 <tr key={'abc'+i}>
                   <td>
@@ -158,11 +191,18 @@ class Excellence extends React.Component {
                         <div className="rank_img"><img src={clicked.Logo_Url}/></div>
                         <div className="rank_desc">
                             <ul>
-                                <li><h2>{clicked.S_Name}</h2> <h6>Points</h6></li>
-                                <li><h5>{clicked.Full_Name}</h5> <span className="nummber_points">{clicked[Object.keys(clicked)[2]]}</span></li>
+
+                                <li><div className="progress">
+                              <div className="progress-bar" role="progressbar" aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100" style={{'width': percent+'%', 'backgroundColor': clicked[Object.keys(clicked)[2]]}}>
+                                <h2>{clicked.S_Name}</h2> <h6>Points</h6>
+                              </div>
+                            </div>
+                            
+                            </li>
+                                <li><h5>{clicked.Full_Name}</h5> <span className="nummber_points">{clicked[Object.keys(clicked)[3]] == 111 ? '*' : clicked[Object.keys(clicked)[3]]}</span></li>
                             </ul>
                         </div>
-                        <div className="rank_percentage" style={{'color': clicked[Object.keys(clicked)[1]]}}><h3>{clicked[Object.keys(clicked)[3]]}</h3></div>
+                        <div className="rank_percentage" style={{'color': clicked[Object.keys(clicked)[2]]}}><h3>{showData}</h3></div>
                     </div>
                   </td>
                 </tr>
@@ -194,50 +234,49 @@ class Excellence extends React.Component {
                     <tbody><tr> 
                       <td>
                         <div className="percentage_number">
-
-                             <h2 style={{'color':list[c0+'pointcolor']}}>{list[c0] == 11 ? '*' : list[c0]+'%'}</h2>
+                            <h2 style={{'color':list[c0+'pointcolor']}}>{list[c0] == 111 ? '*' : list[c0+'type'] == '%' ? list[c0]+list[c0+'type'] : list[c0+'type']+list[c0]}</h2>
                          </div>
                       </td>
                     
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c1+'pointcolor']}}>{list[c1] == 11 ? '*' : '$'+list[c1]}</h2>
+                             <h2 style={{'color':list[c1+'pointcolor']}}>{list[c1] == 111 ? '*' : list[c1+'type'] == '%' ? list[c1]+list[c1+'type'] : list[c1+'type']+list[c1]}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                              <h2 style={{'color':list[c2+'pointcolor']}}>{list[c2] == 11 ? '*' : '$'+list[c2]}</h2>
+                              <h2 style={{'color':list[c2+'pointcolor']}}>{list[c2] == 111 ? '*' : list[c2+'type'] == '%' ? list[c2]+list[c2+'type'] : list[c2+'type']+list[c2]}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                              <h2 style={{'color':list[c3+'pointcolor']}}>{list[c3] == 11 ? '*' : '$'+list[c3]}</h2>
+                              <h2 style={{'color':list[c3+'pointcolor']}}>{list[c3] == 111 ? '*' : list[c3+'type'] == '%' ? list[c3]+list[c3+'type'] : list[c3+'type']+list[c3]}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c4+'pointcolor']}}>{list[c4] == 11 ? '*' : '$'+list[c4]}</h2>
+                             <h2 style={{'color':list[c4+'pointcolor']}}>{list[c4] == 111 ? '*' : list[c4+'type'] == '%' ? list[c4]+list[c4+'type'] : list[c4+'type']+list[c4]}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c5+'pointcolor']}}>{list[c5] == 11 ? '*' : '$'+list[c5]}</h2>
+                             <h2 style={{'color':list[c5+'pointcolor']}}>{list[c5] == 111 ? '*' : list[c5+'type'] == '%' ? list[c5]+list[c5+'type'] : list[c5+'type']+list[c5]}</h2>
                          </div>
                       </td>
                   
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c6+'pointcolor']}}>{list[c6] == 11 ? '*' : '$'+list[c6]}</h2>
+                             <h2 style={{'color':list[c6+'pointcolor']}}>{list[c6] == 111 ? '*' : list[c6+'type'] == '%' ? list[c6]+list[c6+'type'] : list[c6+'type']+list[c6]}</h2>
                          </div>
                       </td>
                     
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c7+'pointcolor']}}>{list[c7] == 11 ? '*' : '$'+list[c7]}</h2>
+                             <h2 style={{'color':list[c7+'pointcolor']}}>{list[c7] == 111 ? '*' : list[c7+'type'] == '%' ? list[c7]+list[c7+'type'] : list[c7+'type']+list[c7]}</h2>
                          </div>
                       </td>
                   

@@ -63,20 +63,20 @@
   }.call(this));
 
 
-  //$(document).ready(function(){
+  $(document).ready(function(){
      $('#myModal').hide();
-      $('#popup').click(function(){
+      $('#popup').on('click', function(){
            $('#myModal').show();
       });
-      $('#canc_modal').click(function(){
+      $('#canc_modal').on('click', function(){
            $('#myModal').hide();
       });
 
-    $('#mobile-nav').click(function(event) {
+    $('#mobile-nav').on('click', function(event) {
          $('#navbx').toggleClass('active');
     });
 
-   //});
+   });
 
 
       $('#navbx > ul > li ul').each(function(index, e){

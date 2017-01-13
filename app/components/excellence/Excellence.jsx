@@ -3,7 +3,6 @@ import {Jumbotron, Grid, Row, Col, Button, Well} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import { Link } from 'react-router';
 import ArticleStore from './../../stores/ArticleStore.jsx';
-import loadJS from 'load-js';
 
 function getCSVList() {
   return { csvData: ArticleStore.getCSVList() };
@@ -17,30 +16,14 @@ class Excellence extends React.Component {
     ArticleStore.getCSVdata(5, 'Academicprogress2ndyearretention');
     this.state = {};
     this.state.csvData = [];
+    this.state.showModal = 'none';
     this.handleClick = this.handleClick.bind(this);
+    this.modalEvent = this.modalEvent.bind(this);
+    this.hideModal = this.hideModal.bind(this);
     this._onChange = this._onChange.bind(this);
   }
 
   componentWillMount() {
-    // loadJS([{
-    //   async: true,
-    //   url: "/static/js/jquery.min.js"
-    // }, {
-    //   async: true,
-    //   url: "/static/js/scripts.js"
-    // }, {
-    //   async: true,
-    //   url: "/static/js/bootstrap.min.js"
-    // }, {
-    //   async: true,
-    //   url: "/static/js/jquery.easing.min.js"
-    // }, {
-    //   async: true,
-    //   url: "/static/js/wow.js"
-    // }])
-    // .then(() => {
-    //   console.log("all done!");
-    // });
     ArticleStore.onChange(this._onChange);
   }
 
@@ -54,6 +37,18 @@ class Excellence extends React.Component {
 
   handleClick(idx, title, e) {
     ArticleStore.getCSVdata(idx, title);
+  }
+
+  modalEvent() {
+    this.setState({
+      showModal: 'block'
+    })
+  }
+
+  hideModal() {
+    this.setState({
+      showModal: 'none'
+    })
   }
 
   render() {
@@ -84,7 +79,7 @@ class Excellence extends React.Component {
                           <li onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}><p>{head[Object.keys(head)[0]]}</p></li>
                           <li className="check_div"> 
                       <div className="last">
-                          <input type="checkbox" href="#" className="menu-open" name="menu-open" id={"menu-open"+i}/> 
+                          <input type="checkbox" className="menu-open" name="menu-open" id={"menu-open"+i}/> 
                           <label className="menu-open-button" htmlFor={"menu-open"+i}><i className="fa fa-plus" aria-hidden="true"></i></label>
                                 <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
@@ -112,13 +107,13 @@ class Excellence extends React.Component {
           this.state.csvData.paramkey !== undefined ? <ul>
               <li className="rank-li1"><h4>Rank</h4></li>
               <li className="rank-li2"><span className="rank-number"> {this.state.csvData.paramkey.idx} </span><a href="#" className="btn rank-btn">{this.state.csvData.paramkey[Object.keys(this.state.csvData.paramkey)[0]]}</a></li>
-              <li className="rank-li3"><a id="popup" href="#"><img src="static/images/filter_icon.png" alt="filter"/> </a></li>
+              <li className="rank-li3"><button id="popup" onClick={this.modalEvent}><img src="static/images/filter_icon.png" alt="filter"/> </button></li>
             </ul> : ''
          }
             
 
                    
-          <div className=" dialog_box" id="myModal" >
+          <div className="dialog_box" id="myModal" style={{'display': this.state.showModal}}>
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -158,7 +153,7 @@ class Excellence extends React.Component {
                 </form>
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-default" id="canc_modal">Cancel</button>
+        <button type="button" className="btn btn-default" id="canc_modal" onClick={this.hideModal}>Cancel</button>
         <button type="button" className="btn btn-primary">Apply</button>
       </div>
     </div>

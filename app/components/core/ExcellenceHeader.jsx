@@ -1,42 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap';
-import auth from './../../services/Authentication';
-import UserStore from './../../stores/UserStore.jsx';
 import loadJS from 'load-js';
 
 class ExcellenceHeader extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {};
-    this.state.loggedIn = auth.loggedIn();
-    this.state.userID = '';
-    this.state.username = '';
-    this.state.userID = auth.getUserId();
-    this.state.username = auth.getUserName();
-    this.navClick = this.navClick.bind(this);
-    this.collapse = this.collapse.bind(this);
-    this.updateAuth = this.updateAuth.bind(this);
+    this.openMenu = this.openMenu.bind(this);
+    this.openSubMenu = this.openSubMenu.bind(this);
     this.router = context.router;
   }
 
-  navClick() {
-    this.setState({ expand:false });
+  
+
+  openMenu() {
+    if(typeof window !== 'undefined') {
+      document.getElementById('navbx').classList.toggle("active");
+    }
   }
 
-  collapse(expanded) {
-    this.setState({ expand: expanded });
-  }
-
-  updateAuth(loggedIn, path) {
-    this.setState({ loggedIn: loggedIn });
-    this.setState({userID: auth.getUserId()});
-    this.setState({username: auth.getUserName()});
-    console.log(loggedIn);
-    console.log(path);
-    if (loggedIn && path == 'signin') {
-      this.router.push('/');
+  openSubMenu() {
+    if(typeof window !== 'undefined') {
+      var toggleUl = document.querySelector("#navbx ul ul");
+      toggleUl.classList.toggle("active");
+      toggleUl.style.display = toggleUl.style.display === 'none' ? 'block' : 'none';
+      var x = document.querySelector('#navbx ul li');
+      x.setAttribute("class", "active");
     }
   }
 
@@ -45,26 +34,6 @@ class ExcellenceHeader extends React.Component {
       var x = document.getElementsByTagName("BODY")[0];
       x.setAttribute("class", "newClass");
     }
-    // loadJS([{
-    //   async: true,
-    //   url: "/static/js/jquery.min.js"
-    // }, {
-    //   async: true,
-    //   url: "/static/js/scripts.js"
-    // }, {
-    //   async: true,
-    //   url: "/static/js/bootstrap.min.js"
-    // }, {
-    //   async: true,
-    //   url: "/static/js/jquery.easing.min.js"
-    // }, {
-    //   async: true,
-    //   url: "/static/js/wow.js"
-    // }])
-    // .then(() => {
-    //   console.log("all done!");
-    // });
-    //auth.onChange = this.updateAuth;
   }
 
   render() {
@@ -74,7 +43,7 @@ class ExcellenceHeader extends React.Component {
        
         <div className="row paddingheader">
 
-        <div className="col-md-2 col-xs-2"><div id="mobile-nav"><img src="static/images/menu_icon_nw.png"/></div></div>
+        <div className="col-md-2 col-xs-2"><div id="mobile-nav" onClick={this.openMenu}><img src="static/images/menu_icon_nw.png"/></div></div>
          <div className="col-md-5 ">  
              <div className="year">
                 <div className="right">
@@ -107,9 +76,9 @@ class ExcellenceHeader extends React.Component {
    <div className="heading"><Link to="/">Home</Link></div>
     <ul>
        <li>
-          <a href="#"><img src="static/images/leader_icon.png"/> Leaderboards <i className="fa fa-chevron-right" aria-hidden="true"></i></a>
-          <ul>
-            <li><a className="active" href="excellence_tab.html">Excellence</a></li>
+          <a href="#" onClick={this.openSubMenu}><img src="static/images/leader_icon.png"/> Leaderboards <i className="fa fa-chevron-right" aria-hidden="true"></i></a>
+          <ul style={{'display': 'none', 'overflowX': 'visible', 'overflowY': 'visible'}}>
+            <li><Link className="active" to="/excellence">Excellence</Link></li>
             <li><a href="#">Improvement</a></li>
             <li><a href="#">Funding</a></li>
           </ul>

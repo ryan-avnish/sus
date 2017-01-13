@@ -4,8 +4,6 @@ import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap';
 import auth from './../../services/Authentication';
 import UserStore from './../../stores/UserStore.jsx';
-//import $ from 'jquery';
-//import jQuery from 'jquery';
 
 class Header extends React.Component {
   constructor(props, context) {

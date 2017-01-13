@@ -10,6 +10,7 @@ var mocha = require('gulp-mocha');
 var gulpJsx = require('gulp-jsx-coverage');
 var uglify = require('gulp-uglify');
 var isWatching = false;
+var pm2 = require('pm2');
 
 gulp.on('stop', function() {
    if (!isWatching) {
@@ -156,9 +157,21 @@ babel: {                                         // will pass to babel-core
 
 gulp.task('test', ['env:test', 'test_cover']);
 
-gulp.task('serve', ['env-set', 'live-server', 'bundle', 'temp', 'observe-all'], function() {
-  browserSync.init(null, {
-    proxy: 'http://localhost:3000',
-    port: 9001,
-  });
+// gulp.task('serve', ['env-set', 'live-server', 'bundle', 'temp', 'observe-all'], function() {
+//   browserSync.init(null, {
+//     proxy: 'http://localhost:3000',
+//     port: 9001,
+//   });
+// });
+
+gulp.task('serve', ['env-set', 'live-server', 'bundle', 'temp', 'observe-all'], function () {
+    pm2.connect(true, function () {
+        pm2.start({
+            name: 'server',
+            script: 'server/server.js',
+        }, function (err) {
+            console.log('pm2 started', err);
+            pm2.streamLogs('all', 0);
+        });
+    });
 });

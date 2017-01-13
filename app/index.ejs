@@ -5,6 +5,7 @@
   <title>SUS Metrics Performance Dashboard</title>
   <!-- Semantic META -->
   <meta name="keywords" content="Reactjs, Nodejs, mongoDB, express, mern, mean">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description" content="MERN is a React framework for fullstack javascript web applications.">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/animate.min.css">
@@ -61,49 +62,6 @@
     };
     demo = new fixedTable($('#demo'));
   }.call(this));
-
-
-  $(document).ready(function(){
-     $('#myModal').hide();
-      $('#popup').on('click', function(){
-           $('#myModal').show();
-      });
-      $('#canc_modal').on('click', function(){
-           $('#myModal').hide();
-      });
-
-    $('#mobile-nav').on('click', function(event) {
-         $('#navbx').toggleClass('active');
-    });
-
-   });
-
-
-      $('#navbx > ul > li ul').each(function(index, e){
-        var count = $(e).find('li').length;
-      // var content = '<span class=\"cnt\">' + count + '</span>';
-      //  $(e).closest('li').children('a').append(content);
-      });
-      $('#navbx ul ul li:odd').addClass('odd');
-      $('#navbx ul ul li:even').addClass('even');
-      $('#navbx > ul > li > a').click(function() {
-        $('#navbx li').removeClass('active');
-        $(this).closest('li').addClass('active'); 
-        var checkElement = $(this).next();
-        if((checkElement.is('ul')) && (checkElement.is(':visible'))) {
-          $(this).closest('li').removeClass('active');
-          checkElement.slideUp('normal');
-        }
-        if((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
-          $('#navbx ul ul:visible').slideUp('normal');
-          checkElement.slideDown('normal');
-        }
-        if($(this).closest('li').find('ul').children().length == 0) {
-          return true;
-        } else {
-          return false; 
-        }   
-      });
 
     </script>
 </body>

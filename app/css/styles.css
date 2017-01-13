@@ -478,7 +478,7 @@ p {
     padding: 0;
 }
 #navbx ul ul{
-  display: none;
+  /*display: none;*/
   padding-left: 0px;
 }
 #navbx ul ul a{
@@ -581,7 +581,7 @@ p {
 }
 .dialog_box {
     margin-top: 3px;
-    display: none;
+    /*display: none;*/
     position: absolute;
     width: 100%;
     -webkit-transition: all .3s;

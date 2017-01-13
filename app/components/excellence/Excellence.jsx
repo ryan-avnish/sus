@@ -4,7 +4,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 import { Link } from 'react-router';
 import ArticleStore from './../../stores/ArticleStore.jsx';
 import $ from 'jquery';
-console.log('jQuery', $);
+
 function getCSVList() {
   return { csvData: ArticleStore.getCSVList() };
 }

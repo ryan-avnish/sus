@@ -138,6 +138,18 @@ http://www.bootstrapzero.com
          url('../fonts/franklin/FranklinGothic-MediumCond.svg#FranklinGothic-MediumCond') format('svg');
 }
 
+button#popup {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+}
+
+button#popup:focus {
+  outline: none;
+  border: medium none;
+}
+.progress-bar {
+    box-shadow: none;
+}
 .menu {
   -webkit-filter: url("#goo");
           filter: url("#goo");
@@ -1597,6 +1609,7 @@ ul.nav.nav-tabs {
 .nummber_points {
     color: #777;
     float: right;
+     font-size: 11px;
     font-family: "robotomedium";
     margin-right: 29px;
 }
@@ -2767,21 +2780,41 @@ body{overflow: scroll;}
     font-size: 11px !important;
     padding: 8px 11px !important;
 }
-  .year {
-      display: inline-block;
-      padding-left: 8px;
-      text-align: left;
-      width: auto;
-      font-size: 16px;
-  }
-    .heading_text {
+.year {
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 9px;
+    padding-left: 8px;
+    text-align: left;
+    width: auto;
+}
+.rank_desc h5 {
+    color: #9f9f9f;
+    float: left;
+    font-size: 12px;
+    height: 22px;
+    margin: 0;
+    overflow: hidden;
+    width: 70%;
+}
+.newClass .footer {
+    bottom: 0;
+    display: table;
+    height: auto;
+    left: 0;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+}
+.heading_text {
         display: inline-block;
         width: auto;
     }
   .heading_text h2 {
-      font-size: 16px;
-      margin-top: 15px;
-  }
+    font-size: 13px;
+    margin-top: 20px;
+}
   .rank_percentage {
     float: right;
     margin-right: 3px;

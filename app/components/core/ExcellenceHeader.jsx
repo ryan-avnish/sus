@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import loadJS from 'load-js';
 
 class ExcellenceHeader extends React.Component {
   constructor(props, context) {
@@ -31,8 +30,9 @@ class ExcellenceHeader extends React.Component {
 
   componentWillMount() {
     if(typeof window !== 'undefined') {
-      var x = document.getElementsByTagName("BODY")[0];
-      x.setAttribute("class", "newClass");
+     document.body.scrollTop = document.documentElement.scrollTop = 0;
+     var x = document.getElementsByTagName("BODY")[0];
+     x.setAttribute("class", "newClass");
     }
   }
 

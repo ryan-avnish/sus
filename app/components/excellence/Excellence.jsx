@@ -27,6 +27,16 @@ class Excellence extends React.Component {
     ArticleStore.onChange(this._onChange);
   }
 
+  componentDidMount() {
+    if(typeof window !== 'undefined') {
+      var body = document.querySelector('.fixedTable-body');
+      var sidebar = document.querySelector('.fixedTable-sidebar table');
+      var header = document.querySelector('.fixedTable-header table');
+      //console.log('scrollUI', scrollUI)
+     
+    }
+  }
+
   componentWillUnmount() {
     ArticleStore.removeChangeListener(this._onChange);
   }
@@ -57,7 +67,6 @@ class Excellence extends React.Component {
       animationDelay: 0.3+'s', 
       animationName: 'fadeIn'
     };
-
     return (
       
       <div className="container-fluid tab">

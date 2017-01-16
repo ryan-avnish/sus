@@ -9,6 +9,7 @@ function ArticleStore() {
     changeListeners = [],
     article = {},
     error = '',
+    msg = '',
     articleDeleted = 'false';
 
   function triggerListeners() {
@@ -43,7 +44,10 @@ function ArticleStore() {
 
   function uploadcsv(data, router) {
     restApi.post("/upload/csv", data).then((upload) => {
-      router.push('/excellence');
+      console.log('upload', upload);
+        //console.log('show msg now');
+        msg = 'CSV file uploaded successfully';
+        triggerListeners();
     }).catch((err) => {
       if(err.status == 401) {
         error = err.message;
@@ -94,6 +98,11 @@ function ArticleStore() {
     return listData;
   };
 
+  function getUploadedMsg() {
+    console.log('m in show upload msg');
+    return msg;
+  };
+
   function getArticle() {
     articleDeleted = 'false';
     return article;
@@ -129,6 +138,7 @@ function ArticleStore() {
     uploadcsv: uploadcsv,
     getCSVdata: getCSVdata,
     getCSVList: getCSVList,
+    getUploadedMsg: getUploadedMsg,
     editArticle: editArticle,
     getArticleList: getArticleList,
     getArticle: getArticle,

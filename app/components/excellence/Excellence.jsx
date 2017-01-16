@@ -240,49 +240,49 @@ class Excellence extends React.Component {
                     <tbody><tr> 
                       <td>
                         <div className="percentage_number">
-                            <h2 style={{'color':list[c0+'pointcolor']}}>{list[c0] == 111 ? '*' : list[c0+'type'] == '%' ? list[c0]+list[c0+'type'] : list[c0+'type']+list[c0]}</h2>
+                            <h2 style={{'color':list[c0+'pointcolor']}}>{list[c0] == 111 ? '*' : list[c0+'type'] == '%' ? list[c0]+list[c0+'type'] : list[c0+'type']+(list[c0].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                     
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c1+'pointcolor']}}>{list[c1] == 111 ? '*' : list[c1+'type'] == '%' ? list[c1]+list[c1+'type'] : list[c1+'type']+list[c1]}</h2>
+                             <h2 style={{'color':list[c1+'pointcolor']}}>{list[c1] == 111 ? '*' : list[c1+'type'] == '%' ? list[c1]+list[c1+'type'] : list[c1+'type']+(list[c1].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                              <h2 style={{'color':list[c2+'pointcolor']}}>{list[c2] == 111 ? '*' : list[c2+'type'] == '%' ? list[c2]+list[c2+'type'] : list[c2+'type']+list[c2]}</h2>
+                              <h2 style={{'color':list[c2+'pointcolor']}}>{list[c2] == 111 ? '*' : list[c2+'type'] == '%' ? list[c2]+list[c2+'type'] : list[c2+'type']+(list[c2].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                              <h2 style={{'color':list[c3+'pointcolor']}}>{list[c3] == 111 ? '*' : list[c3+'type'] == '%' ? list[c3]+list[c3+'type'] : list[c3+'type']+list[c3]}</h2>
+                              <h2 style={{'color':list[c3+'pointcolor']}}>{list[c3] == 111 ? '*' : list[c3+'type'] == '%' ? list[c3]+list[c3+'type'] : list[c3+'type']+(list[c3].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c4+'pointcolor']}}>{list[c4] == 111 ? '*' : list[c4+'type'] == '%' ? list[c4]+list[c4+'type'] : list[c4+'type']+list[c4]}</h2>
+                             <h2 style={{'color':list[c4+'pointcolor']}}>{list[c4] == 111 ? '*' : list[c4+'type'] == '%' ? list[c4]+list[c4+'type'] : list[c4+'type']+(list[c4].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c5+'pointcolor']}}>{list[c5] == 111 ? '*' : list[c5+'type'] == '%' ? list[c5]+list[c5+'type'] : list[c5+'type']+list[c5]}</h2>
+                             <h2 style={{'color':list[c5+'pointcolor']}}>{list[c5] == 111 ? '*' : list[c5+'type'] == '%' ? list[c5]+list[c5+'type'] : list[c5+'type']+(list[c5].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                   
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c6+'pointcolor']}}>{list[c6] == 111 ? '*' : list[c6+'type'] == '%' ? list[c6]+list[c6+'type'] : list[c6+'type']+list[c6]}</h2>
+                             <h2 style={{'color':list[c6+'pointcolor']}}>{list[c6] == 111 ? '*' : list[c6+'type'] == '%' ? list[c6]+list[c6+'type'] : list[c6+'type']+(list[c6].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                     
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c7+'pointcolor']}}>{list[c7] == 111 ? '*' : list[c7+'type'] == '%' ? list[c7]+list[c7+'type'] : list[c7+'type']+list[c7]}</h2>
+                             <h2 style={{'color':list[c7+'pointcolor']}}>{list[c7] == 111 ? '*' : list[c7+'type'] == '%' ? list[c7]+list[c7+'type'] : list[c7+'type']+(list[c7].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                   

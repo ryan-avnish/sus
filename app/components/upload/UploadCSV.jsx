@@ -2,12 +2,33 @@ import React from 'react';
 import { Link } from 'react-router';
 import ArticleStore from './../../stores/ArticleStore.jsx';
 
+
+function showMsg() {
+  console.log('ArticleStore.getUploadedMsg()', ArticleStore.getUploadedMsg());
+  return { showMsg: ArticleStore.getUploadedMsg() };
+}
+
+
 class UploadCSV extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {};
+    this.state.showMsg = '';
     this.router = context.router;
     this.handleFiles = this.handleFiles.bind(this);
+    this._onChange = this._onChange.bind(this);
+  }
+
+  componentWillMount() {
+    ArticleStore.onChange(this._onChange);
+  }
+
+  componentWillUnmount() {
+    ArticleStore.removeChangeListener(this._onChange);
+  }
+
+  _onChange() {
+    this.setState(showMsg());
   }
 
   handleFiles(e) {
@@ -25,6 +46,7 @@ class UploadCSV extends React.Component {
   }
 
   render() {
+    console.log('in render', this.state.showMsg);
     return (
       <div className="inner">
                 <div className="number_list">
@@ -39,7 +61,8 @@ class UploadCSV extends React.Component {
                <form id="csv" className="uploader">
                    <input ref="file" type="file" name="file" className="upload-file"/>
                    <input type="button" value="Upload" onClick={this.handleFiles}/>
-               </form>                
+               </form> 
+               <p className="alert-success">{this.state.showMsg}</p>               
             </div>
                
             </div>

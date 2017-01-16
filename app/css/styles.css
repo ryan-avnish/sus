@@ -1601,7 +1601,7 @@ ul.nav.nav-tabs {
    color: #9f9f9f;
     float: left;
     font-family: robotomedium;
-    font-size: 10px;
+    font-size: 12px;
     margin: 0;
     width: 78%;
     line-height: 11px;
@@ -1811,7 +1811,7 @@ header .header-content .social_icon p {
     line-height: 18px;
     margin-top: 7px;
     max-width: 100%;
-    padding: 9px 2px 9px 30px;
+    padding:9px 47px 9px 30px;
     text-align: left;
     white-space: pre-line;
     width: 370px;

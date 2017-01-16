@@ -85,8 +85,9 @@ module.exports.upload = function(req, res) {
       csvUpload.save(function(err, myResult) {
         if (err) {
           return res.status(400).send({
-              message: errorHandler.getErrorMessage(err)
-            });
+            ok: false,
+            message: errorHandler.getErrorMessage(err)
+          });
         } 
       });
     }
@@ -95,6 +96,7 @@ module.exports.upload = function(req, res) {
   }, function(err, result) {
     //console.log('jsonArr', myjsonArr);
     res.status(200).json({
+      ok: true,
       message: 'CSV file uploaded successfully.'
     });
   });

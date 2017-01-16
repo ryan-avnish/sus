@@ -1,6 +1,4 @@
 import React from 'react';
-import {Jumbotron, Grid, Row, Col, Button, Well} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
 import { Link } from 'react-router';
 import ArticleStore from './../../stores/ArticleStore.jsx';
 import $ from 'jquery';
@@ -33,7 +31,6 @@ class Excellence extends React.Component {
       var body = document.querySelector('.fixedTable-body');
       var sidebar = document.querySelector('.fixedTable-sidebar table');
       var header = document.querySelector('.fixedTable-header table');
-      //console.log('scrollUI', scrollUI)
       $(body).scroll(function () {
         $(sidebar).css('margin-top', -$(body).scrollTop());
         return $(header).css('margin-left', -$(body).scrollLeft());

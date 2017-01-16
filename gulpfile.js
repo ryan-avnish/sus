@@ -158,7 +158,7 @@ gulp.task('test', ['env:test', 'test_cover']);
 
 gulp.task('serve', ['env-set', 'live-server', 'bundle', 'temp', 'observe-all'], function() {
   browserSync.init(null, {
-    proxy: 'http://localhost:3000',
-    port: 9001,
+    proxy: 'http://localhost:9001',
+    port: 9002,
   });
 });

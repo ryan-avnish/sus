@@ -15,6 +15,7 @@ class Excellence extends React.Component {
     ArticleStore.getCSVdata(5, 'Academicprogress2ndyearretention');
     this.state = {};
     this.state.csvData = [];
+    this.state.value = '';
     this.state.showModal = 'none';
     this.handleClick = this.handleClick.bind(this);
     this.modalEvent = this.modalEvent.bind(this);
@@ -48,7 +49,20 @@ class Excellence extends React.Component {
   }
 
   handleClick(idx, title, e) {
-    ArticleStore.getCSVdata(idx, title);
+    if(typeof window !== 'undefined') {
+      $(".zoom"+idx).toggleClass("zoom_class");
+      setTimeout(function() {
+        if (  $(".fixedTable-sidebar tr td").css( "transform" ) == 'none' ){
+            $(".fixedTable-sidebar tr td").css("transform","rotateX(180deg)");
+            setTimeout(function(){ 
+              $(".fixedTable-sidebar tr td").css("transform","" );
+            }, 700);
+        } else {
+            $(".fixedTable-sidebar tr td").css("transform","" );
+        }
+        ArticleStore.getCSVdata(idx, title);
+      }, 700);
+    }
   }
 
   modalEvent() {
@@ -83,15 +97,16 @@ class Excellence extends React.Component {
                 if(head !== null){
                 
                 return(
-                  <th key={'xyz'+i}>
+                  <th key={'header'+i}>
                     <div className="rank_head_list">
-                        <ul>
+                        <ul className={"zoom"+head.idx}>
                           <li><span>{head.idx}</span></li>
                           <li onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}><p>{head[Object.keys(head)[0]]}</p></li>
                           <li className="check_div"> 
                       <div className="last">
                           <input type="checkbox" className="menu-open" name="menu-open" id={"menu-open"+i}/> 
-                          <label className="menu-open-button" htmlFor={"menu-open"+i}><i className="fa fa-plus" aria-hidden="true"></i></label>
+                          <label className="menu-open-button" htmlFor={"menu-open"+i}>
+                          <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png"/></i></label>
                                 <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
@@ -112,7 +127,7 @@ class Excellence extends React.Component {
           </thead>
         </table>
       </header>
-      <aside className="fixedTable-sidebar">
+      <aside className="fixedTable-sidebar test">
          <div className="rank">
          {
           this.state.csvData.paramkey !== undefined ? <ul>
@@ -183,14 +198,20 @@ class Excellence extends React.Component {
               if(clicked[Object.keys(clicked)[4]] == 111) {
                 showData = '*';
               }else if(clicked[Object.keys(clicked)[1]] == '%') {
-                showData = clicked[Object.keys(clicked)[4]]+clicked[Object.keys(clicked)[1]];
+                showData = (clicked[Object.keys(clicked)[4]].toFixed(1))+clicked[Object.keys(clicked)[1]];
+                var percent = clicked[Object.keys(clicked)[4]];
               }else if(clicked[Object.keys(clicked)[1]] == '$') {
-                showData = clicked[Object.keys(clicked)[1]]+clicked[Object.keys(clicked)[4]]
+                showData = clicked[Object.keys(clicked)[1]]+(clicked[Object.keys(clicked)[4]].toLocaleString('en'))
+                if(i == 0) {
+                  this.state.value = clicked[Object.keys(clicked)[4]];
+                }
+                var percent = (clicked[Object.keys(clicked)[4]]/this.state.value)*100;
+                percent = percent.toFixed(1);
               } 
-              var percent = (clicked[Object.keys(clicked)[3]]/10) *100;
+              
 
                return(
-                <tr key={'abc'+i}>
+                <tr key={'single'+i}>
                   <td>
                      <div className="rank_list">
                         <div className="number"><span>{idxVal}</span></div>
@@ -234,55 +255,55 @@ class Excellence extends React.Component {
               var c6=Object.keys(this.state.csvData.headers[6])[0];
               var c7=Object.keys(this.state.csvData.headers[7])[0];
 
-              return (<tr key={'def'+i}>
+              return (<tr key={'grid'+i}>
                <td>
                  <table className="table table-bordered">
                     <tbody><tr> 
                       <td>
                         <div className="percentage_number">
-                            <h2 style={{'color':list[c0+'pointcolor']}}>{list[c0] == 111 ? '*' : list[c0+'type'] == '%' ? list[c0]+list[c0+'type'] : list[c0+'type']+(list[c0].toLocaleString('en'))}</h2>
+                            <h2 style={{'color':list[c0+'pointcolor']}}>{list[c0] == 111 ? '*' : list[c0+'type'] == '%' ? (list[c0].toFixed(1))+list[c0+'type'] : list[c0+'type']+(list[c0].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                     
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c1+'pointcolor']}}>{list[c1] == 111 ? '*' : list[c1+'type'] == '%' ? list[c1]+list[c1+'type'] : list[c1+'type']+(list[c1].toLocaleString('en'))}</h2>
+                             <h2 style={{'color':list[c1+'pointcolor']}}>{list[c1] == 111 ? '*' : list[c1+'type'] == '%' ? (list[c1].toFixed(1))+list[c1+'type'] : list[c1+'type']+(list[c1].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                              <h2 style={{'color':list[c2+'pointcolor']}}>{list[c2] == 111 ? '*' : list[c2+'type'] == '%' ? list[c2]+list[c2+'type'] : list[c2+'type']+(list[c2].toLocaleString('en'))}</h2>
+                              <h2 style={{'color':list[c2+'pointcolor']}}>{list[c2] == 111 ? '*' : list[c2+'type'] == '%' ? (list[c2].toFixed(1))+list[c2+'type'] : list[c2+'type']+(list[c2].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                              <h2 style={{'color':list[c3+'pointcolor']}}>{list[c3] == 111 ? '*' : list[c3+'type'] == '%' ? list[c3]+list[c3+'type'] : list[c3+'type']+(list[c3].toLocaleString('en'))}</h2>
+                              <h2 style={{'color':list[c3+'pointcolor']}}>{list[c3] == 111 ? '*' : list[c3+'type'] == '%' ? (list[c3].toFixed(1))+list[c3+'type'] : list[c3+'type']+(list[c3].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c4+'pointcolor']}}>{list[c4] == 111 ? '*' : list[c4+'type'] == '%' ? list[c4]+list[c4+'type'] : list[c4+'type']+(list[c4].toLocaleString('en'))}</h2>
+                             <h2 style={{'color':list[c4+'pointcolor']}}>{list[c4] == 111 ? '*' : list[c4+'type'] == '%' ? (list[c4].toFixed(1))+list[c4+'type'] : list[c4+'type']+(list[c4].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c5+'pointcolor']}}>{list[c5] == 111 ? '*' : list[c5+'type'] == '%' ? list[c5]+list[c5+'type'] : list[c5+'type']+(list[c5].toLocaleString('en'))}</h2>
+                             <h2 style={{'color':list[c5+'pointcolor']}}>{list[c5] == 111 ? '*' : list[c5+'type'] == '%' ? (list[c5].toFixed(1))+list[c5+'type'] : list[c5+'type']+(list[c5].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                   
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c6+'pointcolor']}}>{list[c6] == 111 ? '*' : list[c6+'type'] == '%' ? list[c6]+list[c6+'type'] : list[c6+'type']+(list[c6].toLocaleString('en'))}</h2>
+                             <h2 style={{'color':list[c6+'pointcolor']}}>{list[c6] == 111 ? '*' : list[c6+'type'] == '%' ? (list[c6].toFixed(1))+list[c6+'type'] : list[c6+'type']+(list[c6].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                     
                       <td>
                         <div className="percentage_number">
-                             <h2 style={{'color':list[c7+'pointcolor']}}>{list[c7] == 111 ? '*' : list[c7+'type'] == '%' ? list[c7]+list[c7+'type'] : list[c7+'type']+(list[c7].toLocaleString('en'))}</h2>
+                             <h2 style={{'color':list[c7+'pointcolor']}}>{list[c7] == 111 ? '*' : list[c7+'type'] == '%' ? (list[c7].toFixed(1))+list[c7+'type'] : list[c7+'type']+(list[c7].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                   

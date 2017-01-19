@@ -57,6 +57,7 @@
     "gulp-uglify": "^1.5.3",
     "history": "1.17.x",
     "jquery": "^2.2.4",
+    "jquery-ui": "^1.12.1",
     "load-js": "^1.2.0",
     "lodash": "^3.10.1",
     "mongoose": "4.0.3",

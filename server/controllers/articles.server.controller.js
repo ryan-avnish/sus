@@ -64,7 +64,7 @@ module.exports.upload = function(req, res) {
         currentline[j] = currentline[j].replace('%', '').replace('$', '');
         
           if(currentline[j] == '*') {
-            obj[headerStr] = 111;
+            obj[headerStr] = -1;
           }else {
             obj[headerStr] = currentline[j];    
           }
@@ -107,13 +107,13 @@ function assignColor(color) {
   var colorVal = parseInt(color);
   var c;
   if(colorVal <= 10 && colorVal >= 8) {
-     c = '#B8E986'
+    c = '#B8E986'
   }else if(colorVal <= 7 && colorVal >= 4) {
     c =  '#FFC926'
   }else if(colorVal <= 3 && colorVal >= 0) {
-     c = '#F7764A'
+    c = '#F7764A'
   }else {
-     c = '*'
+    c = '#D3D3D3'
   }
   return c;
 }

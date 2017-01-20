@@ -3125,7 +3125,30 @@ body{overflow: scroll;}
    }
    @keyframes dropHeader {
       0% {
-        transform: rotateX(180deg);
+        transform: rotateX(90deg);
+      }
+      100% {
+        transform: rotateX(0deg);
+      }
+    }
+     @-webkit-keyframes dropHeader {
+       0% {
+        transform: rotateX(90deg);
+      }
+      100% {
+        transform: rotateX(0deg);
+      }
+    }
+.fixedTable-row tr td{
+     animation-name: dropHeader;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-out;
+      animation-duration: 0.7s;
+
+   }
+   @keyframes dropHeader {
+      0% {
+        transform: rotateX(90deg);
       }
       100% {
         transform: rotateX(0deg);
@@ -3139,8 +3162,17 @@ body{overflow: scroll;}
         transform: rotateX(0deg);
       }
     }
-
 .fixedTable-sidebar tr td {
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+}
+.fixedTable-row tr td {
     -webkit-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -3205,9 +3237,4 @@ body{overflow: scroll;}
   z-index: 1; 
 }
 
-.rank_head_list ul.slide_class {
-    -webkit-transform: translate(-580px,0px);
-     transform: translate(-580px,0px);
-     opacity:0;
 
-}

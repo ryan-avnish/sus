@@ -29,6 +29,8 @@ class Excellence extends React.Component {
     this.modalEvent = this.modalEvent.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this._onChange = this._onChange.bind(this);
+    this.isheadersow=false;
+    this.isleftslow=false;
   }
 
   componentWillMount() {
@@ -56,28 +58,57 @@ class Excellence extends React.Component {
     this.setState(getCSVList());
   }
 
-  handleClick(idx, title, e) {
+  handleClick(idx, title, e) {    
+    
+
     if(typeof window !== 'undefined') {
-      $(".zoom"+idx).toggleClass("zoom_class");
-      setTimeout(function() {
-      //$( ".zoom"+idx ).toggle( "slide" );
-        $(".zoom"+idx).toggleClass("slide_class");
-      }, 500);
-      // var options = {};
-      //  options = { to: "#slide_effect", className: "ui-effects-transfer" };
-      //  $( ".zoom"+idx ).effect('slide', options, 500, callback );
+      var posX = $('.zoom'+idx).offset().left;
+     var eTop = $('#h-left').offset().top; //get the offset top of the element
+     var position=eTop - posX;
+       $(".zoom"+idx).toggleClass("zoom_class");
+       $(".zoom"+idx).toggleClass("slide_class");
+       setTimeout(function() {            
+      $(".rank_head_list ul.slide_class").css({
+     '-webkit-transform' : "translate("+position+"px,0px)",
+    'transform'         : "translate("+position+"px,0px)" ,
+    "opacity":0   
+    });
+     setTimeout(function() {        
+      $(".cool").removeAttr("style");
+      $(".cool").removeClass("slide_class");
+    }, 500);
+    }, 500);
+     //$(".rank_head_list ul.slide_class").css("opacity",0);
       setTimeout(function() {
         if (  $(".fixedTable-sidebar tr td").css( "transform" ) == 'none' ){
-            $(".fixedTable-sidebar tr td").css("transform","rotateX(180deg)");
-            setTimeout(function(){ 
-              $(".fixedTable-sidebar tr td").css("transform","" );
-            }, 700);
+            $(".fixedTable-sidebar tr td").css("transform","rotateX(90deg)");
+             $(".fixedTable-row tr td").css("transform","rotateX(90deg)");
         } else {
             $(".fixedTable-sidebar tr td").css("transform","" );
-            //$(".zoom"+idx).toggleClass("slide_class");
+               $(".fixedTable-row tr td").css("transform","" );
         }
+           }, 500);
+
+           setTimeout(function() {
         ArticleStore.getCSVdata(idx, title);
-      }, 700);
+        setTimeout(function(){ 
+              $(".fixedTable-sidebar tr td").css("transform","" );
+               $(".fixedTable-row tr td").css("transform","" );
+            }, 1000);
+      }, 1200);
+
+
+      //  setTimeout(function() {
+      //  if (  $(".fixedTable-row tr td").css( "transform" ) == 'none' ){
+      //       $(".fixedTable-row tr td").css("transform","rotateX(90deg)");
+      //       setTimeout(function(){ 
+      //         $(".fixedTable-row tr td").css("transform","" );
+      //       }, 1000);
+      //   } else {
+      //       $(".fixedTable-row tr td").css("transform","" );
+      //       //$(".zoom"+idx).toggleClass("slide_class");
+      //   }
+      //    },1400);
     }
   }
 
@@ -101,6 +132,7 @@ class Excellence extends React.Component {
   }
 
   render() {
+   // setTimeout(function() { this.setState({position: 1}); }.bind(this), 3000);
     const divStyle = {
       visibility: 'visible', 
       animationDelay: 0.3+'s', 
@@ -122,7 +154,7 @@ class Excellence extends React.Component {
                 return(
                   <th key={'header'+i}>
                     <div className="rank_head_list">
-                        <ul className={"zoom"+head.idx}>
+                        <ul className={"cool zoom"+head.idx}>
                           <li><span>{head.idx}</span></li>
                           <li onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}><p>{head[Object.keys(head)[0]]}</p></li>
                           <li className="check_div"> 
@@ -151,7 +183,7 @@ class Excellence extends React.Component {
         </table>
       </header>
       <aside className="fixedTable-sidebar test">
-         <div className="rank">
+         <div className="rank" id="h-left">
          {
           this.state.csvData.paramkey !== undefined ? <ul id="slide_effect">
               <li className="rank-li1"><h4>Rank</h4></li>
@@ -262,11 +294,14 @@ class Excellence extends React.Component {
         </table>
       </aside>
       <div className="fixedTable-body">
-        <table className="table table-bordered">
+        <table className="table table-bordered fixedTable-row">
           <tbody>
           {
 
             this.state.csvData.griddata !== undefined ? this.state.csvData.griddata.map((list, i)=>{
+
+
+              
 
               var c0=Object.keys(this.state.csvData.headers[0])[0];
               var c1=Object.keys(this.state.csvData.headers[1])[0];
@@ -278,6 +313,7 @@ class Excellence extends React.Component {
               var c7=Object.keys(this.state.csvData.headers[7])[0];
 
               return (<tr key={'grid'+i}>
+              
                <td>
                  <table className="table table-bordered">
                     <tbody><tr> 
@@ -336,6 +372,7 @@ class Excellence extends React.Component {
                </tr>)
                 
             }) : ''
+
           }
             
           </tbody>

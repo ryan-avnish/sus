@@ -71,7 +71,7 @@ class Excellence extends React.Component {
       $(".rank_head_list ul.slide_class").css({
      '-webkit-transform' : "translate("+position+"px,0px)",
     'transform'         : "translate("+position+"px,0px)" ,
-    "opacity":0   
+    "opacity":0 
     });
      setTimeout(function() {        
       $(".cool").removeAttr("style");
@@ -90,12 +90,12 @@ class Excellence extends React.Component {
            }, 500);
 
            setTimeout(function() {
-        ArticleStore.getCSVdata(idx, title);
-        setTimeout(function(){ 
+        ArticleStore.getCSVdata(idx, title);       
+      }, 1200);
+       setTimeout(function(){ 
               $(".fixedTable-sidebar tr td").css("transform","" );
                $(".fixedTable-row tr td").css("transform","" );
-            }, 1000);
-      }, 1200);
+            }, 1500);
 
 
       //  setTimeout(function() {

@@ -22,7 +22,6 @@ http://www.bootstrapzero.com
 
 
 
-
 @font-face {
     font-family: 'robotobold';
     src: url('../fonts/roboto/roboto-bold-webfont.eot');
@@ -162,7 +161,7 @@ button#popup:focus {
     color: white;
     height: 26px;
     line-height: 20px;
-    margin-left: -16px;
+    margin-left: -18px;
     position: absolute;
     text-align: center;
     top: 18px;
@@ -341,34 +340,34 @@ label.menu-open-button {
 
 }
 .menu-open:checked ~ .menu-item:nth-child(3) {
-  -webkit-transition-duration: 180ms;
-          transition-duration: 180ms;
-  -webkit-transform: translate3d(-106.916px, 31px, 0px);
-          transform: translate3d(-106.916px, 31px, 0px);
+    -webkit-transition-duration: 180ms;
+    transition-duration: 180ms;
+    -webkit-transform: translate3d(-106.916px, 31px, 0px);
+    transform: translate3d(-110.916px, 23px, 0px);
 }
 .menu-open:checked ~ .menu-item:nth-child(4) {
-  -webkit-transition-duration: 280ms;
-          transition-duration: 280ms;
-  -webkit-transform: translate3d(-68.053px, 45.524px, 0px);
-          transform: translate3d(-68.053px, 45.524px, 0px);
+    -webkit-transition-duration: 280ms;
+    transition-duration: 280ms;
+    -webkit-transform: translate3d(-68.053px, 45.524px, 0px);
+    transform: translate3d(-82.053px, 45.524px, 0px);
 }
 .menu-open:checked ~ .menu-item:nth-child(5) {
-  -webkit-transition-duration: 380ms;
-          transition-duration: 380ms;
-  -webkit-transform: translate3d(-27.053px, 45.476px, 0px);
-          transform: translate3d(-27.053px, 45.476px, 0px);
+    -webkit-transition-duration: 380ms;
+    transition-duration: 380ms;
+    -webkit-transform: translate3d(-27.053px, 45.476px, 0px);
+    transform: translate3d(-44.053px, 54.476px, 0px);
 }
 .menu-open:checked ~ .menu-item:nth-child(6) {
-  -webkit-transition-duration: 480ms;
-          transition-duration: 480ms;
-  -webkit-transform: translate3d(17.084px, 34px, 0px);
-          transform: translate3d(17.084px, 34px, 0px);
+    -webkit-transition-duration: 480ms;
+    transition-duration: 480ms;
+    -webkit-transform: translate3d(17.084px, 34px, 0px);
+    transform: translate3d(-5.916px, 46px, 0px);
 }
 .menu-open:checked ~ .menu-item:nth-child(7) {
-  -webkit-transition-duration: 580ms;
-          transition-duration: 580ms;
-  -webkit-transform: translate3d(-90.86291px, 52.62064px, 0);
-          transform: translate3d(-90.86291px, 52.62064px, 0);
+    -webkit-transition-duration: 580ms;
+    transition-duration: 580ms;
+    -webkit-transform: translate3d(-90.86291px, 52.62064px, 0);
+    transform: translate3d(25.13709px, 23.62064px, 0);
 }
 .menu-open:checked ~ .menu-item:nth-child(8) {
   -webkit-transition-duration: 680ms;
@@ -397,6 +396,35 @@ label.menu-open-button {
 .newClass {
   overflow: hidden;
 }
+
+
+/*-----------left sidebar plus icon settings------------*/
+.add_plus .last .menu-open:checked ~ .menu-item:nth-child(3) {
+    -webkit-transition-duration: 180ms;
+    transition-duration: 180ms;
+    -webkit-transform: translate3d(-106.916px, 31px, 0px);
+    transform: translate3d(-99.916px, 115px, 0px);
+}
+.add_plus .last .menu-open:checked ~ .menu-item:nth-child(4) {
+    -webkit-transition-duration: 280ms;
+    transition-duration: 280ms;
+    -webkit-transform: translate3d(-68.053px, 45.524px, 0px);
+    transform: translate3d(-71.053px, 136px, 0px);
+}
+.add_plus .last .menu-open:checked ~ .menu-item:nth-child(5) {
+    -webkit-transition-duration: 380ms;
+    transition-duration: 380ms;
+    -webkit-transform: translate3d(-27.053px, 45.476px, 0px);
+    transform: translate3d(-33.053px, 137px, 0px);
+}
+.add_plus .last .menu-open:checked ~ .menu-item:nth-child(6) {
+    -webkit-transition-duration: 480ms;
+    transition-duration: 480ms;
+    -webkit-transform: translate3d(17.084px, 34px, 0px);
+    transform: translate3d(-1.916px, 119px, 0px);
+}
+
+
 
 
 html,
@@ -604,13 +632,14 @@ p {
     color: #9c27b0;
 }
 .dialog_box {
-    margin-top: 3px;
-    /*display: none;*/
+    margin-top: 35px;
+    /* display: none; */
     position: absolute;
     width: 100%;
     -webkit-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s;
+    z-index: 999;
 }
 .dialog_box .modal-dialog {
     margin: 0px auto;
@@ -1566,13 +1595,14 @@ ul.nav.nav-tabs {
     width: 23px;
 }
 .rank_img {
-  background: #ddd none repeat scroll 0 0;
-  border-radius: 50%;
-  float: left;
-  height: 78px;
-  margin-left: 5px;
-  margin-top: 11px;
-  width: 78px;
+    background: #ddd none repeat scroll 0 0;
+    border-radius: 50%;
+    float: left;
+    height: 78px;
+    margin-left: 5px;
+    margin-top: 5.5px;
+    width: 78px;
+    margin-bottom: 5.5px;
 }
 .rank_img img{ border-radius:50%;  }
 .rank_desc {
@@ -1787,7 +1817,7 @@ header .header-content .social_icon p {
     z-index: 999;
 }
 .rank li:nth-child(2) {
-    width: 66%;
+    width: 72%;
 }
 
 .rank ul {
@@ -1803,13 +1833,13 @@ header .header-content .social_icon p {
   margin: 5px 10px;
   position: relative;
   text-align: center;
-  width: 10%;
+  width: 18%;
 }
 .rank h4 {
   color: #949aab;
   float: left;
   font-family: "robotomedium";
-  font-size: 18px;
+  font-size: 28px;
 
 }
 .rank-li1 {
@@ -2006,6 +2036,19 @@ header .header-content .social_icon p {
 .height {
   height: 33px;
 }
+
+.add_plus {
+    float: right;
+    margin-right: 15px;
+}
+.add_plus .last label.menu-open-button {
+    top: 25px;
+}
+
+.fixedTable-sidebar {
+    height: calc(100vh - 89px);
+}
+
 /*----------------------------------------------------*/
 /*----------------Responsive start here---------------*/
 /*----------------------------------------------------*/
@@ -2078,7 +2121,7 @@ header .header-content{padding: 100px 15px 92px}
 .rank_percentage h3 {
     font-family: "Roboto-Condensed0";
     font-size: 32px;
-    margin-top: 17px;
+    margin-top: 30px;
 }
 
 }
@@ -2907,9 +2950,9 @@ body{overflow: scroll;}
     height: 83px;
     margin-left: 27%;
     padding-left: 2px;
-    width: 73%;
+    width: 72%;
 /*    overflow: hidden;
-*/    z-index: 99 !important;
+*/   z-index: 99 !important;
 }
 .fixedTable-sidebar {
    float: left;
@@ -3196,24 +3239,24 @@ body{overflow: scroll;}
 
 .rank_head_list ul.zoom_class {
   -webkit-transition: all 500ms ease-in;
-  -webkit-transform: scale(1.5);
+  -webkit-transform: scale(1.2);
   -ms-transition: all 500ms ease-in;
-  -ms-transform: scale(1.5);   
+  -ms-transform: scale(1.2);   
   -moz-transition: all 500ms ease-in;
-  -moz-transform: scale(1.5);
+  -moz-transform: scale(1.2);
   transition: all 500ms ease-in;
-  transform: scale(1.3); 
+  transform: scale(1.1); 
   z-index: 1; 
 }
 
  h2.zoom_class {
   -webkit-transition: all 500ms ease-in;
-  -webkit-transform: scale(1.5);
+  -webkit-transform: scale(1.2);
   -ms-transition: all 500ms ease-in;
-  -ms-transform: scale(1.5);   
+  -ms-transform: scale(1.2);   
   -moz-transition: all 500ms ease-in;
-  -moz-transform: scale(1.5);
+  -moz-transform: scale(1.2);
   transition: all 500ms ease-in;
-  transform: scale(1.3); 
+  transform: scale(1.1); 
   z-index: 1; 
 }

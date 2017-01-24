@@ -20,12 +20,16 @@ class Excellence extends React.Component {
     super(props);
     this.props = props;
     this.state = {};
-    ArticleStore.getCSVdata(5, 'Academicprogress2ndyearretention');
+    ArticleStore.getCSVdata(1, 'Continuingeducationandemploymentrate');
     this.state = {};
     this.state.csvData = [];
     this.state.value = '';
     this.state.showModal = 'none';
     this.handleClick = this.handleClick.bind(this);
+    this.handlehover = this.handlehover.bind(this);
+    this.onmouseleave = this.onmouseleave.bind(this);
+    this.rowonmouseleave = this.rowonmouseleave.bind(this);
+     this.rowhandlehover = this.rowhandlehover.bind(this);
     this.modalEvent = this.modalEvent.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this._onChange = this._onChange.bind(this);
@@ -57,6 +61,36 @@ class Excellence extends React.Component {
     this.setState(getCSVList());
   }
 
+handlehover(idx, title, e) {    
+    console.log('on hover');
+    var cl=$(".zoom"+idx +" p").attr('class');
+  $(".zoom"+idx).toggleClass("zoom_class");
+  $("td."+cl+" div h2").toggleClass("zoom_class");
+
+  // $("td."+cl+" div h2").css({
+  //  "font-size":"34px" 
+  // })
+ }
+
+
+ onmouseleave(idx, title, e) {  
+    var cl=$(".zoom"+idx +" p").attr('class');
+    $(".cool").removeClass("zoom_class");
+ $("td."+cl+" div h2").removeClass("zoom_class");
+ 
+  // $("td."+cl+" div h2").css({
+  //  "font-size":"30px" 
+  // })
+ }
+
+ rowhandlehover(i, e) {  
+  $(".row"+i+" h2").css({"font-size":"34px" });
+ }
+
+ rowonmouseleave(i, e) {  
+    $(".row"+i+" h2").css({ "font-size":"30px"});
+ }
+
   handleClick(idx, title, e) {    
     
 
@@ -64,11 +98,11 @@ class Excellence extends React.Component {
        var posX = $('.zoom'+idx).offset().left;
       var eTop = $('#h-left').offset().top; //get the offset top of the element
       var position=eTop - posX;
-        $(".zoom"+idx).toggleClass("zoom_class");
+      //  $(".zoom"+idx).toggleClass("zoom_class");
        $(".zoom"+idx).toggleClass("slide_class");
         var cl=$(".zoom"+idx +" p").attr('class');
         console.log('class',cl);
-        $("td."+cl+" div h2").toggleClass("zoom_class");
+     //   $("td."+cl+" div h2").toggleClass("zoom_class");
         setTimeout(function() {            
         $(".rank_head_list ul.slide_class").css({
       '-webkit-transform' : "translate("+position+"px,0px)",
@@ -83,7 +117,7 @@ class Excellence extends React.Component {
      setTimeout(function() {        
       $(".cool").removeAttr("style");
       $(".cool").removeClass("slide_class");
-      $(".cool").removeClass("zoom_class");
+     // $(".cool").removeClass("zoom_class");
       $('th.'+cl+" div").removeAttr("style");
 
       $("td."+cl+" div h2").css({
@@ -92,10 +126,10 @@ class Excellence extends React.Component {
      "opacity":1 
      });
       $("td."+cl+" div h2").removeClass("slide_class");
-      $("td."+cl+" div h2").removeClass("zoom_class");
+   //   $("td."+cl+" div h2").removeClass("zoom_class");
        $("td."+cl+" div").removeAttr("style");
        $('th.'+cl).fadeIn(1000);
-    $('td.'+cl).fadeIn(1000);
+       $('td.'+cl).fadeIn(1000);
     }, 1200);  
          
     
@@ -122,12 +156,7 @@ class Excellence extends React.Component {
         ArticleStore.getCSVdata(idx, title);       
       }, 1600);
 
-    //  reverse flip
-      //  setTimeout(function(){ 
-      // //  console.log('remove section',$("#tr0 td").attr("style"));
-      //         $(".fliptr td").css("transform","" );
-      //         // $(".fixedTable-row tr td").css("transform","" );
-      //  }, 2000);
+  
       function getAllImages(maxImages) {
       var imgCount = 0;
 
@@ -138,7 +167,6 @@ class Excellence extends React.Component {
         }         
             
       setTimeout(function(){ 
-      // console.log('remove section',$("#tr"+imgCount+" td").attr("style"));
         $("#tr"+imgCount+" td").css("transform","")
           if (imgCount < maxImages) {
              ++imgCount;
@@ -199,7 +227,7 @@ class Excellence extends React.Component {
                     <div className="rank_head_list">
                         <ul className={"cool zoom"+head.idx+ " hide"+i}>
                           <li><span>{head.idx}</span></li>
-                          <li onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}><p className={"hide"+i}>{head[Object.keys(head)[0]]}</p></li>
+                          <li onMouseLeave={this.onmouseleave.bind(this, head.idx, Object.keys(head)[0])} onMouseEnter={this.handlehover.bind(this, head.idx, Object.keys(head)[0])} onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}><p className={"hide"+i}>{head[Object.keys(head)[0]]}</p></li>
                           <li className="check_div"> 
                       <div className="last">
                           <input type="checkbox" className="menu-open" name="menu-open" id={"menu-open"+i}/> 
@@ -207,6 +235,7 @@ class Excellence extends React.Component {
                           <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png"/></i></label>
                                 <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
+                                <a href="#" className="menu-item" id="popup" onClick={this.modalEvent}> <img src="static/images/cocktail.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
                                 <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
                         </div>
@@ -225,19 +254,7 @@ class Excellence extends React.Component {
           </thead>
         </table>
       </header>
-      <aside className="fixedTable-sidebar test">
-         <div className="rank" id="h-left">
-         {
-          this.state.csvData.paramkey !== undefined ? <ul id="slide_effect">
-              <li className="rank-li1"><h4>Rank</h4></li>
-              <li className="rank-li2"><span className="rank-number"> {this.state.csvData.paramkey.idx} </span><a href="#" className="btn rank-btn">{this.state.csvData.paramkey[Object.keys(this.state.csvData.paramkey)[0]]}</a></li>
-              <li className="rank-li3"><button id="popup" onClick={this.modalEvent}><img src="static/images/filter_icon.png" alt="filter"/> </button></li>
-            </ul> : ''
-         }
-            
-
-                   
-          <div className="dialog_box" id="myModal" style={{'display': this.state.showModal}}>
+      <div className="dialog_box" id="myModal" style={{'display': this.state.showModal}}>
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -283,6 +300,30 @@ class Excellence extends React.Component {
     </div>
   </div>
 </div>
+      <aside className="fixedTable-sidebar test">
+         <div className="rank" id="h-left">
+         {
+          this.state.csvData.paramkey !== undefined ? <ul id="slide_effect">
+              <li className="rank-li1"><h4>Rank</h4></li>
+              <li className="rank-li2"><span className="rank-number"> {this.state.csvData.paramkey.idx} </span><a href="#" className="btn rank-btn">{this.state.csvData.paramkey[Object.keys(this.state.csvData.paramkey)[0]]}</a>
+              <div className="add_plus">
+                 <div className="last">
+                          <input type="checkbox" className="menu-open" name="menu-open" id="menu-open"/> 
+                          <label className="menu-open-button" htmlFor="menu-open">
+                          <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png"/></i></label>
+                                <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
+                                <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
+                                <a href="#" className="menu-item" id="popup" onClick={this.modalEvent}> <img src="static/images/cocktail.png"/> </a>
+                                <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
+                        </div>
+              </div>
+
+              </li>
+
+
+            </ul> : ''
+         }
+
          </div>
 
   
@@ -310,7 +351,7 @@ class Excellence extends React.Component {
                return(
                 <tr key={'single'+i} className="fliptr" id={"tr"+i}>
                   <td>
-                     <div className="rank_list">
+                     <div className="rank_list" onMouseLeave={this.rowonmouseleave.bind(this,i)} onMouseEnter={this.rowhandlehover.bind(this,i)}>
                         <div className="number"><span>{idxVal}</span></div>
                         <div className="rank_img"><img src={clicked.Logo_Url}/></div>
                         <div className="rank_desc">
@@ -360,49 +401,49 @@ class Excellence extends React.Component {
                <td>
                  <table className="table table-bordered">
                     <tbody><tr> 
-                      <td className="hide0">
-                        <div  className="percentage_number ">
+                      <td className={"hide0 row"+i}>
+                        <div  className="percentage_number">
                             <h2 style={{'color':list[c0+'pointcolor']}}>{list[c0] == -1 ? '*' : list[c0+'type'] == '%' ? (list[c0].toFixed(1))+list[c0+'type'] : list[c0+'type']+(list[c0].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                     
-                      <td className="hide1">
+                      <td className={"hide1 row"+i}>
                         <div className="percentage_number">
                              <h2 style={{'color':list[c1+'pointcolor']}}>{list[c1] == -1 ? '*' : list[c1+'type'] == '%' ? (list[c1].toFixed(1))+list[c1+'type'] : list[c1+'type']+(list[c1].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
-                      <td className="hide2">
+                      <td className={"hide2 row"+i}>
                         <div className="percentage_number">
                               <h2 style={{'color':list[c2+'pointcolor']}}>{list[c2] == -1 ? '*' : list[c2+'type'] == '%' ? (list[c2].toFixed(1))+list[c2+'type'] : list[c2+'type']+(list[c2].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
-                      <td className="hide3">
+                      <td className={"hide3 row"+i}>
                         <div className="percentage_number">
                               <h2 style={{'color':list[c3+'pointcolor']}}>{list[c3] == -1 ? '*' : list[c3+'type'] == '%' ? (list[c3].toFixed(1))+list[c3+'type'] : list[c3+'type']+(list[c3].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
-                      <td className="hide4">
+                      <td className={"hide4 row"+i}>
                         <div className="percentage_number">
                              <h2 style={{'color':list[c4+'pointcolor']}}>{list[c4] == -1 ? '*' : list[c4+'type'] == '%' ? (list[c4].toFixed(1))+list[c4+'type'] : list[c4+'type']+(list[c4].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                    
-                      <td className="hide5">
+                      <td className={"hide5 row"+i}>
                         <div className="percentage_number">
                              <h2 style={{'color':list[c5+'pointcolor']}}>{list[c5] == -1 ? '*' : list[c5+'type'] == '%' ? (list[c5].toFixed(1))+list[c5+'type'] : list[c5+'type']+(list[c5].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                   
-                      <td className="hide6">
+                      <td className={"hide6 row"+i}>
                         <div className="percentage_number">
                              <h2 style={{'color':list[c6+'pointcolor']}}>{list[c6] == -1 ? '*' : list[c6+'type'] == '%' ? (list[c6].toFixed(1))+list[c6+'type'] : list[c6+'type']+(list[c6].toLocaleString('en'))}</h2>
                          </div>
                       </td>
                     
-                      <td className="hide7">
+                      <td className={"hide7 row"+i}>
                         <div className="percentage_number">
                              <h2 style={{'color':list[c7+'pointcolor']}}>{list[c7] == -1 ? '*' : list[c7+'type'] == '%' ? (list[c7].toFixed(1))+list[c7+'type'] : list[c7+'type']+(list[c7].toLocaleString('en'))}</h2>
                          </div>

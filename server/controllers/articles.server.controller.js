@@ -78,21 +78,29 @@ module.exports.upload = function(req, res) {
   }
   //return result; //JavaScript object
   var jsonArr = JSON.stringify(result); //JSON
-  
+  console.log('result',result);
   async.mapSeries(result, function(data, callback) {
     if(Object.keys(data).length > 0) {
       var csvUpload = new Upload(data);
       csvUpload.save(function(err, myResult) {
+       // console.log('err',err);
         if (err) {
           return res.status(400).send({
             ok: false,
             message: errorHandler.getErrorMessage(err)
           });
-        } 
+        } else{
+        callback(null);
+        }
       });
+    }else{
+      return res.status(400).send({
+            ok: false,
+            message: errorHandler.getErrorMessage("values are not correct.")
+          });
     }
     
-    callback(null);
+  
   }, function(err, result) {
     //console.log('jsonArr', myjsonArr);
     res.status(200).json({

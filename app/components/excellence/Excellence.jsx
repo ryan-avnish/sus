@@ -33,7 +33,7 @@ class Excellence extends React.Component {
     this.modalEvent = this.modalEvent.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this._onChange = this._onChange.bind(this);
-    
+    this.state.isMobile=false;
   }
 
   componentWillMount() {
@@ -45,11 +45,28 @@ class Excellence extends React.Component {
       var body = document.querySelector('.fixedTable-body');
       var sidebar = document.querySelector('.fixedTable-sidebar table');
       var header = document.querySelector('.fixedTable-header table');
+      var aside = document.querySelector('#astag');
       $(body).scroll(function () {
         $(sidebar).css('margin-top', -$(body).scrollTop());
         return $(header).css('margin-left', -$(body).scrollLeft());
        
       });
+      console.log('$( window ).width()',$( window ).width());
+      if($( window ).width()==360){
+      $('#thHead').hide();
+      $('div.fixedTable-body').hide();
+      console.log('classname',$(aside).attr("class"));
+     $(document).on("pagecreate","#pageone",function(){
+     // $(aside).on("swipe",function(){
+         console.log('inswipe');
+      //   //$(this).hide();
+       // });  
+     });  
+      }else{
+          $('#thHead').show();
+      $('div.fixedTable-body').show();
+      }
+      
     }
   }
 
@@ -61,17 +78,18 @@ class Excellence extends React.Component {
     this.setState(getCSVList());
   }
 
-handlehover(idx, title, e) {    
-    console.log('on hover');
+handlehover(idx, title, e) {   
     var cl=$(".zoom"+idx +" p").attr('class');
   $(".zoom"+idx).toggleClass("zoom_class");
   $("td."+cl+" div h2").toggleClass("zoom_class");
-
+ 
   // $("td."+cl+" div h2").css({
   //  "font-size":"34px" 
   // })
  }
 
+
+                      
 
  onmouseleave(idx, title, e) {  
     var cl=$(".zoom"+idx +" p").attr('class');
@@ -90,6 +108,9 @@ handlehover(idx, title, e) {
  rowonmouseleave(i, e) {  
     $(".row"+i+" h2").css({ "font-size":"30px"});
  }
+  swipe(idx, title, e) {   
+  
+}
 
   handleClick(idx, title, e) {    
     
@@ -101,9 +122,8 @@ handlehover(idx, title, e) {
       //  $(".zoom"+idx).toggleClass("zoom_class");
        $(".zoom"+idx).toggleClass("slide_class");
         var cl=$(".zoom"+idx +" p").attr('class');
-        console.log('class',cl);
-     //   $("td."+cl+" div h2").toggleClass("zoom_class");
-        setTimeout(function() {            
+        var firstcolumn=$(".rank li").attr("id");
+      setTimeout(function() {            
         $(".rank_head_list ul.slide_class").css({
       '-webkit-transform' : "translate("+position+"px,0px)",
       'transform'         : "translate("+position+"px,0px)" ,
@@ -117,7 +137,7 @@ handlehover(idx, title, e) {
      setTimeout(function() {        
       $(".cool").removeAttr("style");
       $(".cool").removeClass("slide_class");
-     // $(".cool").removeClass("zoom_class");
+      $(".cool").removeClass("zoom_class");
       $('th.'+cl+" div").removeAttr("style");
 
       $("td."+cl+" div h2").css({
@@ -125,20 +145,24 @@ handlehover(idx, title, e) {
      'transform'         : "" ,
      "opacity":1 
      });
+
       $("td."+cl+" div h2").removeClass("slide_class");
-   //   $("td."+cl+" div h2").removeClass("zoom_class");
-       $("td."+cl+" div").removeAttr("style");
-       $('th.'+cl).fadeIn(1000);
+      $("td."+cl+" div h2").removeClass("zoom_class");
+      $("td."+cl+" div").removeAttr("style");
+      $('th.'+cl).fadeIn(1000);
        $('td.'+cl).fadeIn(1000);
     }, 1200);  
-         
+  //   setTimeout(function() {
+  //  $('th.'+cl).hide();
+  //      $('td.'+cl).hide();  
+  //    }, 1700);      
     
-    setTimeout(function() {  
-    $('th.'+cl).fadeOut(800);
-    $('td.'+cl).fadeOut(800);  
-    }, 500);
+     setTimeout(function() {  
+     $('th.'+cl).fadeOut(800);
+     $('td.'+cl).fadeOut(800);  
+     }, 500);
 
-    }, 500);
+  }, 500);
 
      //first 90degree flip
 
@@ -151,9 +175,16 @@ handlehover(idx, title, e) {
         }
            }, 1200);
 
-      // get new data
-      setTimeout(function() {
-        ArticleStore.getCSVdata(idx, title);       
+       var invi=idx-1;
+       console.log('invi',invi);
+
+    //  get new data
+      setTimeout(function() {        
+        ArticleStore.getCSVdata(idx, title);     
+// setTimeout(function() {
+//         $('th.hide'+firstcolumn+' div').animate({width: 'toggle'});
+//     $('td.hide'+firstcolumn+' div').animate({width: 'toggle'});
+//     }, 1800);
       }, 1600);
 
   
@@ -214,9 +245,9 @@ handlehover(idx, title, e) {
       <div className="container-fluid tab">
    <div className="spc_bx">
      <div className="fixedTable" id="demo">
-      <header className="fixedTable-header">
+      <header className="fixedTable-header" id="thHead">
         <table className="table table-bordered">
-          <thead>
+          <thead >
             <tr>
             {
               this.state.csvData.headers !== undefined ? this.state.csvData.headers.map((head, i)=>{
@@ -235,7 +266,7 @@ handlehover(idx, title, e) {
                           <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png"/></i></label>
                                 <a href="#" className="menu-item"> <img src="static/images/info-icn.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/bar_icn.png"/> </a>
-                                <a href="#" className="menu-item" id="popup" onClick={this.modalEvent}> <img src="static/images/cocktail.png"/> </a>
+                                <a href="#" className="menu-item close" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEvent}> <img src="static/images/cocktail.png"/> </a>
                                 <a href="#" className="menu-item"> <img src="static/images/share_icn.png"/></a>
                                 <a href="#" className="menu-item"> <img src="static/images/search_icn.png"/> </a>
                         </div>
@@ -300,11 +331,12 @@ handlehover(idx, title, e) {
     </div>
   </div>
 </div>
-      <aside className="fixedTable-sidebar test">
+<div data-role="page" id="pageone">
+      <aside className="fixedTable-sidebar test" id="astag">
          <div className="rank" id="h-left">
          {
           this.state.csvData.paramkey !== undefined ? <ul id="slide_effect">
-              <li className="rank-li1"><h4>Rank</h4></li>
+              <li id={this.state.csvData.paramkey.idx} className="rank-li1"><h4>Rank</h4></li>
               <li className="rank-li2"><span className="rank-number"> {this.state.csvData.paramkey.idx} </span><a href="#" className="btn rank-btn">{this.state.csvData.paramkey[Object.keys(this.state.csvData.paramkey)[0]]}</a>
               <div className="add_plus">
                  <div className="last">
@@ -377,9 +409,10 @@ handlehover(idx, title, e) {
           </tbody>
         </table>
       </aside>
+     </div>
       <div className="fixedTable-body">
         <table className="table table-bordered">
-          <tbody>
+          <tbody id="tbbody">
           {
 
             this.state.csvData.griddata !== undefined ? this.state.csvData.griddata.map((list, i)=>{

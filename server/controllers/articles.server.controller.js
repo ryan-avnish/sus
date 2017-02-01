@@ -128,6 +128,7 @@ function assignColor(color) {
 
 module.exports.getCSV = function(req, res) {
   var sortKey={}, selectKey={}, mainSort={};
+  
   sortKey[req.params.key]=-1;
 
     var customHeader = [
@@ -189,7 +190,11 @@ module.exports.getCSV = function(req, res) {
           message: errorHandler.getErrorMessage(err)
         });
     }else {
+      console.log('req.params.key',req.params.key);
       selectKey[req.params.key]=1;
+      if(req.params.key=="Averagecostperbachelorsdegree"){
+        sortKey[req.params.key]=1;
+      }
       selectKey[req.params.key+'type']=1;
       selectKey[req.params.key+'point']=1;
       selectKey[req.params.key+'pointcolor']=1;

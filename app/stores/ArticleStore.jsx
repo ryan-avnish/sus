@@ -6,6 +6,7 @@ function ArticleStore() {
 
   let articleList = {},
     listData = {},
+    swipeData = [],
     changeListeners = [],
     article = {},
     error = '',
@@ -63,6 +64,14 @@ function ArticleStore() {
     });
   }
 
+   function getswipeCSVdata() {
+    restApi.get("/swipegetCSV").then((data) => {
+      console.log('data', data);
+      swipeData = data;
+      triggerListeners();
+    });
+  }
+
   function editArticle(article, id, router) {
     restApi.put(`api/articles/${id}`, article).then((data) => {
       article = data;
@@ -97,6 +106,10 @@ function ArticleStore() {
   function getCSVList() {
     return listData;
   };
+
+  function getswipeCSVList() {   
+    return swipeData;
+  }
 
   function getUploadedMsg() {
     console.log('m in show upload msg');
@@ -138,6 +151,8 @@ function ArticleStore() {
     uploadcsv: uploadcsv,
     getCSVdata: getCSVdata,
     getCSVList: getCSVList,
+    getswipeCSVdata: getswipeCSVdata,
+    getswipeCSVList: getswipeCSVList,
     getUploadedMsg: getUploadedMsg,
     editArticle: editArticle,
     getArticleList: getArticleList,

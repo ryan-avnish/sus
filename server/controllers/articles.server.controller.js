@@ -166,8 +166,8 @@ module.exports.getCSV = function (req, res) {
   if (req.params.key == 'Left' || req.params.key == 'Right') {
     var vidx = parseInt(req.params.idx);
     var keyvalue = _.findWhere(customHeader, { "idx": vidx });
-    keys = _.keys(keyvalue);   
-    req.params.key=keys[0];
+    keys = _.keys(keyvalue);
+    req.params.key = keys[0];
   }
 
   var sortedHeader;// = customHeader[req.params.idx];
@@ -198,7 +198,7 @@ module.exports.getCSV = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-     
+
       selectKey[req.params.key] = 1;
       if (req.params.key == "Averagecostperbachelorsdegree") {
         sortKey[req.params.key] = 1;
@@ -222,6 +222,85 @@ module.exports.getCSV = function (req, res) {
     }
   });
 };
+
+module.exports.swipegetCSV = function (req, res) {
+  var sortKey = {}, selectKey = {}, mainSort = {};
+  var keys = [];
+
+
+  var customHeader = [
+    {
+      "Continuingeducationandemploymentrate": "Continuing education and employment rate",
+      "idx": 1
+    }, {
+      "Medianwagesofbachelorsgrads": "Median wages of bachelor’s grads ",
+      "idx": 2
+    }, {
+      "Averagecostperbachelorsdegree": "Average cost per bachelor’s degree",
+      "idx": 3
+    }, {
+      "Sixyeargraduationrate": "Six year graduation rate",
+      "idx": 4
+    }, {
+      "Academicprogress2ndyearretention": "Academic progress 2nd year retention",
+      "idx": 5
+    }, {
+      "BachelorsSTEMandstrategicemphasis": "Bachelor’s STEM and strategic emphasis",
+      "idx": 6
+    }, {
+      "UndergraduateswithPellgrantpercent": "Undergraduates with Pell-grant percent",
+      "idx": 7
+    }, {
+      "GraduateSTEMandstrategicemphasis": "Graduate STEM and strategic emphasis",
+      "idx": 8
+    }, {
+      "Bachelorsdegreeswithoutaccesshours": "Bachelor’s degrees without access hours",
+      "idx": 9
+    },
+  ];
+  var mainData = [];
+
+  async.mapSeries(customHeader, function (data, callback) {
+    var key = Object.keys(data)[0]
+    selectKey = {};
+    //wrong here
+    sortKey[key] = -1;
+    selectKey[key] = 1;
+    selectKey[key + 'type'] = 1;
+    selectKey[key + 'point'] = 1;
+    selectKey[key + 'pointcolor'] = 1;
+    selectKey['Full_Name'] = 1;
+    selectKey['S_Name'] = 1;
+    selectKey['Logo_Url'] = 1;
+
+    //console.log('selectKey',selectKey);
+    Upload.find().select(selectKey).sort(sortKey).exec(function (err, singleData) {
+      //console.log('Object.keys(data)[0]',data[Object.keys(data)[0]]);
+      var adata = data[Object.keys(data)[0]];
+      //console.log('adata',adata);
+      // var head={"header":adata};
+      //singleData.push(adata);
+      console.log('singleData', singleData);
+      var head = { "head": adata };
+      singleData.push(head);
+      mainData.push(singleData);
+      callback(null);
+
+    });
+  }, function (err, result) {
+
+    res.status(200).send(mainData);
+
+  });
+}
+
+
+
+
+
+
+
+
 
 module.exports.read = function (req, res) {
   res.json(req.article);

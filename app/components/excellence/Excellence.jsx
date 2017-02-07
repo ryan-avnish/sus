@@ -71,8 +71,7 @@ class Excellence extends React.Component {
 
   componentWillMount() {
     ArticleStore.onChange(this._onChange);
-    
-    if ($(window).width() >= 360 || $(window).width() < 768 ) {
+    if ($(window).width() >= 360 || $(window).width() < 768) {
       ArticleStore.onChange(this._swipeOnChange);
     }
 
@@ -572,7 +571,7 @@ class Excellence extends React.Component {
         </div>
       );
     }
-  
+
     else {
 
 
@@ -586,7 +585,7 @@ class Excellence extends React.Component {
 
               {
                 this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => {
-                  console.log('mainnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnhead>>>>>>>>>>>>>>>>>>>>', head[11].head);
+              
 
                   return (
 
@@ -655,10 +654,10 @@ class Excellence extends React.Component {
                                           </ul>
                                         </div>
                                         <div className="rank_percentage" style={{ 'color': headdata[Object.keys(headdata)[2]] }}><h3>
-                                        {headdata[Object.keys(headdata)[1]] == "%" ? headdata[Object.keys(headdata)[4]] + headdata[Object.keys(headdata)[1]] : headdata[Object.keys(headdata)[1]] + headdata[Object.keys(headdata)[4]] }
-                                        
-                                        
-                                     </h3></div>
+                                          {headdata[Object.keys(headdata)[1]] == "%" ? headdata[Object.keys(headdata)[4]] + headdata[Object.keys(headdata)[1]] : headdata[Object.keys(headdata)[1]] + headdata[Object.keys(headdata)[4]]}
+
+
+                                        </h3></div>
                                       </div>
                                     </td>
                                   </tr>

@@ -17,6 +17,8 @@ module.exports = function(app){
 
 	app.route('/upload/csv').post(articles.upload);
 	app.route('/getcsv/:idx/:key').get(articles.getCSV);
+	app.route('/swipegetCSV').get(articles.swipegetCSV);
+	
 
 app.param('articleId', articles.articleByID);
 

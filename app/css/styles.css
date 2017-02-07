@@ -2019,6 +2019,8 @@ header .header-content .social_icon p {
   bottom: -31px;
   position: relative;
 }
+.table.width {margin-bottom: 0 !important;}
+
 /*----------------------------------------------------*/
 /*----------------color css here---------------*/
 /*----------------------------------------------------*/

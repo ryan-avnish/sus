@@ -38,6 +38,9 @@ class Excellence extends React.Component {
 
   componentWillMount() {
     ArticleStore.onChange(this._onChange);
+  $.getScript( "http://192.168.0.112:9001/static/js/jquery.mobile-1.4.5.min.js", function( data, textStatus, jqxhr ) {
+ console.log('before render'); 
+ });
   }
 
   componentDidMount() {
@@ -56,12 +59,28 @@ class Excellence extends React.Component {
       $('#thHead').hide();
       $('div.fixedTable-body').hide();
       console.log('classname',$(aside).attr("class"));
-     $(document).on("pagecreate","#pageone",function(){
+     
+   
+  
+   
+  //console.log( data ); // Data returned
+  //console.log( textStatus ); // Success
+ // console.log( jqxhr.status ); // 200
+ // console.log( "Load was performed." );
+
+// Use any event to append the code
+
+    $(document).on("pagecreate","#pageone",function(){
      // $(aside).on("swipe",function(){
          console.log('inswipe');
       //   //$(this).hide();
-       // });  
-     });  
+        
+    
+//});
+});
+
+  
+      
       }else{
           $('#thHead').show();
       $('div.fixedTable-body').show();

@@ -2906,8 +2906,10 @@ ul.nav.nav-tabs{ border: none; }
     .number_list ul li h2 {font-size: 52px;padding: 0 25px;}
     .panel{ width: 100%; }
     .nav-tabs > li {
-    width: auto;
-}
+        width: auto;
+        margin-right:6px;
+    }
+    
     .nav-tabs > li > a {
     font-size: 11px !important;
     padding: 12px 11px !important;

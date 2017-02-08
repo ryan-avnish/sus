@@ -2747,6 +2747,23 @@ ul.nav.nav-tabs{ background: none; }
 .nav-tabs > li > a{ border-radius: 0; }
 ul.nav.nav-tabs{ border: none; }
 .navbar-default .nav > li.active>a:hover, .navbar-default .nav>li.active>a:focus:hover{color: #027fff !important; border-bottom: 2px solid #027fff;}
+/*---gagan-feb-8----*/
+
+.rank.rank_mobile li {
+    width: 65%;
+    position: relative;
+    margin-left: 55px;
+    word-break: break-word;
+}
+
+.mobile_scroll {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.modal-dialog {
+    top: 15%;
+}
+
 
 }
 

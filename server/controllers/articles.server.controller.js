@@ -263,8 +263,15 @@ module.exports.swipegetCSV = function (req, res) {
   async.mapSeries(customHeader, function (data, callback) {
     var key = Object.keys(data)[0]
     selectKey = {};
-    //wrong here
-    sortKey[key] = -1;
+   
+    sortKey = {};
+    if (data.idx == 3) {
+      sortKey[key] = 1;
+    }
+    else {
+      sortKey[key] = -1;
+    }
+
     selectKey[key] = 1;
     selectKey[key + 'type'] = 1;
     selectKey[key + 'point'] = 1;
@@ -272,15 +279,9 @@ module.exports.swipegetCSV = function (req, res) {
     selectKey['Full_Name'] = 1;
     selectKey['S_Name'] = 1;
     selectKey['Logo_Url'] = 1;
-
-    //console.log('selectKey',selectKey);
+    console.log('sortKey', sortKey);
     Upload.find().select(selectKey).sort(sortKey).exec(function (err, singleData) {
-      //console.log('Object.keys(data)[0]',data[Object.keys(data)[0]]);
-      var adata = data[Object.keys(data)[0]];
-      //console.log('adata',adata);
-      // var head={"header":adata};
-      //singleData.push(adata);
-      console.log('singleData', singleData);
+      var adata = data[Object.keys(data)[0]];     
       var head = { "head": adata };
       singleData.push(head);
       mainData.push(singleData);

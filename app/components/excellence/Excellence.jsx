@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 import ArticleStore from './../../stores/ArticleStore.jsx';
 import $ from 'jquery';
 //import Swipeable from 'react-swipeable';
-import ReactSwipe from 'react-swipe'; 
+import ReactSwipe from 'react-swipe';
+import { Modal } from 'react-bootstrap';
+
 
 
 function getCSVList() {
@@ -51,10 +53,9 @@ class Excellence extends React.Component {
     this.state.showModal = 'none';
     this.handleClick = this.handleClick.bind(this);
     this.handlehover = this.handlehover.bind(this);
-    this.swipedLeft = this.swipedLeft.bind(this);
-    this.swipedRight = this.swipedRight.bind(this);
     this.chnageelement = this.chnageelement.bind(this);
-
+    this.onChangeHead = this.onChangeHead.bind(this);
+    this.getSlideNumber = this.getSlideNumber.bind(this);
 
 
     this.onmouseleave = this.onmouseleave.bind(this);
@@ -62,9 +63,15 @@ class Excellence extends React.Component {
     this.rowhandlehover = this.rowhandlehover.bind(this);
     this.modalEvent = this.modalEvent.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.close = this.close.bind(this);
+    this.open = this.open.bind(this);
     this._onChange = this._onChange.bind(this);
     this._swipeOnChange = this._swipeOnChange.bind(this);
     this.state.isMobile = false;
+    this.state.showbotModal = false;
+    this.state.slideindex = 0;
+
+
   }
 
 
@@ -102,32 +109,9 @@ class Excellence extends React.Component {
 
     console.log("Here in callback")
   }
-
-  swipedRight() {
-
-    var idx = $("aside div ul li").prop('id');
-    idx = parseInt(idx) - 1;
-    if (idx >= 1) {
-      ArticleStore.getCSVdata(idx, 'Right');
-    }
-
-  }
-
-  swipedLeft() {
-
-    var idx = $("aside div ul li").prop('id');
-    idx = parseInt(idx) + 1;
-    ArticleStore.getCSVdata(idx, 'Left');
-
-
-  }
-
-
-
   _onChange() {
     this.setState(getCSVList());
   }
-
   _swipeOnChange() {
 
     this.setState(getSwipeCSVData());
@@ -287,6 +271,26 @@ class Excellence extends React.Component {
       showModal: 'none'
     })
   }
+  close() {
+    this.setState({
+      showbotModal: false
+    })
+  }
+  open() {
+    this.setState({
+      showbotModal: true
+    })
+  }
+  onChangeHead() {
+    this.setState({
+      showbotModal: true
+    })
+  }
+  getSlideNumber(slidenumber, totallength, e) {
+    this.setState({
+      showbotModal: false
+    })
+  }
 
   render() {
     // setTimeout(function() { this.setState({position: 1}); }.bind(this), 3000);
@@ -295,9 +299,9 @@ class Excellence extends React.Component {
       animationDelay: 0.3 + 's',
       animationName: 'fadeIn'
     };
-  console.log(">>>>>>>",$(window).width())
+
     if ($(window).width() >= 768) {
-    
+
       return (
         <div className="container-fluid tab">
           <div className="spc_bx">
@@ -575,21 +579,20 @@ class Excellence extends React.Component {
     }
 
     else {
-        console.log(">>>>>>>Lessor than 768")
       return (
         <div className="container-fluid tab">
           <div className="spc_bx">
-            <ReactSwipe key={this.state.swipeCsvData.length}>
+            <ReactSwipe key={this.state.swipeCsvData.length} swipeOptions={{ startSlide: this.state.slideindex, continuous: false }}>
               {
-                this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => { 
+                this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => {
                   return (
-                    <div  key={'sin' + i} className="fixedTable-sidebar test" id="astag">
-                   
+                    <div key={'sin' + i} className={"fixedTable-sidebar test slide" + i} id="astag">
+
                       <div className="rank" id="h-left">
                         {
                           <ul id="slide_effect">
                             <li id={i + 1} className="rank-li1"><h4>Rank</h4></li>
-                            <li className="rank-li2"><span className="rank-number"> {i + 1} </span><a href="#" className="btn rank-btn">{head[11].head}</a>
+                            <li className="rank-li2" ><span className="rank-number"> {i + 1} </span><a href="#" onClick={this.onChangeHead} className="btn rank-btn">{this.state.swipeCsvData[i][11].head}</a>
                               <div className="add_plus">
                                 <div className="last">
                                   <input type="checkbox" className="menu-open" name="menu-open" id="menu-open" />
@@ -639,12 +642,36 @@ class Excellence extends React.Component {
                           }
                         }) : ''
                       }
-                  
+
                     </div>
                   )
                 }) : ''
               }
             </ReactSwipe>
+            <Modal show={this.state.showbotModal} onHide={this.close}>
+
+              <Modal.Body >
+                <div className="mobile_scroll">
+                  {
+                    this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => {
+                      return (
+                        <div className="rank rank_mobile" id="h-left">
+
+                          <ul id="slide_effect">
+
+                            <li className="rank-li2" ><span className="rank-number">{i + 1} </span><a href="#" onClick={this.getSlideNumber.bind(this, i, this.state.swipeCsvData.length)} className="btn rank-btn">{this.state.swipeCsvData[i][11].head}</a>
+                            </li>
+                          </ul>
+
+                        </div>
+                      )
+                    }) : ''
+                  }
+                </div>
+              </Modal.Body>
+
+            </Modal>
+
           </div>
         </div>
       )

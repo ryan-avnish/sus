@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import ArticleStore from './../../stores/ArticleStore.jsx';
 import $ from 'jquery';
 //import Swipeable from 'react-swipeable';
-import ReactSwipe from 'react-swipe'; ``
+import ReactSwipe from 'react-swipe'; 
 
 
 function getCSVList() {
@@ -129,6 +129,7 @@ class Excellence extends React.Component {
   }
 
   _swipeOnChange() {
+
     this.setState(getSwipeCSVData());
   }
 
@@ -294,8 +295,9 @@ class Excellence extends React.Component {
       animationDelay: 0.3 + 's',
       animationName: 'fadeIn'
     };
-
+  console.log(">>>>>>>",$(window).width())
     if ($(window).width() >= 768) {
+    
       return (
         <div className="container-fluid tab">
           <div className="spc_bx">
@@ -573,28 +575,19 @@ class Excellence extends React.Component {
     }
 
     else {
-
-
-
+        console.log(">>>>>>>Lessor than 768")
       return (
-
         <div className="container-fluid tab">
           <div className="spc_bx">
-
-            <ReactSwipe swipeOptions={{ continuous: false }}>
-
+            <ReactSwipe key={this.state.swipeCsvData.length}>
               {
-                this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => {
-              
-
+                this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => { 
                   return (
-
-                    <aside key={'sin' + i} className="fixedTable-sidebar test" id="astag">
+                    <div  key={'sin' + i} className="fixedTable-sidebar test" id="astag">
+                   
                       <div className="rank" id="h-left">
                         {
                           <ul id="slide_effect">
-
-
                             <li id={i + 1} className="rank-li1"><h4>Rank</h4></li>
                             <li className="rank-li2"><span className="rank-number"> {i + 1} </span><a href="#" className="btn rank-btn">{head[11].head}</a>
                               <div className="add_plus">
@@ -608,33 +601,16 @@ class Excellence extends React.Component {
                                   <a href="#" className="menu-item"> <img src="static/images/share_icn.png" /></a>
                                 </div>
                               </div>
-
                             </li>
-
-
                           </ul>
                         }
-
                       </div>
-
                       {
-
                         head !== undefined ? head.map((headdata, j) => {
-
-
                           if (headdata.head == undefined) {
                             return (
-
-
-
-
-
-
                               <table key={'single' + j} className="table table-bordered width"  >
                                 <tbody>
-
-
-
                                   <tr className="fliptr" id={"tr" + j}>
                                     <td>
                                       <div className="rank_list" onMouseLeave={this.rowonmouseleave.bind(this, j)} onMouseEnter={this.rowhandlehover.bind(this, j)}>
@@ -642,47 +618,36 @@ class Excellence extends React.Component {
                                         <div className="rank_img"><img src={headdata.Logo_Url} /></div>
                                         <div className="rank_desc">
                                           <ul>
-
                                             <li><div className="progress">
                                               <div className="progress-bar" role="progressbar" aria-valuenow={headdata.Logo_Url != undefined ? headdata[Object.keys(headdata)[4]] : 0} aria-valuemin="0" aria-valuemax="100" style={{ 'width': headdata[Object.keys(headdata)[4]] != undefined ? headdata[Object.keys(headdata)[4]] + '%' : 0 + '%', 'backgroundColor': headdata[Object.keys(headdata)[2]] }}>
                                                 <h2>{headdata.S_Name}</h2> <h6>Points</h6>
                                               </div>
                                             </div>
-
                                             </li>
                                             <li><h5>{headdata.Full_Name}</h5> <span className="nummber_points">{headdata[Object.keys(headdata)[3]] == -1 ? '*' : headdata[Object.keys(headdata)[3]]}</span></li>
                                           </ul>
                                         </div>
                                         <div className="rank_percentage" style={{ 'color': headdata[Object.keys(headdata)[2]] }}><h3>
                                           {headdata[Object.keys(headdata)[1]] == "%" ? headdata[Object.keys(headdata)[4]] + headdata[Object.keys(headdata)[1]] : headdata[Object.keys(headdata)[1]] + headdata[Object.keys(headdata)[4]]}
-
-
                                         </h3></div>
                                       </div>
                                     </td>
                                   </tr>
-
-
                                 </tbody>
                               </table>
                             )
                           }
                         }) : ''
-
                       }
-                    </aside>
-
+                  
+                    </div>
                   )
-
                 }) : ''
               }
             </ReactSwipe>
           </div>
         </div>
       )
-
-
-
     }
   }
 }

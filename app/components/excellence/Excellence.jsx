@@ -4,6 +4,7 @@ import ArticleStore from './../../stores/ArticleStore.jsx';
 import $ from 'jquery';
 //import Swipeable from 'react-swipeable';
 import ReactSwipe from 'react-swipe';
+import Swipe from 'swipe-js-iso';
 import { Modal } from 'react-bootstrap';
 
 
@@ -70,11 +71,10 @@ class Excellence extends React.Component {
     this.state.isMobile = false;
     this.state.showbotModal = false;
     this.state.slideindex = 0;
+    this.swipe = Swipe(this.refs.container, {});
 
 
   }
-
-
 
   componentWillMount() {
     ArticleStore.onChange(this._onChange);
@@ -95,7 +95,13 @@ class Excellence extends React.Component {
         return $(header).css('margin-left', -$(body).scrollLeft());
 
       });
+      // const { swipeOptions } = this.props;
 
+      // this.swipe = Swipe(this.refs.container, swipeOptions);
+      console.log('localStorage.height',localStorage.height)
+ if(localStorage.height!="0"){
+this.state.slideindex = localStorage.height;
+ }
 
     }
   }
@@ -287,9 +293,9 @@ class Excellence extends React.Component {
     })
   }
   getSlideNumber(slidenumber, totallength, e) {
-    this.setState({
-      showbotModal: false
-    })
+
+    localStorage.height = slidenumber;
+    window.location.reload();
   }
 
   render() {
@@ -579,10 +585,11 @@ class Excellence extends React.Component {
     }
 
     else {
+
       return (
         <div className="container-fluid tab">
           <div className="spc_bx">
-            <ReactSwipe key={this.state.swipeCsvData.length} swipeOptions={{ startSlide: this.state.slideindex, continuous: false }}>
+            <ReactSwipe key={this.state.swipeCsvData.length} ref="container" swipeOptions={{ startSlide: this.state.slideindex, continuous: false }}>
               {
                 this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => {
                   return (

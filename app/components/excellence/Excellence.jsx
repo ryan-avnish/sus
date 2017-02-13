@@ -98,10 +98,10 @@ class Excellence extends React.Component {
       // const { swipeOptions } = this.props;
 
       // this.swipe = Swipe(this.refs.container, swipeOptions);
-      console.log('localStorage.height',localStorage.height)
- if(localStorage.height!="0"){
-this.state.slideindex = localStorage.height;
- }
+      console.log('localStorage.height', localStorage.height)
+      if (localStorage.height != "0") {
+        this.state.slideindex = localStorage.height;
+      }
 
     }
   }
@@ -401,13 +401,6 @@ this.state.slideindex = localStorage.height;
                   </div>
                 </div>
               </div>
-
-
-
-
-
-
-
               <aside className="fixedTable-sidebar test" id="astag">
                 <div className="rank" id="h-left">
                   {
@@ -453,11 +446,16 @@ this.state.slideindex = localStorage.height;
                           showData = clicked[Object.keys(clicked)[1]] + (clicked[Object.keys(clicked)[4]].toLocaleString('en'))
                           if (i == 0) {
                             this.state.value = clicked[Object.keys(clicked)[4]];
+
+                            if (Object.keys(clicked)[4] == "Averagecostperbachelorsdegree") {
+                              var last = this.state.csvData.single[this.state.csvData.single.length - 1];
+                              this.state.value = last[Object.keys(last)[4]];
+                            }
                           }
                           var percent = (clicked[Object.keys(clicked)[4]] / this.state.value) * 100;
                           percent = percent.toFixed(1);
                         }
-
+                        console.log('clicked', clicked)
                         return (
                           <tr key={'single' + i} className="fliptr" id={"tr" + i}>
                             <td>
@@ -487,11 +485,6 @@ this.state.slideindex = localStorage.height;
                   </tbody>
                 </table>
               </aside>
-
-
-
-
-
               <div className="fixedTable-body">
                 <table className="table table-bordered">
                   <tbody id="tbbody">
@@ -618,6 +611,25 @@ this.state.slideindex = localStorage.height;
                       {
                         head !== undefined ? head.map((headdata, j) => {
                           if (headdata.head == undefined) {
+                            var showData;
+                            if (headdata[Object.keys(headdata)[4]] == -1) {
+                              showData = '*';
+                            } else if (headdata[Object.keys(headdata)[1]] == '%') {
+                              showData = (headdata[Object.keys(headdata)[4]].toFixed(1)) + headdata[Object.keys(headdata)[1]];
+                              var percent = headdata[Object.keys(headdata)[4]];
+                            } else if (headdata[Object.keys(headdata)[1]] == '$') {
+                              showData = headdata[Object.keys(headdata)[1]] + (headdata[Object.keys(headdata)[4]].toLocaleString('en'))
+                              if (i == 0) {
+                                this.state.value = headdata[Object.keys(headdata)[4]];
+
+                                if (Object.keys(headdata)[4] == "Averagecostperbachelorsdegree") {
+                                  var last = headdata[headdata.length - 1];
+                                  this.state.value = last[Object.keys(last)[4]];
+                                }
+                              }
+                              var percent = (headdata[Object.keys(headdata)[4]] / this.state.value) * 100;
+                              percent = percent.toFixed(1);
+                            }
                             return (
                               <table key={'single' + j} className="table table-bordered width"  >
                                 <tbody>
@@ -637,9 +649,7 @@ this.state.slideindex = localStorage.height;
                                             <li><h5>{headdata.Full_Name}</h5> <span className="nummber_points">{headdata[Object.keys(headdata)[3]] == -1 ? '*' : headdata[Object.keys(headdata)[3]]}</span></li>
                                           </ul>
                                         </div>
-                                        <div className="rank_percentage" style={{ 'color': headdata[Object.keys(headdata)[2]] }}><h3>
-                                          {headdata[Object.keys(headdata)[1]] == "%" ? headdata[Object.keys(headdata)[4]] + headdata[Object.keys(headdata)[1]] : headdata[Object.keys(headdata)[1]] + headdata[Object.keys(headdata)[4]]}
-                                        </h3></div>
+                                        <div className="rank_percentage" style={{ 'color': headdata[Object.keys(headdata)[2]] }}><h3>{showData !== undefined ? showData : ''}</h3></div>
                                       </div>
                                     </td>
                                   </tr>

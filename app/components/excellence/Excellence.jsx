@@ -26,6 +26,8 @@ function callback() {
   //   }, 1000 );
 }
 
+
+
 const swipeOptions = {
 
   continuous: true,
@@ -101,6 +103,47 @@ class Excellence extends React.Component {
       console.log('localStorage.height', localStorage.height)
       if (localStorage.height != "0") {
         this.state.slideindex = localStorage.height;
+      }
+
+
+      var didScroll;
+      var lastScrollTop = 0;
+      var delta = 5;
+      var navbarHeight =40;
+
+      $(window).scroll(function (event) {        
+        didScroll = true;
+      });
+
+      setInterval(function () {
+         
+        if (didScroll) {
+
+           
+          hasScrolled();
+          didScroll = false;
+        }
+      }, 250);
+
+      function hasScrolled() {       
+        var st = $(this).scrollTop();
+        // Make sure they scroll more than delta
+        if (Math.abs(lastScrollTop - st) <= delta)
+          return;
+
+        // If they scrolled down and are past the navbar, add class .nav-up.
+        // This is necessary so you never see what is "behind" the navbar.
+        if (st > lastScrollTop && st > navbarHeight) {
+          // Scroll Down
+          $('#h-left').removeClass('nav-down').addClass('nav-up');
+        } else {
+          // Scroll Up
+          if (st + $(window).height() < $(document).height()) {
+            $('#h-left').removeClass('nav-up').addClass('nav-down');
+          }
+        }
+
+        lastScrollTop = st;
       }
 
     }
@@ -576,7 +619,6 @@ class Excellence extends React.Component {
         </div>
       );
     }
-
     else {
 
       return (
@@ -588,7 +630,7 @@ class Excellence extends React.Component {
                   return (
                     <div key={'sin' + i} className={"fixedTable-sidebar test slide" + i} id="astag">
 
-                      <div className="rank" id="h-left">
+                      <div className="rank nav-down" id="h-left">
                         {
                           <ul id="slide_effect">
                             <li id={i + 1} className="rank-li1"><h4>Rank</h4></li>
@@ -665,18 +707,18 @@ class Excellence extends React.Component {
                 }) : ''
               }
             </ReactSwipe>
-            <Modal show={this.state.showbotModal} onHide={this.close}>
+            <Modal show={this.state.showbotModal} onHide={this.close}  >
 
-              <Modal.Body >
+              <Modal.Body className="rankPopup">
                 <div className="mobile_scroll">
                   {
                     this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => {
                       return (
-                        <div className="rank rank_mobile" id="h-left">
+                        <div className="rank_mobile rank" id="h-left">
 
                           <ul id="slide_effect">
 
-                            <li className="rank-li2" ><span className="rank-number">{i + 1} </span><a href="#" onClick={this.getSlideNumber.bind(this, i, this.state.swipeCsvData.length)} className="btn rank-btn">{this.state.swipeCsvData[i][11].head}</a>
+                            <li className="rank-li2 rank-li2Mobile" ><span className="rank-number">{i + 1} </span><a href="#" onClick={this.getSlideNumber.bind(this, i, this.state.swipeCsvData.length)} className="btn rank-btn">{this.state.swipeCsvData[i][11].head}</a>
                             </li>
                           </ul>
 

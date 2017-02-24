@@ -54,17 +54,18 @@ const divStyle = {
                 </div>
 
                 <div className="grid_wrap">
-                    <div className="grid_1">                
+                    <Link to="/excellence">
+                    <div className="grid_1" >                
                         <div className="gridcircle_1"><img src="static/images/grid_img1.png" data-wow-delay=".3s" style={divStyle} /></div>
 
 
-                        <h2 className="btn-xl"><Link to="/excellence">Leaderboard</Link></h2>
+                        <h2 className="btn-xl">Leaderboard</h2>
                         <div className="border_line"></div>
 
                         <p>Explore SUS institutions performance and funding ranking</p>
 
                     </div>
-
+</Link>
                     <div className="grid_1">
                         <div className="gridcircle_2"><img src="static/images/grid_img2.png" data-wow-delay=".3s" style={divStyle} /></div>
                         

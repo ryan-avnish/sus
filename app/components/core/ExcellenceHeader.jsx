@@ -61,9 +61,9 @@ class ExcellenceHeader extends React.Component {
             <div className="panel with-nav-tabs panel-default">
                 <div className="panel-heading">
                     <ul className="nav nav-tabs" style={{display:'block'}}>
-                        <li className="active"><a href="#tab1default" data-toggle="tab">Excellence</a></li>
-                        <li><a href="#tab2default" data-toggle="tab">Improvement</a></li>
-                        <li><a href="#tab3default" data-toggle="tab">Funding</a></li>
+                        <li className="active"><a href="#tab1default" data-toggle="tab">EXCELLENCE</a></li>
+                        <li><a href="#tab2default" data-toggle="tab">IMPROVEMENT</a></li>
+                        <li><a href="#tab3default" data-toggle="tab">fUNDING</a></li>
                     </ul>
                 </div>
                 

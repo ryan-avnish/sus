@@ -74,6 +74,7 @@ class Excellence extends React.Component {
     this.state.showbotModal = false;
     this.state.slideindex = 0;
     this.swipe = Swipe(this.refs.container, {});
+    this.state.activePopup=0;
 
 
   }
@@ -86,6 +87,7 @@ class Excellence extends React.Component {
 
   }
 
+
   componentDidMount() {
     if (typeof window !== 'undefined') {
       var body = document.querySelector('.fixedTable-body');
@@ -97,56 +99,14 @@ class Excellence extends React.Component {
         return $(header).css('margin-left', -$(body).scrollLeft());
 
       });
-      // const { swipeOptions } = this.props;
 
-      // this.swipe = Swipe(this.refs.container, swipeOptions);
-      console.log('localStorage.height', localStorage.height)
       if (localStorage.height != "0") {
         this.state.slideindex = localStorage.height;
-      }
-
-
-      var didScroll;
-      var lastScrollTop = 0;
-      var delta = 5;
-      var navbarHeight =40;
-
-      $(window).scroll(function (event) {        
-        didScroll = true;
-      });
-
-      setInterval(function () {
-         
-        if (didScroll) {
-
-           
-          hasScrolled();
-          didScroll = false;
-        }
-      }, 250);
-
-      function hasScrolled() {       
-        var st = $(this).scrollTop();
-        // Make sure they scroll more than delta
-        if (Math.abs(lastScrollTop - st) <= delta)
-          return;
-
-        // If they scrolled down and are past the navbar, add class .nav-up.
-        // This is necessary so you never see what is "behind" the navbar.
-        if (st > lastScrollTop && st > navbarHeight) {
-          // Scroll Down
-          $('#h-left').removeClass('nav-down').addClass('nav-up');
-        } else {
-          // Scroll Up
-          if (st + $(window).height() < $(document).height()) {
-            $('#h-left').removeClass('nav-up').addClass('nav-down');
-          }
-        }
-
-        lastScrollTop = st;
-      }
+      }  
 
     }
+
+      
   }
 
 
@@ -177,8 +137,6 @@ class Excellence extends React.Component {
   }
 
 
-
-
   onmouseleave(idx, title, e) {
     var cl = $(".zoom" + idx + " p").attr('class');
     $(".cool").removeClass("zoom_class");
@@ -207,10 +165,11 @@ class Excellence extends React.Component {
       var posX = $('.zoom' + idx).offset().left;
       var eTop = $('#h-left').offset().top; //get the offset top of the element
       var position = eTop - posX;
-      //  $(".zoom"+idx).toggleClass("zoom_class");
       $(".zoom" + idx).toggleClass("slide_class");
       var cl = $(".zoom" + idx + " p").attr('class');
       var firstcolumn = $(".rank li").attr("id");
+    var click=$('th.' + cl+' div').attr("id");
+     // console.log('clicked',click);
       setTimeout(function () {
         $(".rank_head_list ul.slide_class").css({
           '-webkit-transform': "translate(" + position + "px,0px)",
@@ -223,36 +182,17 @@ class Excellence extends React.Component {
           "opacity": 0
         });
         setTimeout(function () {
-          $(".cool").removeAttr("style");
-          $(".cool").removeClass("slide_class");
-          $(".cool").removeClass("zoom_class");
-          $('th.' + cl + " div").removeAttr("style");
-
-          $("td." + cl + " div h2").css({
-            '-webkit-transform': "",
-            'transform': "",
-            "opacity": 1
-          });
-
-          $("td." + cl + " div h2").removeClass("slide_class");
-          $("td." + cl + " div h2").removeClass("zoom_class");
-          $("td." + cl + " div").removeAttr("style");
-          $('th.' + cl).fadeIn(1000);
-          $('td.' + cl).fadeIn(1000);
-        }, 1200);
-        //   setTimeout(function() {
-        //  $('th.'+cl).hide();
-        //      $('td.'+cl).hide();  
-        //    }, 1700);      
-
-        setTimeout(function () {
-          $('th.' + cl).fadeOut(800);
-          $('td.' + cl).fadeOut(800);
-        }, 500);
+          $('th.' + cl+' div').animate({'width': '0%'},600);
+          $('td.' + cl+' div').animate({'width': '0%'},600);
+        },400);
+         // setTimeout(function () {
+        //  $('th.' + cl).hide();
+       //   $('td.' + cl).hide();
+         // },605);
 
       }, 500);
 
-      //first 90degree flip
+      //first 90degree fliptr
 
 
       setTimeout(function () {
@@ -268,13 +208,44 @@ class Excellence extends React.Component {
 
       //  get new data
       setTimeout(function () {
-        ArticleStore.getCSVdata(idx, title);
-        // setTimeout(function() {
-        //         $('th.hide'+firstcolumn+' div').animate({width: 'toggle'});
-        //     $('td.hide'+firstcolumn+' div').animate({width: 'toggle'});
-        //     }, 1800);
-      }, 1600);
+        $('th.' + cl).show();
+        $('td.' + cl).show();
+          $(".cool").removeAttr("style");
+          $(".cool").removeClass("slide_class");
+          $(".cool").removeClass("zoom_class");
+          $('th.' + cl + " div").removeAttr("style");
 
+          $("td." + cl + " div h2").css({
+            '-webkit-transform': "",
+            'transform': "",
+            "opacity": 1
+          });
+
+          $("td." + cl + " div h2").removeClass("slide_class");
+          $("td." + cl + " div h2").removeClass("zoom_class");
+          $("td." + cl + " div").removeAttr("style");
+          }, 1600);
+        var first=  parseInt($('aside ul').attr('id')-1);
+        if((first-parseInt(click))>1){
+          first=first-1;
+        }
+        console.log('first',first);
+    
+        setTimeout(function () {
+    
+          // $('th.hide' +first).hide();
+     //   $('td.hide' + first).hide();        
+        $('th.hide' +first+" div").css({width:"0%"});
+         $('td.hide' +first+" div").css({width:"0%"});
+        
+          ArticleStore.getCSVdata(idx, title);
+       $('th.hide' +first).show();
+        $('td.hide' + first).show();
+        $('th.hide' +first+' div').animate({'width': '100%'},600);
+          $('td.hide' + first+' div').animate({'width': '97%'},600)
+        },1500);
+    
+ 
 
       function getAllImages(maxImages) {
         var imgCount = 0;
@@ -330,7 +301,8 @@ class Excellence extends React.Component {
       showbotModal: true
     })
   }
-  onChangeHead() {
+  onChangeHead(idx) {
+    this.setState({activePopup: idx});
     this.setState({
       showbotModal: true
     })
@@ -368,7 +340,7 @@ class Excellence extends React.Component {
 
                             return (
                               <th key={'header' + i} className={"hide" + i}>
-                                <div className="rank_head_list">
+                                <div className="rank_head_list" id={i}>
                                   <ul className={"cool zoom" + head.idx + " hide" + i}>
                                     <li><span>{head.idx}</span></li>
                                     <li onMouseLeave={this.onmouseleave.bind(this, head.idx, Object.keys(head)[0])} onMouseEnter={this.handlehover.bind(this, head.idx, Object.keys(head)[0])} onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}><p className={"hide" + i}>{head[Object.keys(head)[0]]}</p></li>
@@ -447,7 +419,7 @@ class Excellence extends React.Component {
               <aside className="fixedTable-sidebar test" id="astag">
                 <div className="rank" id="h-left">
                   {
-                    this.state.csvData.paramkey !== undefined ? <ul id="slide_effect">
+                    this.state.csvData.paramkey !== undefined ? <ul id="slide_effect" id={this.state.csvData.paramkey.idx}>
 
 
                       <li id={this.state.csvData.paramkey.idx} className="rank-li1"><h4>Rank</h4></li>
@@ -498,7 +470,7 @@ class Excellence extends React.Component {
                           var percent = (clicked[Object.keys(clicked)[4]] / this.state.value) * 100;
                           percent = percent.toFixed(1);
                         }
-                        console.log('clicked', clicked)
+                       // console.log('clicked', clicked)
                         return (
                           <tr key={'single' + i} className="fliptr" id={"tr" + i}>
                             <td>
@@ -630,11 +602,11 @@ class Excellence extends React.Component {
                   return (
                     <div key={'sin' + i} className={"fixedTable-sidebar test slide" + i} id="astag">
 
-                      <div className="rank nav-down" id="h-left">
+                      <div className="rank page-header1" id="h-left">
                         {
                           <ul id="slide_effect">
                             <li id={i + 1} className="rank-li1"><h4>Rank</h4></li>
-                            <li className="rank-li2" ><span className="rank-number"> {i + 1} </span><a href="#" onClick={this.onChangeHead} className="btn rank-btn">{this.state.swipeCsvData[i][11].head}</a>
+                            <li className="rank-li2" ><span className="rank-number"> {i + 1} </span><a href="#" onClick={this.onChangeHead.bind(this,i)} className="btn rank-btn">{this.state.swipeCsvData[i][11].head}</a>
                               <div className="add_plus">
                                 <div className="last">
                                   <input type="checkbox" className="menu-open" name="menu-open" id="menu-open" />
@@ -714,7 +686,7 @@ class Excellence extends React.Component {
                   {
                     this.state.swipeCsvData !== undefined ? this.state.swipeCsvData.map((head, i) => {
                       return (
-                        <div className="rank_mobile rank" id="h-left">
+                        <div className={this.state.activePopup==i?"rank_mobile rank Active":"rank_mobile rank"} id="h-left">
 
                           <ul id="slide_effect">
 

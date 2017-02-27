@@ -433,7 +433,7 @@ body {
 }
 
 body {
-    background-color: #fff;
+    background-color: #f9f7f5;
     border: medium none;
     color: #d3d3d3;
     font-family: "robotolight";
@@ -3818,4 +3818,12 @@ li.rank-li2.rank-li2Mobile {
   transition: all 500ms ease-in;
   transform: scale(1.2); 
   z-index: 99; 
+}
+
+.zoom_class .menu-open:checked + .menu-open-button {
+    display: none;
+}
+
+.zoom_class .menu-open:checked ~ .menu-item {
+    display: none;
 }

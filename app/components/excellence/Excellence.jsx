@@ -127,10 +127,13 @@ class Excellence extends React.Component {
   }
 
   handlehover(idx, title, e) {
+    
     var cl = $(".zoom" + idx + " p").attr('class');
-    $(".zoom" + idx).toggleClass("zoom_class");
-    $("td." + cl + " div h2").toggleClass("zoom_class");
-
+     var parenthead=$(".zoom" + idx).parent('div.rank_head_list');
+    $(parenthead).toggleClass("zoom_class");
+    $("td." + cl + " div.percentage_number").toggleClass("zoom_class");
+     $('.fixedTable-sidebar').css({"z-index":1});
+     $('.fixedTable-body').css({overflow:"inherit"});
     // $("td."+cl+" div h2").css({
     //  "font-size":"34px" 
     // })
@@ -139,9 +142,11 @@ class Excellence extends React.Component {
 
   onmouseleave(idx, title, e) {
     var cl = $(".zoom" + idx + " p").attr('class');
-    $(".cool").removeClass("zoom_class");
-    $("td." + cl + " div h2").removeClass("zoom_class");
-
+      var parenthead=$(".zoom" + idx).parent('div.rank_head_list');
+    $(parenthead).removeClass("zoom_class");
+    $("td." + cl + " div.percentage_number").removeClass("zoom_class");
+$('.fixedTable-sidebar').css("z-index","99");
+$('.fixedTable-body').css({overflow:"hidden"});
     // $("td."+cl+" div h2").css({
     //  "font-size":"30px" 
     // })
@@ -159,36 +164,47 @@ class Excellence extends React.Component {
   }
 
   handleClick(idx, title, e) {
-
-
+       var cla=$('.rank_head_list li.check_div input.menu-open').removeAttr('checked');
+       //console.log('cla',cla);
+      
     if (typeof window !== 'undefined') {
       var posX = $('.zoom' + idx).offset().left;
       var eTop = $('#h-left').offset().top; //get the offset top of the element
       var position = eTop - posX;
-      $(".zoom" + idx).toggleClass("slide_class");
+    //  $(".zoom" + idx).toggleClass("slide_class");
+      var parenthead=$(".zoom" + idx).parent('div.rank_head_list');
       var cl = $(".zoom" + idx + " p").attr('class');
       var firstcolumn = $(".rank li").attr("id");
-    var click=$('th.' + cl+' div').attr("id");
-     // console.log('clicked',click);
+    var click=$('th.' + cl+' div.rank_head_list').attr("id");
+     //console.log('click',click);
       setTimeout(function () {
-        $(".rank_head_list ul.slide_class").css({
+        $(parenthead).css({
           '-webkit-transform': "translate(" + position + "px,0px)",
           'transform': "translate(" + position + "px,0px)",
           "opacity": 0
         });
-        $("td." + cl + " div h2").css({
+        $("td." + cl + " div.percentage_number").css({
           '-webkit-transform': "translate(" + position + "px,0px)",
           'transform': "translate(" + position + "px,0px)",
           "opacity": 0
         });
+        
         setTimeout(function () {
-          $('th.' + cl+' div').animate({'width': '0%'},600);
-          $('td.' + cl+' div').animate({'width': '0%'},600);
-        },400);
-         // setTimeout(function () {
-        //  $('th.' + cl).hide();
-       //   $('td.' + cl).hide();
-         // },605);
+         
+         // var prev=$('th.' + cl).prev('th').attr('class');
+        //  var next=$('th.' + cl).next('th').attr('class');
+         //  $('th.' + cl).css({width:"0%"});
+         //  $("td." + cl).css({width:"0%"});
+        //  console.log('prev,next',prev,next);
+          // $('th.' + next).animate({"left": "50%"}, 600 );
+          // $('td.' + next).animate({"left": "50%"}, 600 );
+          // $('th.' + prev).animate({"right": "50%"}, 600 );
+          // $('td.' + prev).animate({"right": "50%"}, 600 );
+          
+          $('th.' + cl+' div.child'+click).animate({'width': '0%'},600);
+          $('td.' + cl+' div.child'+click).animate({'width': '0%'},600);
+        },500);
+        
 
       }, 500);
 
@@ -204,46 +220,51 @@ class Excellence extends React.Component {
       }, 1200);
 
       var invi = idx - 1;
-      console.log('invi', invi);
+      //console.log('invi', invi);
 
       //  get new data
-      setTimeout(function () {
-        $('th.' + cl).show();
-        $('td.' + cl).show();
-          $(".cool").removeAttr("style");
-          $(".cool").removeClass("slide_class");
-          $(".cool").removeClass("zoom_class");
-          $('th.' + cl + " div").removeAttr("style");
-
-          $("td." + cl + " div h2").css({
+      setTimeout(function () {       
+        //  $(".cool").removeAttr("style");
+          //$(".cool").removeClass("slide_class");
+           $('th.' + cl+' div.child'+click).css({'width': '100%'});
+          $('td.' + cl+' div.child'+click).css({'width': '100%'});
+         $('th.' + cl + " div.rank_head_list").removeClass("zoom_class");
+         $('th.' + cl + " div.rank_head_list").removeAttr("style");
+            $(parenthead).css({
+                      '-webkit-transform': "",
+                      'transform': "",
+                      "opacity": 1
+                    });
+          $("td." + cl + " div.percentage_number").css({
             '-webkit-transform': "",
             'transform': "",
             "opacity": 1
           });
 
-          $("td." + cl + " div h2").removeClass("slide_class");
-          $("td." + cl + " div h2").removeClass("zoom_class");
-          $("td." + cl + " div").removeAttr("style");
-          }, 1600);
+        //  $("td." + cl + " div h2").removeClass("slide_class");
+          $("td." + cl + " div.percentage_number").removeClass("zoom_class");
+          $("td." + cl + " div.percentage_number").removeAttr("style");
+          }, 1800);
         var first=  parseInt($('aside ul').attr('id')-1);
         if((first-parseInt(click))>1){
           first=first-1;
         }
-        console.log('first',first);
+       // console.log('first',first);
     
         setTimeout(function () {
-    
-          // $('th.hide' +first).hide();
-     //   $('td.hide' + first).hide();        
-        $('th.hide' +first+" div").css({width:"0%"});
-         $('td.hide' +first+" div").css({width:"0%"});
+          $(".cool").removeAttr("style");
+          $(".cool").removeClass("zoom_class");
+          $('th.' + cl + " div.rank_head_list").removeAttr("style");
+       
+        $('th.hide' +first+" div.child"+first).css({width:"0%"});
+         $('td.hide' +first+" div.child"+first).css({width:"0%"});
         
           ArticleStore.getCSVdata(idx, title);
        $('th.hide' +first).show();
         $('td.hide' + first).show();
-        $('th.hide' +first+' div').animate({'width': '100%'},600);
-          $('td.hide' + first+' div').animate({'width': '97%'},600)
-        },1500);
+        $('th.hide' +first+' div.child'+first).animate({'width': '100%'},600);
+          $('td.hide' + first+' div.child'+first).animate({'width': '100%'},600)
+        },1700);
     
  
 
@@ -340,6 +361,7 @@ class Excellence extends React.Component {
 
                             return (
                               <th key={'header' + i} className={"hide" + i}>
+                                <div className={"child"+i} style={{"background":"#fff none repeat scroll 0 0"}}>
                                 <div className="rank_head_list" id={i}>
                                   <ul className={"cool zoom" + head.idx + " hide" + i}>
                                     <li><span>{head.idx}</span></li>
@@ -358,6 +380,7 @@ class Excellence extends React.Component {
                                     </li>
 
                                   </ul>
+                                </div>
                                 </div>
                               </th>
                             )
@@ -525,50 +548,66 @@ class Excellence extends React.Component {
                             <table className="table table-bordered">
                               <tbody><tr>
                                 <td className={"hide0 row" + i}>
+                                  <div className="child0" style={{"background":"#fff none repeat scroll 0 0"}}>
                                   <div className="percentage_number">
                                     <h2 style={{ 'color': list[c0 + 'pointcolor'] }}>{list[c0] == -1 ? '*' : list[c0 + 'type'] == '%' ? (list[c0].toFixed(1)) + list[c0 + 'type'] : list[c0 + 'type'] + (list[c0].toLocaleString('en'))}</h2>
+                                  </div>
                                   </div>
                                 </td>
 
                                 <td className={"hide1 row" + i}>
+                                  <div className="child1" style={{"background":"#fff none repeat scroll 0 0"}}>
                                   <div className="percentage_number">
                                     <h2 style={{ 'color': list[c1 + 'pointcolor'] }}>{list[c1] == -1 ? '*' : list[c1 + 'type'] == '%' ? (list[c1].toFixed(1)) + list[c1 + 'type'] : list[c1 + 'type'] + (list[c1].toLocaleString('en'))}</h2>
+                                  </div>
                                   </div>
                                 </td>
 
                                 <td className={"hide2 row" + i}>
+                                  <div className="child2" style={{"background":"#fff none repeat scroll 0 0"}}>
                                   <div className="percentage_number">
                                     <h2 style={{ 'color': list[c2 + 'pointcolor'] }}>{list[c2] == -1 ? '*' : list[c2 + 'type'] == '%' ? (list[c2].toFixed(1)) + list[c2 + 'type'] : list[c2 + 'type'] + (list[c2].toLocaleString('en'))}</h2>
+                                  </div>
                                   </div>
                                 </td>
 
                                 <td className={"hide3 row" + i}>
+                                  <div className="child3" style={{"background":"#fff none repeat scroll 0 0"}}>
                                   <div className="percentage_number">
                                     <h2 style={{ 'color': list[c3 + 'pointcolor'] }}>{list[c3] == -1 ? '*' : list[c3 + 'type'] == '%' ? (list[c3].toFixed(1)) + list[c3 + 'type'] : list[c3 + 'type'] + (list[c3].toLocaleString('en'))}</h2>
+                                  </div>
                                   </div>
                                 </td>
 
                                 <td className={"hide4 row" + i}>
+                                  <div className="child4" style={{"background":"#fff none repeat scroll 0 0"}}>
                                   <div className="percentage_number">
                                     <h2 style={{ 'color': list[c4 + 'pointcolor'] }}>{list[c4] == -1 ? '*' : list[c4 + 'type'] == '%' ? (list[c4].toFixed(1)) + list[c4 + 'type'] : list[c4 + 'type'] + (list[c4].toLocaleString('en'))}</h2>
+                                  </div>
                                   </div>
                                 </td>
 
                                 <td className={"hide5 row" + i}>
+                                  <div className="child5" style={{"background":"#fff none repeat scroll 0 0"}}>
                                   <div className="percentage_number">
                                     <h2 style={{ 'color': list[c5 + 'pointcolor'] }}>{list[c5] == -1 ? '*' : list[c5 + 'type'] == '%' ? (list[c5].toFixed(1)) + list[c5 + 'type'] : list[c5 + 'type'] + (list[c5].toLocaleString('en'))}</h2>
+                                  </div>
                                   </div>
                                 </td>
 
                                 <td className={"hide6 row" + i}>
+                                  <div className="child6" style={{"background":"#fff none repeat scroll 0 0"}}>
                                   <div className="percentage_number">
                                     <h2 style={{ 'color': list[c6 + 'pointcolor'] }}>{list[c6] == -1 ? '*' : list[c6 + 'type'] == '%' ? (list[c6].toFixed(1)) + list[c6 + 'type'] : list[c6 + 'type'] + (list[c6].toLocaleString('en'))}</h2>
+                                  </div>
                                   </div>
                                 </td>
 
                                 <td className={"hide7 row" + i}>
+                                  <div className="child7" style={{"background":"#fff none repeat scroll 0 0"}}>
                                   <div className="percentage_number">
                                     <h2 style={{ 'color': list[c7 + 'pointcolor'] }}>{list[c7] == -1 ? '*' : list[c7 + 'type'] == '%' ? (list[c7].toFixed(1)) + list[c7 + 'type'] : list[c7 + 'type'] + (list[c7].toLocaleString('en'))}</h2>
+                                  </div>
                                   </div>
                                 </td>
 

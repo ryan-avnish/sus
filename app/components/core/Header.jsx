@@ -57,7 +57,7 @@ class Header extends React.Component {
             </div>
            
             <div className="padding_rw">
-                <div className="name"><h2>SUS Metrics Performance Dashboard</h2></div>
+                <div className="name"><h2>SUS Metrics Leaderboard</h2></div>
                 <div className="rightnav_img">
                     Welcome: <Link to="/">John Dalaney<span><img src="static/images/nav-pic.png" className="img-responsive nav-pic"/></span></Link>
                  </div>

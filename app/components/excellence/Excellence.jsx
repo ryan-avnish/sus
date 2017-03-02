@@ -89,6 +89,7 @@ class Excellence extends React.Component {
 
   componentDidMount() {
     if (typeof window !== 'undefined') {
+      $('#topNav').show();
       var body = document.querySelector('.fixedTable-body');
       var sidebar = document.querySelector('.fixedTable-sidebar table');
       var header = document.querySelector('.fixedTable-header table');
@@ -305,13 +306,14 @@ class Excellence extends React.Component {
     })
   }
   onChangeHead(idx) {
+    $('#topNav').hide();
     this.setState({ activePopup: idx });
     this.setState({
       showbotModal: true
     })
   }
   getSlideNumber(slidenumber, totallength, e) {
-
+ 
     localStorage.height = slidenumber;
     window.location.reload();
   }

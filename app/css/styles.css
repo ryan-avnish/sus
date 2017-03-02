@@ -3837,10 +3837,10 @@ li.rank-li2.rank-li2Mobile {
      border:none;
 }
 .mobile_scroll {
-  background: #9f9f9f none repeat scroll 0 0;
-  border-radius: 5px;
-  max-height: 315px;
-  overflow-y: auto;
+    background: #9f9f9f none repeat scroll 0 0;
+    border-radius: 5px;
+     /*max-height: 315px; */
+    overflow-y: hidden;
 }
 .rank li{ width:10%;  }
 /*---------------feb-15-by-gagan------------------*/

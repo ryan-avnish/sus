@@ -129,7 +129,7 @@ class Excellence extends React.Component {
     $(parenthead).toggleClass("zoom_class");
     $("td." + cl + " div.percentage_number").toggleClass("zoom_class");
     $('.fixedTable-sidebar').css({ "z-index": 1 });
-    //$('.fixedTable-body').css({ overflow: "inherit" });
+    $('.fixedTable-body').css({ overflow: "inherit" });
     // $("td."+cl+" div h2").css({
     //  "font-size":"34px" 
     // })
@@ -142,7 +142,7 @@ class Excellence extends React.Component {
     $(parenthead).removeClass("zoom_class");
     $("td." + cl + " div.percentage_number").removeClass("zoom_class");
     $('.fixedTable-sidebar').css("z-index", "99");
-  //  $('.fixedTable-body').css({ overflow: "hidden" });
+   $('.fixedTable-body').css({ overflow: "auto" });
     // $("td."+cl+" div h2").css({
     //  "font-size":"30px" 
     // })

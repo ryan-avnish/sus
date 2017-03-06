@@ -46,11 +46,24 @@ class ExcellenceHeader extends React.Component {
         <div className="col-md-2 col-xs-2"><div id="mobile-nav" onClick={this.openMenu}><img src="static/images/menu_icon_nw.png"/></div></div>
          <div className="col-md-5 ">  
              <div className="year">
-                <div className="right">
-                <i className="fa fa-caret-left custom-cart" aria-hidden="true"></i>
-                <span> 2015 </span>
-                <i className="fa fa-caret-right custom-cart" aria-hidden="true"></i>
+
+             
+                <div  className="right year_01">
+                <div className="dropdown">
+     <i className="fa fa-caret-left custom-cart" aria-hidden="true"></i><button className="btnprimary1 dropdown-toggle" type="button" data-toggle="dropdown">2015
+    </button> <i className="fa fa-caret-right custom-cart" aria-hidden="true"></i>
+    <ul className="dropdown-menu">
+      <li><a href="#">2015</a></li>
+      <li><a href="#">2016</a></li>
+      <li><a href="#">2017</a></li>
+    </ul>
+    
+  </div>
+               
+               
                 </div>
+
+
 
             </div>
               <div className="heading_text">

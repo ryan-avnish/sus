@@ -296,6 +296,7 @@ class Excellence extends React.Component {
     })
   }
   close() {
+     $('#topNav').show();
     this.setState({
       showbotModal: false
     })

@@ -2420,6 +2420,7 @@ img.nav-pic{ height: 40px; width: 40px; }
     font-size: 18px;
     margin-right: 13px;
     margin-top: 11px;
+    padding-left: 5%;
 }
 .rank_img img {
     border-radius: 50%;
@@ -2960,8 +2961,8 @@ body{overflow: scroll;}
     width: 100%;
 }
 
-.heading_text h2{
-    margin-top: 21px;
+.heading_text h2 {
+    margin-top: 23px;
     font-size: 13px;
 }
 
@@ -3661,6 +3662,11 @@ li.rank-li2.rank-li2Mobile {
 
 
 @media (max-width: 770px){
+
+ .heading_text h2 {
+    margin-top: 23px;
+    font-size: 13px;
+}   
 
 .fixedTable-sidebar {
       padding: 0;

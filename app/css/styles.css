@@ -869,7 +869,7 @@ aside {
 .navbar-default .nav > li.active>a:hover,
 .navbar-default .nav>li.active>a:focus:hover
 {
-      background-color: #fff;
+      background-color: #f8f7f5;
     border-color: #fff;
     color: #0080ff !important;
 }
@@ -1534,7 +1534,7 @@ background: #fff none repeat scroll 0 0;
     margin-top: -1px;
 }
 .navbar-default .nav > li.active > a:hover, .navbar-default .nav > li a:hover {
-    background-color: #fff;
+    background-color: #f8f7f5;
     border-color: #fff;
     color: #0080ff !important;
 }
@@ -1556,6 +1556,7 @@ background: #fff none repeat scroll 0 0;
   padding: 12px 25px;
   color: #dddddd !important;
   width: 150px;
+  text-transform:uppercase;
 }
 ul.nav.nav-tabs {
  background: #0080ff none repeat scroll 0 0;
@@ -2809,6 +2810,12 @@ li.rank-li2.rank-li2Mobile {
     margin-right: 13px;
     margin-top: 11px;
 }
+
+
+
+
+
+
 .navbar.bg-blue {
     background: #0080ff none repeat scroll 0 0 !important;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -2990,7 +2997,7 @@ ul.nav.nav-tabs{ background: none; }
 .navbar-default .nav > li.active > a, .navbar-default .nav > li.active > a:focus
 {background: #fbf5f7; color: #027fff !important; border-bottom: 2px solid #027fff;border: none; }
 .navbar-default .nav > li.active > a:hover, .navbar-default .nav > li a:hover 
-{background: #fbf5f7; color: #027fff !important; border-bottom: 2px solid #027fff; }
+{background: #f8f7f5; color: #027fff !important; border-bottom: 2px solid #027fff; }
 .nav-tabs > li > a{ border-radius: 0; }
 ul.nav.nav-tabs{ border: none; }
 .navbar-default .nav > li.active>a:hover, .navbar-default .nav>li.active>a:focus:hover{color: #027fff !important; border-bottom: 2px solid #027fff;}
@@ -3060,6 +3067,12 @@ li.rank-li2.rank-li2Mobile {
 .Active{
     background: #5f5f5f; color: #fff;
 }
+
+
+
+
+
+
 
 
 }

@@ -70,6 +70,7 @@ class Excellence extends React.Component {
     this.open = this.open.bind(this);
     this._onChange = this._onChange.bind(this);
     this._swipeOnChange = this._swipeOnChange.bind(this);
+    this.plusclick = this.plusclick.bind(this);
     this.state.isMobile = false;
     this.state.showbotModal = false;
     this.state.slideindex = 0;
@@ -120,6 +121,18 @@ class Excellence extends React.Component {
   _swipeOnChange() {
 
     this.setState(getSwipeCSVData());
+  }
+  plusclick(i) {
+var c=$('#lblplus'+i).prev('input');
+console.log('checked',$(c).is(':checked'));
+ if($(c).is(':checked')){
+   console.log('checked true');
+$(c).prop('checked',false);
+
+ }else{
+   console.log('checked false');
+$(c).prop('checked','checked');
+ }
   }
 
   handlehover(idx, title, e) {
@@ -633,8 +646,8 @@ class Excellence extends React.Component {
                             <li className="rank-li2" ><span className="rank-number"> {i + 1} </span><a href="#" onClick={this.onChangeHead.bind(this, i)} className="btn rank-btn">{this.state.swipeCsvData[i][11].head}</a>
                               <div className="add_plus">
                                 <div className="last">
-                                  <input type="checkbox" className="menu-open" name="menu-open" id="menu-open" />
-                                  <label className="menu-open-button" htmlFor="menu-open">
+                                  <input type="checkbox" className="menu-open" name="menu-open" id={"menu-open"+i}  />
+                                  <label className="menu-open-button" htmlFor="menu-open" id={"lblplus"+i}  onClick={this.plusclick.bind(this,i)} >
                                     <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png" /></i></label>
                                   <a href="#" className="menu-item"> <img src="static/images/info-icn.png" /> </a>
                                   <a href="#" className="menu-item"> <img src="static/images/bar_icn.png" /> </a>

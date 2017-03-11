@@ -6,6 +6,7 @@ import $ from 'jquery';
 import ReactSwipe from 'react-swipe';
 import Swipe from 'swipe-js-iso';
 import { Modal } from 'react-bootstrap';
+import '../../js/bluebird.min.js';
 
 
 

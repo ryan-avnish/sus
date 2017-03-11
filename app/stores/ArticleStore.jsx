@@ -1,7 +1,7 @@
 "use strict";
 import restApi from "./RestAPI_Helper.js";
 import auth from './../services/Authentication';
-
+let $ = require('jquery');
 function ArticleStore() {
 
   let articleList = {},
@@ -57,19 +57,25 @@ function ArticleStore() {
     });
   };
 
-  function getCSVdata(idx, title) {
-    restApi.get("/getcsv/"+idx+"/"+title).then((data) => {
-      listData = data;
+  function getCSVdata(idx, title) {   
+     $.get( "/getcsv/"+idx+"/"+title ).then(
+  function(data) {
+     listData = data;
       triggerListeners();
-    });
+  }, function() {
+    alert( "$.get failed!" );
+  });
   }
 
    function getswipeCSVdata() {
-    restApi.get("/swipegetCSV").then((data) => {
-      console.log('data', data);
-      swipeData = data;
+    $.get( "/swipegetCSV" ).then(
+  function(data) {
+     swipeData = data;
       triggerListeners();
-    });
+  }, function() {
+    alert( "$.get failed!" );
+  }
+);
   }
 
   function editArticle(article, id, router) {

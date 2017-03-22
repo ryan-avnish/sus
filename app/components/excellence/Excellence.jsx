@@ -311,6 +311,7 @@ $(c).prop('checked','checked');
   }
   close() {
      $('#topNav').show();
+   //  $('.fixedTable-sidebar').css({"margin-top":""})
     this.setState({
       showbotModal: false
     })
@@ -322,6 +323,8 @@ $(c).prop('checked','checked');
   }
   onChangeHead(idx) {
     $('#topNav').hide();
+    console.log('slide',idx)
+    $('.slide2').css({"margin-top":"0px !important"})
     this.setState({ activePopup: idx });
     this.setState({
       showbotModal: true

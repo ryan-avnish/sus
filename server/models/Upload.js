@@ -191,6 +191,7 @@ var UploadSchema = {
     type: Date,
     default: Date.now
   }
+ 
 }
 
 var Upload = mongoose.model('Upload', UploadSchema, 'uploads');

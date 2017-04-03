@@ -135,31 +135,40 @@ module.exports.getCSV = function (req, res) {
   var customHeader = [
     {
       "Continuingeducationandemploymentrate": "Continuing education and employment rate",
-      "idx": 1
+      "idx": 1,
+      benchmark:[{points:"10",metrics:"80%",improvement:"5.0%" },{points:"9",metrics:"77.5%",improvement:"4.5%" },{points:"8",metrics:"75%",improvement:"4.0%" },{points:"7",metrics:"72.5%",improvement:"3.5%" },{points:"6",metrics:"70%",improvement:"3.0%" },{points:"5",metrics:"67.5%",improvement:"2.5%" },{points:"4",metrics:"65%",improvement:"2.0%" },{points:"3",metrics:"62.5%",improvement:"1.5%" },{points:"2",metrics:"60%",improvement:"1.0%" },{points:"1",metrics:"57.5%",improvement:"0.5%" }]
     }, {
       "Medianwagesofbachelorsgrads": "Median wages of bachelor’s grads ",
-      "idx": 2
+      "idx": 2,
+      benchmark:[{points:"10",metrics:"$40,000",improvement:"5.0%" },{points:"9",metrics:"$37,500",improvement:"4.5%" },{points:"8",metrics:"35,000",improvement:"4.0%" },{points:"7",metrics:"$32,500",improvement:"3.5%" },{points:"6",metrics:"$30,000",improvement:"3.0%" },{points:"5",metrics:"$27,500",improvement:"2.5%" },{points:"4",metrics:"$25,000",improvement:"2.0%" },{points:"3",metrics:"$22,500",improvement:"$2.0" },{points:"2",metrics:"$20,000",improvement:"1.0%" },{points:"1",metrics:"$17,500",improvement:"0.5%" }]
     }, {
       "Averagecostperbachelorsdegree": "Average cost per bachelor’s degree",
-      "idx": 3
+      "idx": 3,
+      benchmark:[{points:"10",metrics:"$21,589",improvement:"5.0%" },{points:"9",metrics:"$22,939",improvement:"4.5%" },{points:"8",metrics:"24,287",improvement:"4.0%" },{points:"7",metrics:"$25,637",improvement:"3.5%" },{points:"6",metrics:"$26,986",improvement:"3.0%" },{points:"5",metrics:"$28,336",improvement:"2.5%" },{points:"4",metrics:"$29,685",improvement:"2.0%" },{points:"3",metrics:"$31,034",improvement:"$2.0" },{points:"2",metrics:"$32,383",improvement:"1.0%" },{points:"1",metrics:"$33,733",improvement:"0.5%" }]
     }, {
       "Sixyeargraduationrate": "Six year graduation rate",
-      "idx": 4
+      "idx": 4,
+      benchmark:[{points:"10",metrics:"70%",improvement:"5.0%" },{points:"9",metrics:"68.8%",improvement:"4.5%" },{points:"8",metrics:"67.5%",improvement:"4.0%" },{points:"7",metrics:"66.3%",improvement:"3.5%" },{points:"6",metrics:"65%",improvement:"3.0%" },{points:"5",metrics:"63.8%",improvement:"2.5%" },{points:"4",metrics:"62.5%",improvement:"2.0%" },{points:"3",metrics:"61.3%",improvement:"1.5%" },{points:"2",metrics:"60%",improvement:"1.0%" },{points:"1",metrics:"58.8%",improvement:"0.5%" }]
     }, {
       "Academicprogress2ndyearretention": "Academic progress 2nd year retention",
-      "idx": 5
+      "idx": 5,
+      benchmark:[{points:"10",metrics:"90%",improvement:"5.0%" },{points:"9",metrics:"88.8%",improvement:"4.5%" },{points:"8",metrics:"87.5%",improvement:"4.0%" },{points:"7",metrics:"86.3%",improvement:"3.5%" },{points:"6",metrics:"85%",improvement:"3.0%" },{points:"5",metrics:"83.8%",improvement:"2.5%" },{points:"4",metrics:"82.5%",improvement:"2.0%" },{points:"3",metrics:"81.3%",improvement:"1.5%" },{points:"2",metrics:"80%",improvement:"1.0%" },{points:"1",metrics:"78.8%",improvement:"0.5%" }]
     }, {
       "BachelorsSTEMandstrategicemphasis": "Bachelor’s STEM and strategic emphasis",
-      "idx": 6
+      "idx": 6,
+      benchmark:[{points:"10",metrics:"50%",improvement:"5.0%" },{points:"9",metrics:"47.5%",improvement:"4.5%" },{points:"8",metrics:"45%",improvement:"4.0%" },{points:"7",metrics:"42.5%",improvement:"3.5%" },{points:"6",metrics:"40%",improvement:"3.0%" },{points:"5",metrics:"37.5%",improvement:"2.5%" },{points:"4",metrics:"35%",improvement:"2.0%" },{points:"3",metrics:"32.5%",improvement:"1.5%" },{points:"2",metrics:"30%",improvement:"1.0%" },{points:"1",metrics:"27.5%",improvement:"0.5%" }]
     }, {
       "UndergraduateswithPellgrantpercent": "Undergraduates with Pell-grant percent",
-      "idx": 7
+      "idx": 7,
+      benchmark:[{points:"10",metrics:"30%",improvement:"5.0%" },{points:"9",metrics:"28.8%",improvement:"4.5%" },{points:"8",metrics:"27.5%",improvement:"4.0%" },{points:"7",metrics:"26.3%",improvement:"3.5%" },{points:"6",metrics:"25%",improvement:"3.0%" },{points:"5",metrics:"23.8%",improvement:"2.5%" },{points:"4",metrics:"22.5%",improvement:"2.0%" },{points:"3",metrics:"21.3%",improvement:"1.5%" },{points:"2",metrics:"20%",improvement:"1.0%" },{points:"1",metrics:"18.8%",improvement:"0.5%" }]
     }, {
       "GraduateSTEMandstrategicemphasis": "Graduate STEM and strategic emphasis",
-      "idx": 8
+      "idx": 8,
+      benchmark:[{points:"10",metrics:"60%",improvement:"5.0%" },{points:"9",metrics:"57.5%",improvement:"4.5%" },{points:"8",metrics:"55%",improvement:"4.0%" },{points:"7",metrics:"52.5%",improvement:"3.5%" },{points:"6",metrics:"50%",improvement:"3.0%" },{points:"5",metrics:"47.5%",improvement:"2.5%" },{points:"4",metrics:"45%",improvement:"2.0%" },{points:"3",metrics:"42.5%",improvement:"1.5%" },{points:"2",metrics:"40%",improvement:"1.0%" },{points:"1",metrics:"37.5%",improvement:"0.5%" }]
     }, {
       "Bachelorsdegreeswithoutaccesshours": "Bachelor’s degrees without access hours",
-      "idx": 9
+      "idx": 9,
+      benchmark:[{points:"10",metrics:"80%",improvement:"5.0%" },{points:"9",metrics:"77.5%",improvement:"4.5%" },{points:"8",metrics:"75%",improvement:"4.0%" },{points:"7",metrics:"72.5%",improvement:"3.5%" },{points:"6",metrics:"70%",improvement:"3.0%" },{points:"5",metrics:"67.5%",improvement:"2.5%" },{points:"4",metrics:"65%",improvement:"2.0%" },{points:"3",metrics:"62.5%",improvement:"1.5%" },{points:"2",metrics:"60%",improvement:"1.0%" },{points:"1",metrics:"57.5%",improvement:"0.5%" }]
     },
   ];
 

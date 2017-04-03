@@ -74,6 +74,7 @@ class Excellence extends React.Component {
     this.plusclick = this.plusclick.bind(this);
     this.state.isMobile = false;
     this.state.showbotModal = false;
+    this.state.showMetrice= false;
     this.state.slideindex = 0;
     this.swipe = Swipe(this.refs.container, {});
     this.state.activePopup = 0;
@@ -330,6 +331,13 @@ $(c).prop('checked','checked');
       showbotModal: true
     })
   }
+
+ onMetrics(idx) {
+    this.setState({
+      showMetrice: true
+    })
+  }
+
   getSlideNumber(slidenumber, totallength, e) {
  
     localStorage.height = slidenumber;
@@ -362,6 +370,7 @@ $(c).prop('checked','checked');
 
 
                             return (
+                               
                               <th key={'header' + i} className={"hide" + i}>
                                 <div className={"child" + i} style={{ "background": "#fff none repeat scroll 0 0" }}>
                                   <div className="rank_head_list" id={i}>
@@ -373,7 +382,7 @@ $(c).prop('checked','checked');
                                           <input type="checkbox" className="menu-open" name="menu-open" id={"menu-open" + i} />
                                           <label className="menu-open-button" htmlFor={"menu-open" + i}>
                                             <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png" /></i></label>
-                                          <a href="#" className="menu-item"> <img src="static/images/info-icn.png" /> </a>
+                                          <a href="#" className="menu-item"> <img src="static/images/info-icn.png" onClick={this.onMetrics.bind(this, i)}/> </a>
                                           <a href="#" className="menu-item"> <img src="static/images/bar_icn.png" /> </a>
                                           <a href="#" className="menu-item close" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEvent}> <img src="static/images/cocktail.png" /> </a>
                                           <a href="#" className="menu-item"> <img src="static/images/share_icn.png" /></a>
@@ -385,6 +394,8 @@ $(c).prop('checked','checked');
                                   </div>
                                 </div>
                               </th>
+                               
+            
                             )
                           } else {
 

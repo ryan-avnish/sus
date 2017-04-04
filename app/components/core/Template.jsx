@@ -6,15 +6,17 @@ import ExcellenceFooter from './ExcellenceFooter.jsx';
 
 class Template extends React.Component {
     constructor(props) {
-      super(props);
+       super(props);
     }
 
 	render() {
   return (
-        <div className="page-bottom mainBody">
-          {this.props.location.pathname == '/excellence' ? <ExcellenceHeader/> : <Header/>}
+        <div className="page-bottom mainBody" data-custom={this.props.location.pathname}>
+          {
+             
+            this.props.location.pathname == '/excellence' || this.props.location.pathname == '/improvement' || this.props.location.pathname == '/funding' ? <ExcellenceHeader/> : <Header/>}
           { this.props.children }
-          {this.props.location.pathname == '/excellence' ? <ExcellenceFooter/> : <Footer/>}
+          {this.props.location.pathname == '/excellence' || this.props.location.pathname == '/improvement' || this.props.location.pathname == '/funding' ? <ExcellenceFooter/> : <Footer/>}
         </div>
 		);
 	}

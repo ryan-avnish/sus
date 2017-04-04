@@ -3,6 +3,8 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import Template from './core/Template.jsx';
 import Home from './core/Home.jsx';
 import Excellence from './excellence/Excellence.jsx';
+import Improvement from './improvement/Improvement.jsx';
+import Funding from './funding/Funding.jsx';
 import UploadCSV from './upload/UploadCSV.jsx';
 import CreateArticle from './articles/CreateArticle.jsx';
 import ViewArticle from './articles/ViewArticle.jsx';
@@ -25,7 +27,9 @@ export default(props) => {
   <Router history={browserHistory} >
       <Route path="/" component={Template}>
         <IndexRoute component={Home}/>
-        <Route path="/excellence" component={Excellence}/>
+        <Route path="/excellence" component={Excellence}/>   
+        <Route path="/improvement" component={Improvement}/> 
+        <Route path="/funding" component={Funding}/>   
         <Route path="/uploadcsv" component={UploadCSV}/>
         <Route path="/articles/create" component={CreateArticle} onEnter={requireAuth}/>
         <Route path="/articles" component={ListArticles}/>

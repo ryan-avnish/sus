@@ -17,8 +17,7 @@ const divStyle = {
   animationName: 'fadeIn'
 };
 
-    return (
-      
+    return (      
       <header id="first">
         <div className="header-content">
            <div className="banner_nav">

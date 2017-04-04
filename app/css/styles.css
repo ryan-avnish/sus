@@ -707,6 +707,7 @@ p {
 }
 #navbx.active {
     left: 0;
+    display: none;
 }
 #mobile-nav {
     cursor: pointer;
@@ -3400,7 +3401,9 @@ li.rank-li2.rank-li2Mobile {
 
 .panel-default > .panel-heading{ margin-right: 5px; }
 
-
+.improvement_container{
+      padding: 70px 0 75px 5px;
+}
 .year {
     display: inline-block;
     font-size: 14px;
@@ -3409,6 +3412,10 @@ li.rank-li2.rank-li2Mobile {
     text-align: left;
     width: auto;
 }
+#improvement_container {
+    padding-top: 50px;
+}
+.navbx{display: none;}
 .rank_desc h5 {
     color: #9f9f9f;
     float: left;

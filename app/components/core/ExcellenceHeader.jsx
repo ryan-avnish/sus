@@ -1,27 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Excellence from '../excellence/Excellence.jsx';
+import Improvement from '../improvement/Improvement.jsx';
+
 
 class ExcellenceHeader extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {};
+    this.state.show = "excel";
     this.openMenu = this.openMenu.bind(this);
     this.openSubMenu = this.openSubMenu.bind(this);
     this.changeImageImp = this.changeImageImp.bind(this);
     this.changeImageFund = this.changeImageFund.bind(this);
+    this.changeTabClass = this.changeTabClass.bind(this);
+    this.changeTabClass1 = this.changeTabClass1.bind(this);
+    this.changeTabClass2 = this.changeTabClass2.bind(this);
     this.changeUiExcel = this.changeUiExcel.bind(this);
     this.router = context.router;
+    this.state.showExcellence = true;
+    this.state.showImprovement = false;
+    this.state.excClass="active";
+    this.state.impClass="";
+    this.state.fundClass="";
   }
-
-  changeImageImp(){
-     $(".mainbody").html('');    
-    $(".mainbody").html("<div><img src='static/images/u23.png'></div>");
+  changeTabClass(){
+    this.setState({ 
+      excClass:'active',
+      impClass:'',
+      fundClass:''
+     });   
   }
+    changeTabClass1(){
+    this.setState({ 
+      excClass:'',
+      impClass:'active',
+      fundClass:''
+     });   
+  }
+    changeTabClass2(){
+    this.setState({ 
+      excClass:'',
+      impClass:'',
+      fundClass:'active'
+     });   
+  }
+   changeImageImp(){
+   this.setState({
+     // show:'imp'
+     showImprovement: true,
+     showExcellence: false
+    });   
+ }
   changeImageFund(){
-   $(".mainbody").html('');
-    $(".mainbody").html("<div><img src='static/images/fund.png'></div>");
+   // $(".mainbody").html('');
+   //  $(".mainbody").html("<div><img src='static/images/fund.png'></div>");
   }
   changeUiExcel(){
+    this.setState({
+      showExcellence: true,
+      showImprovement: false
+    })
      // $(".container-fluid").html(fluid_html);
   }
   openMenu() {
@@ -55,7 +94,7 @@ class ExcellenceHeader extends React.Component {
        
         <div className="row paddingheader">
 
-        <div className="col-md-2 col-xs-2"><div id="mobile-nav" onClick={this.openMenu}><img src="static/images/menu_icon_nw.png"/></div></div>
+        <div className="col-md-2 col-xs-2"><Link id="mobile-nav" to="/"><img src="static/images/menu_icon_nw.png"/></Link></div>
          <div className="col-md-5 ">  
              <div className="year">
 
@@ -70,14 +109,9 @@ class ExcellenceHeader extends React.Component {
       <li><a href="#">2017</a></li>
     </ul>
     
+  </div> 
+    </div>
   </div>
-               
-               
-                </div>
-
-
-
-            </div>
               <div className="heading_text">
                   <h2>SUS Metrics Performance Excellence</h2>
               </div>  
@@ -86,9 +120,9 @@ class ExcellenceHeader extends React.Component {
             <div className="panel with-nav-tabs panel-default">
                 <div className="panel-heading">
                     <ul className="nav nav-tabs" style={{display:'block'}}>
-                        <li onClick={this.changeUiExcel} className="active"><a href="#tab1default" data-toggle="tab">EXCELLENCE</a></li>
-                        <li onClick={this.changeImageImp}><a href="#tab2default" data-toggle="tab">IMPROVEMENT</a></li>
-                        <li onClick={this.changeImageFund}><a href="#tab3default" data-toggle="tab">fUNDING</a></li>
+                        <li onClick={this.changeTabClass} className={this.state.excClass}><Link to="/excellence">EXCELLENCE</Link></li>
+                        <li onClick={this.changeTabClass1}  className={this.state.impClass}><Link to="/improvement">IMPROVEMENT</Link></li>
+                        <li onClick={this.changeTabClass2}  className={this.state.fundClass}><Link to="/funding">fUNDING</Link></li>
                     </ul>
                 </div>
                 
@@ -113,6 +147,9 @@ class ExcellenceHeader extends React.Component {
        <li><a href="#"><b> Settings</b> <i className="fa fa-chevron-right" aria-hidden="true"></i></a></li>
     </ul>
 </div>
+
+      
+      
 </div>
       
     );

@@ -16,6 +16,12 @@ module.exports = function(app) {
         path: '/excellence',
         component: require('./../../app/components/excellence/Excellence')
       },{
+        path: '/improvement',
+        component: require('./../../app/components/improvement/Improvement')
+      },{
+        path: '/funding',
+        component: require('./../../app/components/funding/Funding')
+      },{
         path: '/articles/create',
         component: require('./../../app/components/articles/CreateArticle')
       }, {

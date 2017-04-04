@@ -11,24 +11,17 @@ import '../../js/bluebird.min.js';
 
 
 function getCSVList() {
-
   return { csvData: ArticleStore.getCSVList() };
-
 }
-
 function getSwipeCSVData() {
   return { swipeCsvData: ArticleStore.getswipeCSVList() };
 }
-
 function callback() {
   console.log('in outer callback')
   // setTimeout(function() {
   //     $( "#effect" ).removeAttr( "style" ).hide().fadeIn();
   //   }, 1000 );
 }
-
-
-
 const swipeOptions = {
 
   continuous: true,
@@ -56,6 +49,7 @@ class Excellence extends React.Component {
     this.state.value = '';
     this.state.showModal = 'none';
     this.state.showModalInfo = "none";
+    this.state.show = "fd";
     this.handleClick = this.handleClick.bind(this);   
     this.handlehover = this.handlehover.bind(this);
     this.chnageelement = this.chnageelement.bind(this);
@@ -200,9 +194,7 @@ $(c).prop('checked','checked');
           'transform': "translate(" + position + "px,0px)",
           "opacity": 0
         });
-
         setTimeout(function () {
-
           $('th.' + cl + ' div.child' + click).animate({ 'width': '0%' }, 600);
           $('td.' + cl + ' div.child' + click).animate({ 'width': '0%' }, 600);
         }, 500);
@@ -358,7 +350,6 @@ $(c).prop('checked','checked');
   }
 
   getSlideNumber(slidenumber, totallength, e) {
- 
     localStorage.height = slidenumber;
     window.location.reload();
   }
@@ -374,21 +365,18 @@ $(c).prop('checked','checked');
     if ($(window).width() >= 768) {
 
       return (
-        <div className="container-fluid tab mainbody">
+        <div data-testatt={this.state.show} className="container-fluid tab mainbody">
           <div className="spc_bx">
             <div className="fixedTable" id="demo">
               <header className="fixedTable-header" id="thHead">
                 <table className="table table-bordered">
                   <thead >
                     <tr>
-
                       {
-
                         this.state.csvData.headers !== undefined ? this.state.csvData.headers.map((head, i) => {
                           if (head !== null) {
                                   var benchmark_data = head.benchmark;    
-                            return (
-                               
+                            return (                               
                               <th key={'header' + i} className={"hide" + i}>
                                 <div className={"child" + i} style={{ "background": "#fff none repeat scroll 0 0" }}>
                                   <div className="rank_head_list" id={i}>

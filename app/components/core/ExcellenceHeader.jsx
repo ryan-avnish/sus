@@ -23,26 +23,30 @@ class ExcellenceHeader extends React.Component {
     this.state.excClass="active";
     this.state.impClass="";
     this.state.fundClass="";
+    this.state.headerText = "SUS Metrics Performance Excellence";
   }
   changeTabClass(){
     this.setState({ 
       excClass:'active',
       impClass:'',
-      fundClass:''
+      fundClass:'',
+      headerText:'SUS Metrics Performance Excellence'
      });   
   }
     changeTabClass1(){
     this.setState({ 
       excClass:'',
       impClass:'active',
-      fundClass:''
+      fundClass:'',
+      headerText:'SUS Metrics Performance Improvement'
      });   
   }
     changeTabClass2(){
     this.setState({ 
       excClass:'',
       impClass:'',
-      fundClass:'active'
+      fundClass:'active',
+      headerText:'SUS Metrics Performance Funding'
      });   
   }
    changeImageImp(){
@@ -113,7 +117,7 @@ class ExcellenceHeader extends React.Component {
     </div>
   </div>
               <div className="heading_text">
-                  <h2>SUS Metrics Performance Excellence</h2>
+                  <h2>{this.state.headerText}</h2>
               </div>  
         </div>
         <div className="col-md-5 pull-right">

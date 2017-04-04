@@ -136,7 +136,7 @@ module.exports.getCSV = function (req, res) {
     {
       "Continuingeducationandemploymentrate": "Continuing education and employment rate",
       "idx": 1,
-      benchmark:[{points:"10",metrics:"80%",improvement:"5.0%" },{points:"9",metrics:"77.5%",improvement:"4.5%" },{points:"8",metrics:"75%",improvement:"4.0%" },{points:"7",metrics:"72.5%",improvement:"3.5%" },{points:"6",metrics:"70%",improvement:"3.0%" },{points:"5",metrics:"67.5%",improvement:"2.5%" },{points:"4",metrics:"65%",improvement:"2.0%" },{points:"3",metrics:"62.5%",improvement:"1.5%" },{points:"2",metrics:"60%",improvement:"1.0%" },{points:"1",metrics:"57.5%",improvement:"0.5%" }]
+      benchmark:[{points:"10",metrics:"80%",improvement:"4.9%" },{points:"9",metrics:"77.5%",improvement:"4.6%" },{points:"8",metrics:"75%",improvement:"4.0%" },{points:"7",metrics:"72.5%",improvement:"3.5%" },{points:"6",metrics:"70%",improvement:"3.0%" },{points:"5",metrics:"67.5%",improvement:"2.5%" },{points:"4",metrics:"65%",improvement:"2.0%" },{points:"3",metrics:"62.5%",improvement:"1.5%" },{points:"2",metrics:"60%",improvement:"1.0%" },{points:"1",metrics:"57.5%",improvement:"0.5%" }]
     }, {
       "Medianwagesofbachelorsgrads": "Median wages of bachelor’s grads ",
       "idx": 2,

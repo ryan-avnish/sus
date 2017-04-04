@@ -65,16 +65,17 @@ const divStyle = {
                         <p>Explore SUS institutions performance and funding ranking</p>
 
                     </div>
-</Link>
+                    </Link>
+                    <Link to="http://zgu8tz.axshare.com/" target="_blank">
                     <div className="grid_1">
                         <div className="gridcircle_2"><img src="static/images/grid_img2.png" data-wow-delay=".3s" style={divStyle} /></div>
                         
-                        <h2 className="btn-xl"><a href="#">At.A.Glance</a></h2>
+                        <h2 className="btn-xl">At.A.Glance</h2>
                         <div className="border_line"></div>
                         <p>View SUS metric detail and summary views for each institution</p>
 
                     </div>
-
+                    </Link>
                     <div className="grid_1">
                         <div className="gridcircle_3"><img src="static/images/grid_img3.png" data-wow-delay=".3s"  style={divStyle} /></div>
                         

@@ -7,11 +7,23 @@ class ExcellenceHeader extends React.Component {
     this.state = {};
     this.openMenu = this.openMenu.bind(this);
     this.openSubMenu = this.openSubMenu.bind(this);
+    this.changeImageImp = this.changeImageImp.bind(this);
+    this.changeImageFund = this.changeImageFund.bind(this);
+    this.changeUiExcel = this.changeUiExcel.bind(this);
     this.router = context.router;
   }
 
-  
-
+  changeImageImp(){
+     $(".mainbody").html('');    
+    $(".mainbody").html("<div><img src='static/images/u23.png'></div>");
+  }
+  changeImageFund(){
+   $(".mainbody").html('');
+    $(".mainbody").html("<div><img src='static/images/fund.png'></div>");
+  }
+  changeUiExcel(){
+     // $(".container-fluid").html(fluid_html);
+  }
   openMenu() {
     if(typeof window !== 'undefined') {
       document.getElementById('navbx').classList.toggle("active");
@@ -74,9 +86,9 @@ class ExcellenceHeader extends React.Component {
             <div className="panel with-nav-tabs panel-default">
                 <div className="panel-heading">
                     <ul className="nav nav-tabs" style={{display:'block'}}>
-                        <li className="active"><a href="#tab1default" data-toggle="tab">EXCELLENCE</a></li>
-                        <li><a href="#tab2default" data-toggle="tab">IMPROVEMENT</a></li>
-                        <li><a href="#tab3default" data-toggle="tab">fUNDING</a></li>
+                        <li onClick={this.changeUiExcel} className="active"><a href="#tab1default" data-toggle="tab">EXCELLENCE</a></li>
+                        <li onClick={this.changeImageImp}><a href="#tab2default" data-toggle="tab">IMPROVEMENT</a></li>
+                        <li onClick={this.changeImageFund}><a href="#tab3default" data-toggle="tab">fUNDING</a></li>
                     </ul>
                 </div>
                 

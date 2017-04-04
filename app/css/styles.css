@@ -138,6 +138,18 @@ http://www.bootstrapzero.com
 }
 
 
+
+
+
+
+
+#myModalInfo .modal-content {
+    max-width: 510px !important;
+}
+
+
+
+
 .btnprimary1 {
     background: rgba(0, 0, 0, 0) none repeat scroll center top;
     border: medium none;
@@ -469,7 +481,61 @@ label.menu-open-button {
   overflow: hidden;
 }
 
+#getInfoTable thead tr th {
+    background: #0080ff none repeat scroll 0 0;
+    color: #fff;
+  }
+  #getInfoTable tbody tr td {
+     color: #585858;
+  }
+  .info_text_desc {
+    color: #585858;
+    float: left;
+    width: 76%;
+    padding-bottom: 10px;
+}
+.total_graduate {
+    color: #0080ff;
+    float: left;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 12px;
+    padding: 10px 10px 0 0;
+    text-align: left;
+    width: 7%;
+    
+}
+#getInfoTable{
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+.getInfoText {
+    float: left;
+    width: 100%;
+} 
+button.btn.btn-primary.btn-more{
+    padding: 5px 15px;
+    border-radius: 3px;
+    background: #eeeeee;
+    border: 1px solid #acacac;
+    color: #0080ff;
+}
+.footer_button_container {
+    margin: 0 auto;
+    padding-top: 15px;
+    width: 85px;
+}
+button.btn.btn-primary.btn-more:hover{
+   background: #eeeeee;
+}
+button.btn.btn-primary.btn-more i{
+  margin-left: 5px;
+}
 
+#myModalInfo .table tr td,#myModalInfo .table tr th{width: auto !important;;min-width: auto !important;text-align: center;}
+#myModalInfo .modal-content{   height: 300px;
+    max-width: 550px !important;
+    overflow-y: scroll;border: 1px solid #acacac;}
 /*-----------left sidebar plus icon settings------------*/
 .add_plus .last .menu-open:checked ~ .menu-item:nth-child(3) {
     -webkit-transition-duration: 180ms;
@@ -2088,7 +2154,7 @@ header .header-content .social_icon p {
     visibility: hidden;
     display: none;
 }
-.grid_1:nth-child(2) {
+.grid_wrap a:nth-child(2) {
   bottom: -31px;
   position: relative;
 }
@@ -3511,6 +3577,8 @@ li.rank-li2.rank-li2Mobile {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
     margin-bottom: 0;
+       position: relative;
+    z-index: 0;
 }
 .fixedTable .table tr th {
     border: medium none !important;
@@ -3904,12 +3972,12 @@ li.rank-li2.rank-li2Mobile {
   z-index: 99; 
 }
 
-.zoom_class .menu-open:checked + .menu-open-button {
+/*.zoom_class .menu-open:checked + .menu-open-button {
     display: none;
-}
+}*/
 
 .zoom_class .menu-open:checked ~ .menu-item {
-    display: none;
+/*    display: none;*/
 }
 
 /*---------320px media queries start here--------*/

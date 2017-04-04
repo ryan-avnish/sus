@@ -55,7 +55,8 @@ class Excellence extends React.Component {
     this.state.swipeCsvData = [];
     this.state.value = '';
     this.state.showModal = 'none';
-    this.handleClick = this.handleClick.bind(this);
+    this.state.showModalInfo = "none";
+    this.handleClick = this.handleClick.bind(this);   
     this.handlehover = this.handlehover.bind(this);
     this.chnageelement = this.chnageelement.bind(this);
     this.onChangeHead = this.onChangeHead.bind(this);
@@ -66,6 +67,8 @@ class Excellence extends React.Component {
     this.rowonmouseleave = this.rowonmouseleave.bind(this);
     this.rowhandlehover = this.rowhandlehover.bind(this);
     this.modalEvent = this.modalEvent.bind(this);
+    this.modalEventInfo = this.modalEventInfo.bind(this);
+    this.hideInfoModal = this.hideInfoModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.close = this.close.bind(this);
     this.open = this.open.bind(this);
@@ -78,8 +81,6 @@ class Excellence extends React.Component {
     this.state.slideindex = 0;
     this.swipe = Swipe(this.refs.container, {});
     this.state.activePopup = 0;
-
-
   }
 
   componentWillMount() {
@@ -187,7 +188,7 @@ $(c).prop('checked','checked');
       var cl = $(".zoom" + idx + " p").attr('class');
       var firstcolumn = $(".rank li").attr("id");
       var click = $('th.' + cl + ' div.rank_head_list').attr("id");
-      //console.log('click',click);
+      console.log('click',click);
       setTimeout(function () {
         $(parenthead).css({
           '-webkit-transform': "translate(" + position + "px,0px)",
@@ -304,10 +305,28 @@ $(c).prop('checked','checked');
       showModal: 'block'
     })
   }
-
+  modalEventInfo(data){
+         var  html = "";
+         data.map(function(benchmark){             
+               html += " <tr>";
+               html += "<td>"+benchmark.points+"</td>"
+               html += "<td>"+benchmark.metrics+"</td>"
+               html += "<td>"+benchmark.improvement+"</td>"
+               html += " </tr>";
+         $("#getInfoTable tbody").html(html);
+         });
+    this.setState({
+      showModalInfo:'block'
+    })
+  }
   hideModal() {
     this.setState({
       showModal: 'none'
+    })
+  }
+  hideInfoModal(){
+    this.setState({
+      showModalInfo:'none'
     })
   }
   close() {
@@ -355,7 +374,7 @@ $(c).prop('checked','checked');
     if ($(window).width() >= 768) {
 
       return (
-        <div className="container-fluid tab">
+        <div className="container-fluid tab mainbody">
           <div className="spc_bx">
             <div className="fixedTable" id="demo">
               <header className="fixedTable-header" id="thHead">
@@ -367,8 +386,7 @@ $(c).prop('checked','checked');
 
                         this.state.csvData.headers !== undefined ? this.state.csvData.headers.map((head, i) => {
                           if (head !== null) {
-
-
+                                  var benchmark_data = head.benchmark;    
                             return (
                                
                               <th key={'header' + i} className={"hide" + i}>
@@ -382,11 +400,11 @@ $(c).prop('checked','checked');
                                           <input type="checkbox" className="menu-open" name="menu-open" id={"menu-open" + i} />
                                           <label className="menu-open-button" htmlFor={"menu-open" + i}>
                                             <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png" /></i></label>
-                                          <a href="#" className="menu-item"> <img src="static/images/info-icn.png" onClick={this.onMetrics.bind(this, i)}/> </a>
+                                          <a href="#" className="menu-item class" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEventInfo.bind(this,benchmark_data)}> <img src="static/images/info-icn.png"/> </a>
                                           <a href="#" className="menu-item"> <img src="static/images/bar_icn.png" /> </a>
                                           <a href="#" className="menu-item close" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEvent}> <img src="static/images/cocktail.png" /> </a>
                                           <a href="#" className="menu-item"> <img src="static/images/share_icn.png" /></a>
-                                          <a href="#" className="menu-item"> <img src="static/images/search_icn.png" /> </a>
+                                          <a href="#" className="menu-item" onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}> <img src="static/images/search_icn.png" /> </a>
                                         </div>
                                       </li>
 
@@ -406,6 +424,44 @@ $(c).prop('checked','checked');
                   </thead>
                 </table>
               </header>
+             
+              <div id="myModalInfo" className="dialog_box" role="dialog" style={{ 'display': this.state.showModalInfo }}>
+                <div className="modal-dialog">                  
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button type="button" className="close" onClick={this.hideInfoModal}>&times;</button>
+                      <h4 className="modal-title">Metric Excellence Filters</h4>
+                    </div>
+                    <div className="modal-body">
+                    <div className="getInfoText">
+                         <div className="total_graduate">5</div>
+                         <div className="info_text_desc">Percent of bachelor's graduates employed and/or continuing their education further 1 year after graduation. </div>
+                    </div>
+                    
+                     <table id="getInfoTable" className="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Points</th>
+                          <th>Excellence</th>
+                          <th>Improvment</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      
+                      </tbody>
+                      </table>
+                      
+                    </div>
+                    <div className="modal-footer">
+                    <div className="footer_button_container">
+                       <button type="button" className="btn btn-primary btn-more">More<i className="fa fa-play"></i></button>
+                    </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
               <div className="dialog_box" id="myModal" style={{ 'display': this.state.showModal }}>
                 <div className="modal-dialog" role="document">
                   <div className="modal-content">

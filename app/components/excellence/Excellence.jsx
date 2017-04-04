@@ -399,7 +399,7 @@ $(c).prop('checked','checked');
                                           <label onClick= {this.closeAllPopups}   className="menu-open-button" htmlFor={"menu-open" + i}>
                                             <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png" /></i></label>
                                           <a href="#" className="menu-item class" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEventInfo.bind(this,benchmark_data,idx)}> <img src="static/images/info-icn.png"/> </a>
-                                          <Link to="http://zgu8tz.axshare.com/" target="_blank" className="menu-item"><img src="static/images/bar_icn.png" /> </Link>
+                                          <Link to="http://zgu8tz.axshare.com/#g=1&p=unf/" target="_blank" className="menu-item"><img src="static/images/bar_icn.png" /> </Link>
                                           <a href="#" className="menu-item close" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEvent}> <img src="static/images/cocktail.png" /> </a>
                                           <a href="#" className="menu-item"> <img src="static/images/share_icn.png" /></a>
                                           <a href="#" className="menu-item" onClick={this.handleClick.bind(this, head.idx, Object.keys(head)[0])}> <img src="static/images/search_icn.png" /> </a>

@@ -65,7 +65,7 @@ const divStyle = {
 
                     </div>
                     </Link>
-                    <Link to="http://zgu8tz.axshare.com/" target="_blank">
+                    <Link to="http://zgu8tz.axshare.com/#g=1&p=unf/" target="_blank">
                     <div className="grid_1">
                         <div className="gridcircle_2"><img src="static/images/grid_img2.png" data-wow-delay=".3s" style={divStyle} /></div>
                         

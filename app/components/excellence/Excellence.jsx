@@ -66,6 +66,7 @@ class Excellence extends React.Component {
     this.hideModal = this.hideModal.bind(this);
     this.close = this.close.bind(this);
     this.open = this.open.bind(this);
+    this.closeAllPopups = this.closeAllPopups.bind(this);
     this._onChange = this._onChange.bind(this);
     this._swipeOnChange = this._swipeOnChange.bind(this);
     this.plusclick = this.plusclick.bind(this);
@@ -291,13 +292,19 @@ $(c).prop('checked','checked');
     //     $( "#effect" ).removeAttr( "style" ).hide().fadeIn();
     //   }, 1000 );
   }
-
+  closeAllPopups(){    
+      this.setState({
+        showModalInfo:'none',
+        showModal:'none'
+      });   
+   
+  }
   modalEvent() {
     this.setState({
       showModal: 'block'
     })
   }
-  modalEventInfo(data){
+  modalEventInfo(data,idx){
          var  html = "";
          data.map(function(benchmark){             
                html += " <tr>";
@@ -307,9 +314,10 @@ $(c).prop('checked','checked');
                html += " </tr>";
          $("#getInfoTable tbody").html(html);
          });
-    this.setState({
-      showModalInfo:'block'
-    })
+         $(".total_graduate").html(idx);
+        this.setState({
+          showModalInfo:'block'
+        });
   }
   hideModal() {
     this.setState({
@@ -375,7 +383,9 @@ $(c).prop('checked','checked');
                       {
                         this.state.csvData.headers !== undefined ? this.state.csvData.headers.map((head, i) => {
                           if (head !== null) {
-                                  var benchmark_data = head.benchmark;    
+                                  var benchmark_data = head.benchmark;   
+                                  var idx = head.idx;
+
                             return (                               
                               <th key={'header' + i} className={"hide" + i}>
                                 <div className={"child" + i} style={{ "background": "#fff none repeat scroll 0 0" }}>
@@ -386,9 +396,9 @@ $(c).prop('checked','checked');
                                       <li className="check_div">
                                         <div className="last">
                                           <input type="checkbox" className="menu-open" name="menu-open" id={"menu-open" + i} />
-                                          <label className="menu-open-button" htmlFor={"menu-open" + i}>
+                                          <label onClick= {this.closeAllPopups}   className="menu-open-button" htmlFor={"menu-open" + i}>
                                             <i className="fa plus" aria-hidden="true"><img src="static/images/plus.png" /></i></label>
-                                          <a href="#" className="menu-item class" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEventInfo.bind(this,benchmark_data)}> <img src="static/images/info-icn.png"/> </a>
+                                          <a href="#" className="menu-item class" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEventInfo.bind(this,benchmark_data,idx)}> <img src="static/images/info-icn.png"/> </a>
                                           <a href="#" className="menu-item"> <img src="static/images/bar_icn.png" /> </a>
                                           <a href="#" className="menu-item close" data-dismiss="modal" aria-hidden="true" id="popup" onClick={this.modalEvent}> <img src="static/images/cocktail.png" /> </a>
                                           <a href="#" className="menu-item"> <img src="static/images/share_icn.png" /></a>
@@ -397,6 +407,7 @@ $(c).prop('checked','checked');
                                       </li>
 
                                     </ul>
+
                                   </div>
                                 </div>
                               </th>

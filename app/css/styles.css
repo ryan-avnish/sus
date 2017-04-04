@@ -533,9 +533,9 @@ button.btn.btn-primary.btn-more i{
 }
 
 #myModalInfo .table tr td,#myModalInfo .table tr th{width: auto !important;;min-width: auto !important;text-align: center;}
-#myModalInfo .modal-content{   height: 300px;
+#myModalInfo .modal-content{   /*height: 300px;
     max-width: 550px !important;
-    overflow-y: scroll;border: 1px solid #acacac;}
+    overflow-y: scroll;border: 1px solid #acacac;*/}
 /*-----------left sidebar plus icon settings------------*/
 .add_plus .last .menu-open:checked ~ .menu-item:nth-child(3) {
     -webkit-transition-duration: 180ms;
@@ -771,7 +771,7 @@ p {
     color: #9c27b0;
 }
 .dialog_box {
-    margin-top: 35px;
+    margin-top: 45px;
     /* display: none; */
     position: absolute;
     width: 100%;
@@ -2214,6 +2214,9 @@ header .header-content .social_icon p {
         .grid_wrap {padding-bottom: 40px;}
 
 
+
+
+
 }
 
 @media (min-width: 1441px) and (max-width: 1680px){
@@ -2234,10 +2237,25 @@ header .header-content .social_icon p {
     padding-left: 0;
 }
 
+#myModalInfo .modal-content {
+    height: 420px;
+    max-width: 550px !important;
+    overflow-y: scroll;
+    border: 1px solid #acacac;
+}
+
 } 
 
 
 @media (min-width: 1200px) and (max-width: 1366px){
+
+#myModalInfo .modal-content {
+    height: 400px;
+    max-width: 550px !important;
+    overflow-y: scroll;
+    border: 1px solid #acacac;
+}
+
 .footer_logo ul li {
     display: inline-block;
     margin-right: 3px;
@@ -2358,6 +2376,15 @@ header .header-content{padding: 100px 15px 82px}
  }
 img.nav-pic{ height: 40px; width: 40px; }
 .nav-tabs > li > a{width: auto;}
+
+#myModalInfo .modal-content {
+    height: 300px;
+    max-width: 550px !important;
+    overflow-y: scroll;
+    border: 1px solid #acacac;
+}
+
+
 
 }
 
@@ -3298,6 +3325,7 @@ li.rank-li2.rank-li2Mobile {
     top: -10px;
     transform: rotate(-151deg);
     left: 57%;
+    display: none;
 
      }
 

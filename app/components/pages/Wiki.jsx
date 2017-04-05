@@ -13,7 +13,7 @@ class Wiki extends React.Component{
               	   <div id="funding_container" className="funding_container" style={{ 'padding-top': this.state.padding }}>
 		           <div style={{'margin':'30px 0 0 15px','color':'#000'}}>  <button className="btn btn-primary" onClick={browserHistory.goBack}>Back</button> </div> 
 		            <h1>
-		              <img src="static/images/suswiki.png"/>
+		              <img className="wiki_static_image" src="static/images/suswiki.png"/>
 		            </h1>
 		         </div>
 			)

@@ -534,7 +534,10 @@ a.btn.btn-primary.btn-more i{
 }
 
 #myModalInfo .table tr td,#myModalInfo .table tr th{width: auto !important;;min-width: auto !important;text-align: center;}
-#myModalInfo .modal-content{   /*height: 300px;
+#myModalInfo .modal-content{
+box-shadow: 4px 3px 3px 0px #999; 
+ border: 1px solid #acacac;
+  /*height: 300px;
     max-width: 550px !important;
     overflow-y: scroll;border: 1px solid #acacac;*/}
 /*-----------left sidebar plus icon settings------------*/
@@ -795,10 +798,16 @@ p {
     padding: 4px 8px;
     border: 1px solid;
     margin: 5px;
-    font-weight: bolder
+    font-weight: bolder;
+    font-family: "robotomedium";
+    color: #000;
 }
 #myModalInfo .modal-body{
   padding: 0 5px;
+}
+.wiki_static_image{
+  float: left;
+  width: 100%;
 }
 .dialog_box .modal-dialog .modal-content {
     border-radius: 0;

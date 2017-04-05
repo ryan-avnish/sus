@@ -428,7 +428,7 @@ $(c).prop('checked','checked');
                 <div className="modal-dialog">                  
                   <div className="modal-content">
                     <div className="modal-header">
-                      <button type="button" className="close" onClick={this.hideInfoModal}>&times;</button>
+                      <button type="button" className="close" onClick={this.hideInfoModal}>x</button>
                      
                     </div>
                     <div className="modal-body">

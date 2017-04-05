@@ -491,8 +491,9 @@ label.menu-open-button {
   .info_text_desc {
     color: #585858;
     float: left;
-    width: 76%;
-    padding-bottom: 10px;
+    width: 80%;
+    padding-bottom: 5px;
+    margin-top: -20px;
 }
 .total_graduate {
     color: #0080ff;
@@ -500,10 +501,10 @@ label.menu-open-button {
     font-size: 25px;
     font-weight: bold;
     line-height: 12px;
-    padding: 10px 10px 0 0;
-    text-align: left;
-    width: 7%;
-    
+    padding: 0px 10px 0 0;
+    text-align: right;
+    width: 10%;
+    font-family: "robotomedium";
 }
 #getInfoTable{
     border-collapse: separate;
@@ -513,7 +514,7 @@ label.menu-open-button {
     float: left;
     width: 100%;
 } 
-button.btn.btn-primary.btn-more{
+a.btn.btn-primary.btn-more{
     padding: 5px 15px;
     border-radius: 3px;
     background: #eeeeee;
@@ -525,10 +526,10 @@ button.btn.btn-primary.btn-more{
     padding-top: 15px;
     width: 85px;
 }
-button.btn.btn-primary.btn-more:hover{
+a.btn.btn-primary.btn-more:hover{
    background: #eeeeee;
 }
-button.btn.btn-primary.btn-more i{
+a.btn.btn-primary.btn-more i{
   margin-left: 5px;
 }
 
@@ -707,7 +708,7 @@ p {
 }
 #navbx.active {
     left: 0;
-    display: none;
+   
 }
 #mobile-nav {
     cursor: pointer;
@@ -784,6 +785,20 @@ p {
     margin: 0px auto;
     max-width: 515px;
     width: 100%;
+}
+#myModalInfo .modal-header{
+  border-bottom:none !important;
+  background:none;
+  padding: 0;
+}
+#myModalInfo .modal-header .close{
+    padding: 4px 8px;
+    border: 1px solid;
+    margin: 5px;
+    font-weight: bolder
+}
+#myModalInfo .modal-body{
+  padding: 0 5px;
 }
 .dialog_box .modal-dialog .modal-content {
     border-radius: 0;
@@ -2239,7 +2254,7 @@ header .header-content .social_icon p {
 
 #myModalInfo .modal-content {
     height: 420px;
-    max-width: 550px !important;
+    max-width:345px !important;
     overflow-y: scroll;
     border: 1px solid #acacac;
 }
@@ -2251,7 +2266,7 @@ header .header-content .social_icon p {
 
 #myModalInfo .modal-content {
     height: 400px;
-    max-width: 550px !important;
+    max-width:345px !important;
     overflow-y: scroll;
     border: 1px solid #acacac;
 }

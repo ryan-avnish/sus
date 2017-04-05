@@ -98,7 +98,7 @@ class ExcellenceHeader extends React.Component {
        
         <div className="row paddingheader">
 
-        <div className="col-md-2 col-xs-2"><Link id="mobile-nav" to="/"><img src="static/images/menu_icon_nw.png"/></Link></div>
+        <div className="col-md-2 col-xs-2"><div id="mobile-nav" onClick={this.openMenu}><img src="static/images/menu_icon_nw.png"/></div></div>
          <div className="col-md-5 ">  
              <div className="year">
 
@@ -141,9 +141,9 @@ class ExcellenceHeader extends React.Component {
        <li>
           <a href="#" onClick={this.openSubMenu}><img src="static/images/leader_icon.png"/> Leaderboards <i className="fa fa-chevron-right" aria-hidden="true"></i></a>
           <ul style={{'display': 'none', 'overflowX': 'visible', 'overflowY': 'visible'}}>
-            <li><Link className="active" to="/excellence">Excellence</Link></li>
-            <li><a href="#">Improvement</a></li>
-            <li><a href="#">Funding</a></li>
+            <li><Link onClick={this.changeTabClass} className={this.state.excClass} to="/excellence">Excellence</Link></li>
+            <li><Link onClick={this.changeTabClass1}  className={this.state.impClass} to="/improvement">Improvement</Link></li>
+            <li><Link onClick={this.changeTabClass2}  className={this.state.fundClass} to="/funding">Funding</Link></li>
           </ul>
        </li>
        <li><a href="#"><img src="static/images/glance.png"/> At a Glance <i className="fa fa-chevron-right" aria-hidden="true"></i></a></li>

@@ -429,7 +429,7 @@ $(c).prop('checked','checked');
                   <div className="modal-content">
                     <div className="modal-header">
                       <button type="button" className="close" onClick={this.hideInfoModal}>&times;</button>
-                      <h4 className="modal-title">Metric Excellence Filters</h4>
+                     
                     </div>
                     <div className="modal-body">
                     <div className="getInfoText">
@@ -453,7 +453,7 @@ $(c).prop('checked','checked');
                     </div>
                     <div className="modal-footer">
                     <div className="footer_button_container">
-                       <button type="button" className="btn btn-primary btn-more">More<i className="fa fa-play"></i></button>
+                       <Link to="/wiki" className="btn btn-primary btn-more">More<i className="fa fa-play"></i></Link>
                     </div>
                     </div>
                   </div>

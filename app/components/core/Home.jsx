@@ -22,7 +22,7 @@ const divStyle = {
         <div className="header-content">
            <div className="banner_nav">
                 <ul>
-                    <li><a href="#">Wiki</a></li>
+                    <li><Link to="/wiki">Wiki</Link></li>
                     <li><a href="#">Blog</a></li>
                 </ul>
             </div> 

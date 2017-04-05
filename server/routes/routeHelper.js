@@ -22,6 +22,9 @@ module.exports = function(app) {
         path: '/funding',
         component: require('./../../app/components/funding/Funding')
       },{
+        path: '/wiki',
+        component: require('./../../app/components/pages/Wiki')
+      },{
         path: '/articles/create',
         component: require('./../../app/components/articles/CreateArticle')
       }, {

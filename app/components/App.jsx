@@ -5,6 +5,7 @@ import Home from './core/Home.jsx';
 import Excellence from './excellence/Excellence.jsx';
 import Improvement from './improvement/Improvement.jsx';
 import Funding from './funding/Funding.jsx';
+import Wiki from './pages/Wiki.jsx';
 import UploadCSV from './upload/UploadCSV.jsx';
 import CreateArticle from './articles/CreateArticle.jsx';
 import ViewArticle from './articles/ViewArticle.jsx';
@@ -30,6 +31,7 @@ export default(props) => {
         <Route path="/excellence" component={Excellence}/>   
         <Route path="/improvement" component={Improvement}/> 
         <Route path="/funding" component={Funding}/>   
+        <Route path="/wiki" component={Wiki}/> 
         <Route path="/uploadcsv" component={UploadCSV}/>
         <Route path="/articles/create" component={CreateArticle} onEnter={requireAuth}/>
         <Route path="/articles" component={ListArticles}/>

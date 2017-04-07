@@ -146,8 +146,8 @@ class ExcellenceHeader extends React.Component {
             <li><Link onClick={this.changeTabClass2}  className={this.state.fundClass} to="/funding">Funding</Link></li>
           </ul>
        </li>
-       <li><a href="#"><img src="static/images/glance.png"/> At a Glance <i className="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-       <li><a href="#"><img src="static/images/analysis_icn.png"/> Analysis <i className="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+       <li><Link to="/glance" ><img src="static/images/glance.png"/> At a Glance <i className="fa fa-chevron-right" aria-hidden="true"></i></Link></li>
+       <li><Link to="http://zgu8tz.axshare.com/#g=1&p=overview" target="_blank"><img src="static/images/analysis_icn.png"/> Analysis <i className="fa fa-chevron-right" aria-hidden="true"></i></Link></li>
        <li><a href="#"><b> Settings</b> <i className="fa fa-chevron-right" aria-hidden="true"></i></a></li>
     </ul>
 </div>

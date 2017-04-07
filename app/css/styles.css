@@ -1123,7 +1123,10 @@ fieldset[disabled] .btn-default.active {
     color: #fff;
     background: #222;
 }
-
+.grid_wrap a:nth-child(3) {
+    position: relative;
+    bottom: -18px;
+}
 img::selection {
     color: #fff;
     background: 0 0;

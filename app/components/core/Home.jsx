@@ -65,23 +65,22 @@ const divStyle = {
 
                     </div>
                     </Link>
-                    <Link to="http://zgu8tz.axshare.com/#g=1&p=unf/" target="_blank">
+                    <Link to="/glance">
                     <div className="grid_1">
                         <div className="gridcircle_2"><img src="static/images/grid_img2.png" data-wow-delay=".3s" style={divStyle} /></div>
-                        
-                        <h2 className="btn-xl">At.A.Glance</h2>
+                        <h2  className="btn-xl">At.A.Glance</h2>
                         <div className="border_line"></div>
                         <p>View SUS metric detail and summary views for each institution</p>
-
                     </div>
                     </Link>
+                    <Link to="http://zgu8tz.axshare.com/#g=1&p=overview" target="_blank">
                     <div className="grid_1">
                         <div className="gridcircle_3"><img src="static/images/grid_img3.png" data-wow-delay=".3s"  style={divStyle} /></div>
-                        
-                        <h2 className="btn-xl"><a href="#">Analysis</a></h2>
+                        <h2 className="btn-xl">Analysis</h2>
                         <div className="border_line"></div>
                         <p>Create your own interactive analytic views from institution’s SUS metric data</p>
                     </div>
+                    </Link>
                 </div>     
             </div>
         </div>

@@ -51,9 +51,11 @@ class Header extends React.Component {
       <nav id="topNav" className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid padding">
             <div className="navbar-header">
-                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+               <Link to="/">
+                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
                     <img src="static/images/menu_icon.png"/>
                 </button>
+                </Link>
             </div>
            
             <div className="padding_rw">

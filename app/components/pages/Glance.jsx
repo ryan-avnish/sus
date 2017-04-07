@@ -11,8 +11,7 @@ class Glance extends React.Component{
 		return (     
 
               	   <div id="funding_container" className="funding_container" style={{ 'padding-top': this.state.padding }}>
-		           <div style={{'margin':'30px 0 0 15px','color':'#000'}}>  <button className="btn btn-primary" onClick={browserHistory.goBack}>Back</button> </div> 
-		            <h1>
+		             <h1>
 		              <img className="wiki_static_image" src="static/images/atglance.jpg"/>
 		            </h1>
 		         </div>

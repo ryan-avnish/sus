@@ -465,6 +465,9 @@ label.menu-open-button {
   -webkit-transform: translate3d(-0.25084px, -105px, 0px);
           transform: translate3d(-0.25084px, -105px, 0px);
 }
+.GlanceFooter{
+  bottom: -100px !important;
+}
 .menu-open:checked + .menu-open-button {
     height: 60px;
     line-height: 60px;
@@ -2657,12 +2660,74 @@ img.nav-pic{ height: 40px; width: 40px; }
     .grid_wrap {padding-bottom: 80px;}
     .logo_img{ float: none; }
 
- 
+ .banner_nav {
+    top: auto !important;
+    bottom: 260px;
+    width: 100%;
+}
 
 
 }
 
 @media (max-width: 667px){
+.banner_nav{
+  top: 9% !important;
+}
+.social_icon {
+    width: 57% !important; 
+   
+}
+.number_list, .taketourwrap{display: none;}
+.grid_wrap .grid_1{
+  min-height: auto!important;
+  border-radius: 90px 90px 90px 90px;  
+  padding: 10px;
+    margin-top: 30px;
+}
+
+.gridcircle_2 , .gridcircle_3{    background: #f3f3f3;
+    border-radius: 50%;
+    height: 111px;
+    /* margin: 0 auto; */
+    padding: 27px;
+    width: 111px;
+    float: left;
+    margin-top: 7px;
+    margin-top: 19px;
+  }
+  .social_icon > ul li{
+        padding: 2px 4px;
+  }
+.btn-xl{ background: transparent; }
+
+.gridcircle_1 {
+    background: #f3f3f3;
+    border-radius: 50%;
+    height: 111px;
+    /* margin: 0 auto; */
+    padding: 27px;
+    width: 111px;
+    float: left;
+    margin-top: 7px;
+        margin-top: 19px;
+}
+
+.grid_wrap a {
+    float: left;
+    width: 100%;
+    margin: 0 0 20px 0!important;
+}
+
+.grid_wrap a:nth-child(2) {
+    bottom: 0;
+    position: relative;
+}
+
+.grid_wrap a:nth-child(3) {
+    position: relative;
+    bottom: 0;
+}
+
 
 
 .nav-tabs > li {
@@ -2783,6 +2848,11 @@ li.rank-li2.rank-li2Mobile {
     
 }*/
 
+.banner_nav {
+    top: auto !important;
+    bottom: 260px;
+    width: 100%;
+}
 
 }
 
@@ -3208,7 +3278,11 @@ li.rank-li2.rank-li2Mobile {
 
 
 
-
+.banner_nav {
+    top: auto !important;
+    bottom: 260px;
+    width: 100%;
+}
 
 
 
@@ -3260,7 +3334,13 @@ li.rank-li2.rank-li2Mobile {
     .gridcircle_1 > img {max-width: 100%;}
     .gridcircle_2 > img {max-width: 100%;}
     .gridcircle_3 > img {max-width: 100%;}
-    .btn-xl{ padding: 0;  font-size: 13px; margin-bottom: 15px;}
+.btn-xl {
+    padding: 0;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+
 
     .border_line{ margin-bottom: 10px; }
     .footer_logo ul {padding-left: 0;}

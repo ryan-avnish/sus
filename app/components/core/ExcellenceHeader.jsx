@@ -17,6 +17,7 @@ class ExcellenceHeader extends React.Component {
     this.changeTabClass1 = this.changeTabClass1.bind(this);
     this.changeTabClass2 = this.changeTabClass2.bind(this);
     this.changeUiExcel = this.changeUiExcel.bind(this);
+    this.getLink = this.getLink.bind(this);
     this.router = context.router;
     this.state.showExcellence = true;
     this.state.showImprovement = false;
@@ -25,29 +26,38 @@ class ExcellenceHeader extends React.Component {
     this.state.fundClass="";
     this.state.headerText = "SUS Metrics Performance Excellence";
   }
+   getLink(link){ 
+      return (window.innerWidth < 767) ? "/excellence#" : link;
+   }
   changeTabClass(){
-    this.setState({ 
-      excClass:'active',
-      impClass:'',
-      fundClass:'',
-      headerText:'SUS Metrics Performance Excellence'
-     });   
+    if(window.innerWidth > 767){
+      this.setState({ 
+        excClass:'active',
+        impClass:'',
+        fundClass:'',
+        headerText:'SUS Metrics Performance Excellence'
+       });   
+  }
   }
     changeTabClass1(){
-    this.setState({ 
-      excClass:'',
-      impClass:'active',
-      fundClass:'',
-      headerText:'SUS Metrics Performance Improvement'
-     });   
+      if(window.innerWidth > 767){
+        this.setState({ 
+          excClass:'',
+          impClass:'active',
+          fundClass:'',
+          headerText:'SUS Metrics Performance Improvement'
+         });
+     }   
   }
     changeTabClass2(){
-    this.setState({ 
-      excClass:'',
-      impClass:'',
-      fundClass:'active',
-      headerText:'SUS Metrics Performance Funding'
-     });   
+      if(window.innerWidth > 767){
+        this.setState({ 
+          excClass:'',
+          impClass:'',
+          fundClass:'active',
+          headerText:'SUS Metrics Performance Funding'
+         });  
+     } 
   }
    changeImageImp(){
    this.setState({
@@ -125,8 +135,8 @@ class ExcellenceHeader extends React.Component {
                 <div className="panel-heading">
                     <ul className="nav nav-tabs" style={{display:'block'}}>
                         <li onClick={this.changeTabClass} className={this.state.excClass}><Link to="/excellence">EXCELLENCE</Link></li>
-                        <li onClick={this.changeTabClass1}  className={this.state.impClass}><Link to="/improvement">IMPROVEMENT</Link></li>
-                        <li onClick={this.changeTabClass2}  className={this.state.fundClass}><Link to="/funding">fUNDING</Link></li>
+                        <li onClick={this.changeTabClass1}  className={this.state.impClass}><Link to={this.getLink("/improvement")}>IMPROVEMENT</Link></li>
+                        <li onClick={this.changeTabClass2}  className={this.state.fundClass}><Link to={this.getLink("/funding")}>fUNDING</Link></li>
                     </ul>
                 </div>
                 
@@ -142,8 +152,8 @@ class ExcellenceHeader extends React.Component {
           <a href="#" onClick={this.openSubMenu}><img src="static/images/leader_icon.png"/> Leaderboards <i className="fa fa-chevron-right" aria-hidden="true"></i></a>
           <ul style={{'display': 'none', 'overflowX': 'visible', 'overflowY': 'visible'}}>
             <li><Link onClick={this.changeTabClass} className={this.state.excClass} to="/excellence">Excellence</Link></li>
-            <li><Link onClick={this.changeTabClass1}  className={this.state.impClass} to="/improvement">Improvement</Link></li>
-            <li><Link onClick={this.changeTabClass2}  className={this.state.fundClass} to="/funding">Funding</Link></li>
+            <li><Link onClick={this.changeTabClass1}  className={this.state.impClass} to={this.getLink("/improvement")}>Improvement</Link></li>
+            <li><Link onClick={this.changeTabClass2}  className={this.state.fundClass} to={this.getLink("/funding")}>Funding</Link></li>
           </ul>
        </li>
        <li><Link to="/glance" ><img src="static/images/glance.png"/> At a Glance <i className="fa fa-chevron-right" aria-hidden="true"></i></Link></li>

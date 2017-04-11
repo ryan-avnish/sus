@@ -8,13 +8,16 @@ import GlanceFooter from './GlanceFooter.jsx';
 class Template extends React.Component {
     constructor(props) {
        super(props);
+       this.getPath = this.getPath.bind(this);
     }
-
+   getPath(){
+    return (this.props.location.pathname.substr(1)=="")?'home':this.props.location.pathname.substr(1);
+   }
 	
   render() {
             if(this.props.location.pathname == '/excellence' || this.props.location.pathname == '/improvement' || this.props.location.pathname == '/funding'){
                return(
-                          <div className="page-bottom mainBody" data-custom={this.props.location.pathname}>
+                          <div className="page-bottom mainBody"  id={this.getPath()}>
                             <ExcellenceHeader/>
                             { this.props.children }
                             <ExcellenceFooter/>
@@ -23,7 +26,7 @@ class Template extends React.Component {
             }
             else if(this.props.location.pathname == '/glance'){
                    return(
-                            <div className="page-bottom mainBody" data-custom={this.props.location.pathname}>
+                            <div className="page-bottom mainBody"  id="glanceBody" >
                             <GlanceHeader/> 
                             { this.props.children }
                             <GlanceFooter/>
@@ -32,7 +35,7 @@ class Template extends React.Component {
             }
             else{
                   return (
-                             <div className="page-bottom mainBody" data-custom={this.props.location.pathname}>
+                             <div className="page-bottom mainBody"  id={this.getPath()}>
                              <Header/> 
                              { this.props.children }
                              <Footer/>

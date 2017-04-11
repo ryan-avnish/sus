@@ -8,8 +8,17 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.target = "";
+    this.getLink = this.getLink.bind(this);
+    this.getTarget = this.getTarget.bind(this);
   }
-
+  
+   getTarget(){
+         return (window.innerWidth < 767) ? "" : "_blank";       
+   }
+   getLink(link){
+      return (window.innerWidth < 767) ? "#" : link;
+   }
   render() {
 const divStyle = {
   visibility: 'visible', 
@@ -22,7 +31,7 @@ const divStyle = {
         <div className="header-content">
            <div className="banner_nav">
                 <ul>
-                    <li><Link to="/wiki">Wiki</Link></li>
+                    <li><Link  className="wiki-home" to={this.getLink("/wiki")}>Wiki</Link></li>
                     <li><a href="#">Blog</a></li>
                 </ul>
             </div> 
@@ -48,7 +57,7 @@ const divStyle = {
                     <li><a href="#"><i className="fa fa-linkedin" aria-hidden="true"></i></a></li>
                     <li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i className="fa fa-envelope" aria-hidden="true"></i></a></li>
+                  
                 </ul>
                 </div>
 
@@ -65,7 +74,7 @@ const divStyle = {
 
                     </div>
                     </Link>
-                    <Link to="/glance">
+                    <Link to={this.getLink("/glance")} className="glance-home">
                     <div className="grid_1">
                         <div className="gridcircle_2"><img src="static/images/grid_img2.png" data-wow-delay=".3s" style={divStyle} /></div>
                         <h2  className="btn-xl">At.A.Glance</h2>
@@ -73,7 +82,7 @@ const divStyle = {
                         <p>View SUS metric detail and summary views for each institution</p>
                     </div>
                     </Link>
-                    <Link to="http://zgu8tz.axshare.com/#g=1&p=overview" target="_blank">
+                    <Link to={this.getLink("http://zgu8tz.axshare.com/#g=1&p=overview")}  target={(window.innerWidth < 767) ? "" : "_blank"}  className="analytic-home">
                     <div className="grid_1">
                         <div className="gridcircle_3"><img src="static/images/grid_img3.png" data-wow-delay=".3s"  style={divStyle} /></div>
                         <h2 className="btn-xl">Analysis</h2>

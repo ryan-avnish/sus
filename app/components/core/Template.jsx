@@ -5,10 +5,12 @@ import ExcellenceHeader from './ExcellenceHeader.jsx';
 import Footer from './Footer.jsx';
 import ExcellenceFooter from './ExcellenceFooter.jsx';
 import GlanceFooter from './GlanceFooter.jsx';
+
 class Template extends React.Component {
     constructor(props) {
        super(props);
        this.getPath = this.getPath.bind(this);
+
     }
    getPath(){
     return (this.props.location.pathname.substr(1)=="")?'home':this.props.location.pathname.substr(1);

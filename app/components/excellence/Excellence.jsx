@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 import ArticleStore from './../../stores/ArticleStore.jsx';
-import $ from 'jquery';
 //import Swipeable from 'react-swipeable';
 import ReactSwipe from 'react-swipe';
 import Swipe from 'swipe-js-iso';
 import { Modal } from 'react-bootstrap';
 import '../../js/bluebird.min.js';
-
+import $ from 'jquery';
 
 
 function getCSVList() {
@@ -23,7 +22,6 @@ function callback() {
   //   }, 1000 );
 }
 const swipeOptions = {
-
   continuous: true,
   transitionEnd() {
     var idx = $("aside div ul li").prop('id');
@@ -701,7 +699,7 @@ $(c).prop('checked','checked');
     else {
 
       return (
-        <div className="container-fluid tab">
+        <div className="container-fluid tab" >
           <div className="spc_bx">
             <ReactSwipe key={this.state.swipeCsvData.length} ref="container" swipeOptions={{ startSlide: this.state.slideindex, continuous: false }}>
               {

@@ -3,7 +3,7 @@ import React from 'react';
 import {Jumbotron, Grid, Row, Col, Button, Well} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import { Link } from 'react-router';
-
+import $ from 'jquery';
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -11,13 +11,14 @@ class Home extends React.Component {
     this.target = "";
     this.getLink = this.getLink.bind(this);
     this.getTarget = this.getTarget.bind(this);
+    this.state.width = $(window).width();
   }
   
    getTarget(){
-         return (window.innerWidth < 767) ? "" : "_blank";       
+         return (this.state.width  < 767) ? "" : "_blank";       
    }
    getLink(link){
-      return (window.innerWidth < 767) ? "#" : link;
+         return (this.state.width  < 767) ? "#" : link;
    }
   render() {
 const divStyle = {
@@ -82,7 +83,7 @@ const divStyle = {
                         <p>View SUS metric detail and summary views for each institution</p>
                     </div>
                     </Link>
-                    <Link to={this.getLink("http://zgu8tz.axshare.com/#g=1&p=overview")}  target={(window.innerWidth < 767) ? "" : "_blank"}  className="analytic-home">
+                    <Link to={this.getLink("http://zgu8tz.axshare.com/#g=1&p=overview")}  target={($(window).width()  < 767) ? "" : "_blank"}  className="analytic-home">
                     <div className="grid_1">
                         <div className="gridcircle_3"><img src="static/images/grid_img3.png" data-wow-delay=".3s"  style={divStyle} /></div>
                         <h2 className="btn-xl">Analysis</h2>

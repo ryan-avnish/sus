@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
+
 import Excellence from '../excellence/Excellence.jsx';
 import Improvement from '../improvement/Improvement.jsx';
+import $ from 'jquery';
 
 
 class ExcellenceHeader extends React.Component {
@@ -27,10 +29,14 @@ class ExcellenceHeader extends React.Component {
     this.state.headerText = "SUS Metrics Performance Excellence";
   }
    getLink(link){ 
-      return (window.innerWidth < 767) ? "/excellence#" : link;
+      if (typeof(window) !== 'undefined' && $(window).width() >= 768) {
+    global.window = {}
+    return ($(window).width()  < 767) ? "/excellence#" : link;
+   }
+      
    }
   changeTabClass(){
-    if(window.innerWidth > 767){
+    if($(window).width()  > 767){
       this.setState({ 
         excClass:'active',
         impClass:'',
@@ -40,7 +46,7 @@ class ExcellenceHeader extends React.Component {
   }
   }
     changeTabClass1(){
-      if(window.innerWidth > 767){
+      if($(window).width()  > 767){
         this.setState({ 
           excClass:'',
           impClass:'active',
@@ -50,7 +56,7 @@ class ExcellenceHeader extends React.Component {
      }   
   }
     changeTabClass2(){
-      if(window.innerWidth > 767){
+      if($(window).width()  > 767){
         this.setState({ 
           excClass:'',
           impClass:'',
@@ -102,6 +108,8 @@ class ExcellenceHeader extends React.Component {
   }
 
   render() {
+   
+    
     return (
       <div>
       <nav id="topNav" className="navbar navbar-default navbar-fixed-top bg-blue">
@@ -167,6 +175,7 @@ class ExcellenceHeader extends React.Component {
 </div>
       
     );
+   
   }
 }
 

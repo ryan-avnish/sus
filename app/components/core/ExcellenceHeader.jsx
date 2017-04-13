@@ -30,8 +30,9 @@ class ExcellenceHeader extends React.Component {
   }
    getLink(link){ 
       if (typeof(window) !== 'undefined' && $(window).width() >= 768) {
-    return ($(window).width()  < 767) ? "/excellence#" : link;
+    return  link;
    }
+   
       
    }
   changeTabClass(){

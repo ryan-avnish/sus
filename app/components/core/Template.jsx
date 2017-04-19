@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header.jsx';
 import GlanceHeader from './GlanceHeader.jsx';
 import ExcellenceHeader from './ExcellenceHeader.jsx';
+import WikiHeader from './WikiHeader.jsx';
 import Footer from './Footer.jsx';
 import ExcellenceFooter from './ExcellenceFooter.jsx';
 import GlanceFooter from './GlanceFooter.jsx';
@@ -32,6 +33,15 @@ class Template extends React.Component {
                             <GlanceHeader/> 
                             { this.props.children }
                             <GlanceFooter/>
+                            </div>
+                       )
+            }
+            else if(this.props.location.pathname == '/wiki'){
+                            return(
+                              <div className="page-bottom mainBody"  id="glanceBody" >
+                              <WikiHeader/> 
+                              { this.props.children }
+                              <GlanceFooter/>
                             </div>
                        )
             }

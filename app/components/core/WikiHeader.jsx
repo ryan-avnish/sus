@@ -56,7 +56,12 @@ class WikiHeader extends React.Component {
                     <img src="static/images/menu_icon.png"/>
                 </button>
                 </Link>
-            </div>           
+            </div>
+           
+            <div className="padding_rw">
+                <div className="name"><h2>SUS Metrics</h2></div>                
+            </div>
+
         </div>
     </nav>
       
